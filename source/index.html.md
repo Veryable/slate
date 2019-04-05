@@ -59,9 +59,9 @@ This endpoint retrieves all bids for an Op.
 
 ### Query Parameters
 
-Parameter | Type | Required | Description
---------- | ------ | ---- | -----------
-opId | string | yes | The ID of the Op.
+Parameter | Required | Description
+--------- | ---- | -----------
+opId | yes | The ID of the Op.
 
 > The above command returns JSON structured like this:
 
@@ -116,9 +116,9 @@ This endpoint retrieves a specific bid by ID.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-bidId | The ID of the bid to retrieve.
+Parameter | Required | Description
+--------- | ---- | -----------
+bidId | yes | The ID of the bid to retrieve.
 
 > The above command returns JSON structured like this:
 
@@ -155,3 +155,64 @@ bidId | The ID of the bid to retrieve.
 ```
 
 <aside class="warning">Make sure you lower the font size prior to submitting your request.</aside>
+
+## Adjust Bid By ID
+
+```shell
+curl -X "PUT" "http://localhost:3000/api/bids/<bidId>/adjust?businessId=226"
+     -H 'Authorization: Bearer [JWT token]'
+     -d $'{"bidQuantity": 6}'
+```
+
+This endpoint adjusts the bid quantity of a specific bid by ID.
+
+### HTTP Request
+
+`GET https://platform.veryableops.com/api/bids/<bidId>/adjust`
+
+### URL Parameters
+
+Parameter | Required | Description
+--------- | ---- | -----------
+bidId | yes | The ID of the bid to adjust.
+
+### Body Parameters
+
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+bidQuantity | number | yes | The desired adjusted bid quantity.
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "message": "Bid(s) adjusted.",
+  "adjustedBids": [
+    {
+      "id": 101933,
+      "bidSetId": "521bb780-5727-11e9-b855-874765ebbcf8",
+      "opId": 6134,
+      "operatorId": 1060,
+      "operatorratingId": null,
+      "startTime": "2019-01-29T14:15:00.000Z",
+      "endTime": "2019-01-29T20:55:00.000Z",
+      "bidQuantity": "6",
+      "bidRateIncrease": null,
+      "isInvited": true,
+      "isAccepted": true,
+      "isCompleted": false,
+      "isPaid": false,
+      "isWithdrawn": false,
+      "withdrawalReason": null,
+      "isDisputed": false,
+      "disputeCategory": null,
+      "disputeComment": null,
+      "isCancelled": false,
+      "cancellationReason": null,
+      "createdAt": "2019-04-04T22:16:40.850Z",
+      "updatedAt": "2019-04-05T19:15:57.930Z"
+    }
+  ],
+  "bidsNotAdjusted": []
+}
+```
