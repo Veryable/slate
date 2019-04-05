@@ -216,3 +216,66 @@ bidQuantity | number | yes | The desired adjusted bid quantity.
   "bidsNotAdjusted": []
 }
 ```
+
+## Adjust Multiple Bids
+
+```shell
+curl -X "PUT" "http://localhost:3000/api/bids/adjust?businessId=226"
+     -H 'Authorization: Bearer [JWT token]'
+     -d $'{
+        "adjustments": [
+            {
+              "id": 101005,
+              "bidQuantity": 100
+            }
+          ]
+        }'
+
+```
+
+This endpoint adjusts the bid quantity of a specific bid by ID.
+
+### HTTP Request
+
+`GET https://platform.veryableops.com/api/bids/<bidId>/adjust`
+
+### Body Parameters
+
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+adjustments | array | yes | An array of objects, each containing `id` (the ID of the bid) and `bidQuantity` (the desired adjusted bid quantity).
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "message": "Bid(s) adjusted.",
+  "adjustedBids": [
+    {
+      "id": 101933,
+      "bidSetId": "521bb780-5727-11e9-b855-874765ebbcf8",
+      "opId": 6134,
+      "operatorId": 1060,
+      "operatorratingId": null,
+      "startTime": "2019-01-29T14:15:00.000Z",
+      "endTime": "2019-01-29T20:55:00.000Z",
+      "bidQuantity": "6",
+      "bidRateIncrease": null,
+      "isInvited": true,
+      "isAccepted": true,
+      "isCompleted": false,
+      "isPaid": false,
+      "isWithdrawn": false,
+      "withdrawalReason": null,
+      "isDisputed": false,
+      "disputeCategory": null,
+      "disputeComment": null,
+      "isCancelled": false,
+      "cancellationReason": null,
+      "createdAt": "2019-04-04T22:16:40.850Z",
+      "updatedAt": "2019-04-05T19:15:57.930Z"
+    }
+  ],
+  "bidsNotAdjusted": []
+}
+```
