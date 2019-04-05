@@ -2,11 +2,10 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - http
-  - javascript
+  - shell
 
 toc_footers:
-  - <a href='mailto:tech@veryableops.com'>Sign Up for a Developer Key</a>
+  - <a href='mailto:tech@veryableops.com'>Request Developer Credentials</a>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -17,9 +16,9 @@ search: true
 
 # Introduction
 
-Welcome to the Veryable Public API! You can use our API to access Veryable API endpoints, which you can use to access our labor intelligence and manage business activity on our platform.
+Welcome to the **Veryable Public API**! You can use our API to access our labor intelligence and manage business activity on our platform.
 
-You can view Javascript code examples in the dark area to the right.
+You can view cURL request examples in the dark area to the right.
 
 This API documentation page was created with [Slate](https://github.com/lord/slate). 
 
@@ -31,179 +30,128 @@ The API expects for the JSON web token string to be included in all API requests
 Authorization: Bearer [JWT string]
 `
 
-<aside class="notice">
 You must replace <code>[JWT string]</code> with the JWT string you received upon logging in.
-</aside>
 
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+Note that every JWT expires **24 hours after being issued**. Once the JWT expires, you will need to hit the API login endpoint to get a fresh JWT.
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+https://platform.veryableops.com/api/dummyendpoint?businessId=226
 ```
 
-```javascript
-const kittn = require('kittn');
+<aside class="notice">
+In addition, a business ID (corresponding to a business you have access to) must be passed as a <code>businessId</code> query parameter with every request, formatted like the example to the right.
+</aside>
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+# Bids
+
+## Get Bids For Op
+
+```shell
+curl -X GET "http://localhost:3000/api/bids\?businessId=226&opId=6134"
+    -H "Authorization: Bearer [JWT string]"
 ```
 
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
+This endpoint retrieves all bids for an Op.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET https://platform.veryableops.com/api/bids`
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+opId | string | yes | The ID of the Op.
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "message": "Bids have successfully been retrieved.",
+  "bids": [
+    {
+      "id": 101006,
+      "bidSetId": null,
+      "opId": 6134,
+      "operatorId": 922,
+      "operatorratingId": null,
+      "startTime": "2019-01-29T14:15:00.000Z",
+      "endTime": null,
+      "bidQuantity": "0",
+      "bidRateIncrease": null,
+      "isInvited": true,
+      "isAccepted": false,
+      "isCompleted": false,
+      "isPaid": false,
+      "isWithdrawn": false,
+      "withdrawalReason": null,
+      "isDisputed": false,
+      "disputeCategory": null,
+      "disputeComment": null,
+      "isCancelled": false,
+      "cancellationReason": null,
+      "createdAt": "2019-01-28T23:14:49.648Z",
+      "updatedAt": "2019-01-28T23:14:49.648Z"
+    }
+  ]
+}
+```
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+## Get Bid By ID
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+curl -X GET "http://localhost:3000/api/bids/101933\?businessId=226"
+    -H "Authorization: Bearer [JWT string]"
 ```
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+This endpoint retrieves a specific bid by ID.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET https://platform.veryableops.com/api/bids/<bidId>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
+bidId | The ID of the bid to retrieve.
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+  "message": "Bid has successfully been retrieved.",
+  "bid": [
+    {
+      "id": 101933,
+      "bidSetId": "521bb780-5727-11e9-b855-874765ebbcf8",
+      "opId": 6134,
+      "operatorId": 1060,
+      "operatorratingId": null,
+      "startTime": "2019-01-29T14:15:00.000Z",
+      "endTime": "2019-01-29T20:55:00.000Z",
+      "bidQuantity": "5",
+      "bidRateIncrease": null,
+      "isInvited": true,
+      "isAccepted": true,
+      "isCompleted": true,
+      "isPaid": false,
+      "isWithdrawn": false,
+      "withdrawalReason": null,
+      "isDisputed": false,
+      "disputeCategory": null,
+      "disputeComment": null,
+      "isCancelled": false,
+      "cancellationReason": null,
+      "createdAt": "2019-04-04T22:16:40.850Z",
+      "updatedAt": "2019-04-05T15:06:55.590Z"
+    }
+  ]
 }
 ```
 
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
+<aside class="warning">Make sure you lower the font size prior to submitting your request.</aside>
