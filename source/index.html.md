@@ -35,7 +35,7 @@ You must replace <code>[JWT string]</code> with the JWT string you received upon
 Note that every JWT expires **24 hours after being issued**. Once the JWT expires, you will need to hit the API login endpoint to get a fresh JWT.
 
 ```shell
-https://platform.veryableops.com/api/dummyendpoint?businessId=226
+https://platform.veryableops.com/api/bids?businessId=226
 ```
 
 <aside class="notice">
@@ -159,7 +159,7 @@ bidId | yes | The ID of the bid to retrieve.
 ## Adjust Bid By ID
 
 ```shell
-curl -X "PUT" "http://localhost:3000/api/bids/<bidId>/adjust?businessId=226"
+curl -X "PUT" "http://localhost:3000/api/bids/101933/adjust?businessId=226"
      -H 'Authorization: Bearer [JWT token]'
      -d $'{"bidQuantity": 6}'
 ```
@@ -168,7 +168,7 @@ This endpoint adjusts the bid quantity of a specific bid by ID.
 
 ### HTTP Request
 
-`GET https://platform.veryableops.com/api/bids/<bidId>/adjust`
+`PUT https://platform.veryableops.com/api/bids/<bidId>/adjust`
 
 ### URL Parameters
 
@@ -223,21 +223,25 @@ bidQuantity | number | yes | The desired adjusted bid quantity.
 curl -X "PUT" "http://localhost:3000/api/bids/adjust?businessId=226"
      -H 'Authorization: Bearer [JWT token]'
      -d $'{
-        "adjustments": [
-            {
-              "id": 101005,
-              "bidQuantity": 100
-            }
-          ]
+          "adjustments": [
+              {
+                "id": 101933,
+                "bidQuantity": 25
+              },
+              {
+                "id": "101934",
+                "bidQuantity": "50"
+              }
+            ]
         }'
 
 ```
 
-This endpoint adjusts the bid quantity of a specific bid by ID.
+This endpoint adjusts the bid quantities of multiple bids.
 
 ### HTTP Request
 
-`GET https://platform.veryableops.com/api/bids/<bidId>/adjust`
+`PUT https://platform.veryableops.com/api/bids/adjust`
 
 ### Body Parameters
 
@@ -251,6 +255,84 @@ adjustments | array | yes | An array of objects, each containing `id` (the ID of
 {
   "message": "Bid(s) adjusted.",
   "adjustedBids": [
+    {
+      "id": 101933,
+      "bidSetId": "521bb780-5727-11e9-b855-874765ebbcf8",
+      "opId": 6134,
+      "operatorId": 1060,
+      "operatorratingId": null,
+      "startTime": "Wednesday, January 29, 2020",
+      "endTime": "2020-01-29T20:55:00.000Z",
+      "bidQuantity": "25 units",
+      "bidRateIncrease": null,
+      "isInvited": true,
+      "isAccepted": true,
+      "isCompleted": false,
+      "isPaid": false,
+      "isWithdrawn": false,
+      "withdrawalReason": null,
+      "isDisputed": false,
+      "disputeCategory": null,
+      "disputeComment": null,
+      "isCancelled": false,
+      "cancellationReason": null,
+      "createdAt": "2019-04-04T22:16:40.850Z",
+      "updatedAt": "2019-04-08T21:11:38.802Z"
+    },
+    {
+      "id": 101934,
+      "bidSetId": "521bb780-5727-11e9-b855-874765ebbcf8",
+      "opId": 6134,
+      "operatorId": 1060,
+      "operatorratingId": null,
+      "startTime": "2020-01-30T14:15:00.000Z",
+      "endTime": "2020-01-30T20:55:00.000Z",
+      "bidQuantity": "50",
+      "bidRateIncrease": null,
+      "isInvited": true,
+      "isAccepted": true,
+      "isCompleted": false,
+      "isPaid": false,
+      "isWithdrawn": false,
+      "withdrawalReason": null,
+      "isDisputed": false,
+      "disputeCategory": null,
+      "disputeComment": null,
+      "isCancelled": false,
+      "cancellationReason": null,
+      "createdAt": "2019-04-04T22:16:40.939Z",
+      "updatedAt": "2019-04-08T21:11:38.878Z"
+    }
+  ],
+  "bidsNotAdjusted": []
+}
+```
+
+## Accept Bid
+
+```shell
+curl -X "PUT" "http://localhost:3000/api/bids/101933/accept?businessId=226"
+     -H 'Authorization: Bearer [JWT token]'
+```
+
+This endpoint accepts a submitted bid, which assigns the operator who submitted the bid to the Op associated with the bid.
+
+### HTTP Request
+
+`PUT https://platform.veryableops.com/api/bids/<bidId>/accept`
+
+### URL Parameters
+
+Parameter | Required | Description
+--------- | ---- | -----------
+bidId | yes | The ID of the bid to accept.
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "message": "Bid accepted.",
+  "bid": [
     {
       "id": 101933,
       "bidSetId": "521bb780-5727-11e9-b855-874765ebbcf8",
@@ -275,7 +357,133 @@ adjustments | array | yes | An array of objects, each containing `id` (the ID of
       "createdAt": "2019-04-04T22:16:40.850Z",
       "updatedAt": "2019-04-05T19:15:57.930Z"
     }
+  ]
+}
+```
+
+## Cancel Bid
+
+```shell
+curl -X "PUT" "http://localhost:3000/api/bids/<bidId>/cancel?businessId=226"
+     -H 'Authorization: Bearer [JWT token]'
+     -d $'{
+          "cancellationReason": "Project has been completed, operator no longer needed."
+        }'
+```
+
+This endpoint cancels a bid.
+
+### HTTP Request
+
+`PUT https://platform.veryableops.com/api/bids/101933/dispute`
+
+### URL Parameters
+
+Parameter | Required | Description
+--------- | ---- | -----------
+bidId | yes | The ID of the bid to dispute.
+
+### Body Parameters
+
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+category | string | yes | The category of the dispute. Can be one of the following: "noShow", "unpreparedForWork", "outOfTimeWindow" or "other."
+comment | string | no | If `category` is "other", this parameter must be included, detailing why the dispute was filed.
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "message": "Bid disputed.",
+  "bid": [
+    {
+      "id": 101933,
+      "bidSetId": "521bb780-5727-11e9-b855-874765ebbcf8",
+      "opId": 6134,
+      "operatorId": 1060,
+      "operatorratingId": null,
+      "startTime": "2019-01-29T14:15:00.000Z",
+      "endTime": "2019-01-29T20:55:00.000Z",
+      "bidQuantity": "6",
+      "bidRateIncrease": null,
+      "isInvited": true,
+      "isAccepted": true,
+      "isCompleted": false,
+      "isPaid": false,
+      "isWithdrawn": false,
+      "withdrawalReason": null,
+      "isDisputed": false,
+      "disputeCategory": null,
+      "disputeComment": null,
+      "isCancelled": true,
+      "cancellationReason": "Project has been completed, operator is no longer needed.",
+      "createdAt": "2019-04-04T22:16:40.850Z",
+      "updatedAt": "2019-04-05T19:15:57.930Z"
+    }
   ],
-  "bidsNotAdjusted": []
+}
+```
+
+## Dispute Bid
+
+```shell
+curl -X "PUT" "http://localhost:3000/api/bids/<bidId>/dispute?businessId=226"
+     -H 'Authorization: Bearer [JWT token]'
+     -d $'{
+          "category": "other",
+          "comment": "Operator failed to follow protocol."
+        }'
+```
+
+This endpoint disputes a bid.
+
+### HTTP Request
+
+`PUT https://platform.veryableops.com/api/bids/101933/dispute`
+
+### URL Parameters
+
+Parameter | Required | Description
+--------- | ---- | -----------
+bidId | yes | The ID of the bid to dispute.
+
+### Body Parameters
+
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+category | string | yes | The category of the dispute. Can be one of the following: "noShow", "unpreparedForWork", "outOfTimeWindow" or "other."
+comment | string | no | If `category` is "other", this parameter must be included, detailing why the dispute was filed.
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "message": "Bid disputed.",
+  "bid": [
+    {
+      "id": 101933,
+      "bidSetId": "521bb780-5727-11e9-b855-874765ebbcf8",
+      "opId": 6134,
+      "operatorId": 1060,
+      "operatorratingId": null,
+      "startTime": "2019-01-29T14:15:00.000Z",
+      "endTime": "2019-01-29T20:55:00.000Z",
+      "bidQuantity": "6",
+      "bidRateIncrease": null,
+      "isInvited": true,
+      "isAccepted": true,
+      "isCompleted": true,
+      "isPaid": false,
+      "isWithdrawn": false,
+      "withdrawalReason": null,
+      "isDisputed": true,
+      "disputeCategory": "other",
+      "disputeComment": "Operator failed to follow protocol.",
+      "isCancelled": false,
+      "cancellationReason": null,
+      "createdAt": "2019-04-04T22:16:40.850Z",
+      "updatedAt": "2019-04-05T19:15:57.930Z"
+    }
+  ]
 }
 ```
