@@ -232,17 +232,11 @@ This endpoint retrieves an Op by Id.
 
 `GET https://platform.veryableops.com/api/ops/<opId>`
 
-### Query Parameters
-
-Parameter | Required | Description
---------- | ---- | -----------
-businessId | yes | The ID of the business.
-
 ### URL Parameters
 
-Parameter | Required | Description
---------- | ---- | -----------
-opId | yes | The ID of the Op.
+Parameter | Type | Required | Description
+--------- | ---- | ---- | -----------
+opId | integer | yes | The ID of the Op.
 
 > The above command returns JSON structured like this:
 
@@ -298,12 +292,6 @@ This endpoint retrieves all ops for a business.
 
 `GET https://platform.veryableops.com/api/ops/business/all`
 
-### Query Parameters
-
-Parameter | Required | Description
---------- | ---- | -----------
-businessId | yes | The ID of the business.
-
 > The above command returns JSON structured like this:
 
 ```json
@@ -369,6 +357,15 @@ businessId | yes | The ID of the business.
         , "updatedAt": "2019-03-06T16:34:10.201Z" 
     }
 ]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error retrieving ops for your business."
+}
+
 ```
 
 <aside class="success">
@@ -378,57 +375,45 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Update Op
 
 ```shell
-curl -X GET "http://localhost:3000/api/ops/<id>"
+curl -X PUT "http://localhost:3000/api/ops/<id>/?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
-This endpoint retrieves all ops for a business.
+This endpoint updates a particular op.
 
 ### HTTP Request
 
-`PUT https://platform.veryableops.com/api/ops`
+`PUT https://platform.veryableops.com/api/ops<id>`
 
-### Query Parameters
+### Body Parameters
 
-Parameter | Required | Description
---------- | ---- | -----------
-businessId | yes | The ID of the business.
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+title | string | no | The title of the op.
+opDescription | string | no | The description of the op.
+opDate | string | no | The description of the op.
+earliestStartTime | string | no | Earliest start time of the op.
+latestStartTime | string | no | Latest start time of the op, leave blank if no start window is desired.
+multidayEndDate | string | no | The last day of a multi day op.
+breakHours | string | no | Desired break hours.
+rallyPoint | string | no | Meeting point for the start of the op.
+autofill | boolean | no | Option to have operators selected for the op automatically.
+opQuantity | integer | no | Duration in hours or the number of units needed for the completion of the op.
+optermsId | integer | no | Whether the op is hourly(1) or piecework(2).
+opcontactId | integer | no | Contact Id for the op contact person.
+optypeId | integer | no | Type of op: single day(1), multi day(2), or multi day no partials(3).
+opskillId | integer | no | Id for the skill required on the op.
+businesscontactId | integer | no | Contact info Id for the business location.
+operatorsNeeded | integer | no | Number of operators needed to fulfill the op.
+opRate | integer | no | Pay rate for the op.
+opRateMax | integer | no | The maximum rate you are willing ot pay if operators cannot be found at the initial op rate.
+businessworkareaId | integer | no | Id for the business work area where the op will be held within the location.
 
 > The above command returns JSON structured like this:
 
 ```json
 [
     {
-        "id": 1234
-        , "businessId": 300
-        , "title": "Op Title"
-        , "opDescription": "Description of the op."
-        , "opDate": "2019-03-21T13:00:00.000Z"
-        , "earliestStartTime": "2019-03-21T13:00:00.000Z"
-        , "latestStartTime": "2019-03-21T13:00:00.000Z"
-        , "multidayEndDate": NULL
-        , "break_hours": 1
-        , "rally_point": "Front Gate"
-        , "autofill" NULL
-        , "opQuantity": 8
-        , "filledQuantity": 8
-        , multidayWorkWeek: ['Monday', 'Tuesday']
-        , isInactive: NULL
-        , "optermsId": 1
-        , "opContactId": 5
-        , "isFulfilled": TRUE
-        , "isCompleted": FALSE
-        , "isPoolOnly": FALSE
-        , o.bidSetId: NULL
-        , o.bidSetIds: []
-        , "contactPerson": "Peggy Gou"
-        , "businessworkareaId": 44
-        , "businesscontactId": 3
-        , "publicId": "19-52"
-        , "createdAt": "2019-03-05T16:34:10.201Z"
-        , "updatedAt": "2019-03-06T16:34:10.201Z" 
-    }
-    , {
         "id": 1235
         , "businessId": 300
         , "title": "Op Title 2"
@@ -455,12 +440,176 @@ businessId | yes | The ID of the business.
         , "businessworkareaId": 44
         , "businesscontactId": 3
         , "publicId": "19-52"
-        , "createdAt": "2019-03-05T16:34:10.201Z"
-        , "updatedAt": "2019-03-06T16:34:10.201Z" 
+        , "createdAt": 2019-03-05T16:34:10.201Z
+        , "updatedAt": 2019-03-06T16:34:10.201Z 
     }
 ]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    message: "The op you requested could not be retrieved."
+}
+
 ```
 
 <aside class="success">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
+
+## Post Op
+
+```shell
+curl -X POST "http://localhost:3000/api/ops/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint creates an op for a business.
+
+### HTTP Request
+
+`POST https://platform.veryableops.com/api/ops`
+
+### Body Parameters
+
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+title | string | yes | The title of the op.
+opDescription | string | yes | The description of the op.
+opDate | string | yes | The description of the op.
+earliestStartTime | string | yes | Earliest start time of the op.
+latestStartTime | string | yes | Latest start time of the op, leave blank if no start window is desired.
+multidayEndDate | string | yes if multi day op | The last day of a multi day op.
+breakHours | string | no | Desired break hours.
+rallyPoint | string | yes | Meeting point for the start of the op.
+autofill | boolean | no | Option to have operators selected for the op automatically.
+opQuantity | integer | yes | Duration in hours or the number of units needed for the completion of the op.
+optermsId | integer | yes | Whether the op is hourly(1) or piecework(2).
+opcontactId | integer | yes | Contact Id for the op contact person.
+optypeId | integer | yes | Type of op: single day(1), multi day(2), or multi day no partials(3).
+opskillId | integer | yes | Id for the skill required on the op.
+multidayWorkWeek | array | no | The days of the week that the op will take place on.
+businesscontactId | integer | yes | Contact info Id for the business location.
+operatorsNeeded | integer | yes | Number of operators needed to fulfill the op.
+opRate | integer | yes | Pay rate for the op.
+partialsAllowed | boolean | yes | Whether or not partial bids are allowed.
+opRateMax | integer | no | The maximum rate you are willing ot pay if operators cannot be found at the initial op rate.
+businessworkareaId | integer | yes | Id for the business work area where the op will be held within the location.
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 1235
+        , "businessId": 300
+        , "title": "My New Op"
+        , "opDescription": "My op description."
+        , "opDate": "2019-03-21T13:00:00.000Z"
+        , "earliestStartTime": "2019-03-21T13:00:00.000Z"
+        , "latestStartTime": "2019-03-21T13:00:00.000Z"
+        , "multidayEndDate": NULL
+        , "break_hours": 1
+        , "rally_point": "Front Gate"
+        , "autofill" NULL
+        , "opQuantity": 8
+        , "filledQuantity": 0
+        , isInactive: NULL
+        , "optermsId": 1
+        , "opContactId": 5
+        , "isFulfilled": TRUE
+        , "isCompleted": FALSE
+        , "isPoolOnly": FALSE
+        , "bidSetId": NULL
+        , "bidSetIds": []
+        , "contactPerson": "Peggy Gou"
+        , "businessworkareaId": 44
+        , "businesscontactId": 3
+        , "opcontactId": 5
+        , "publicId": "19-52"
+        , "createdAt": 2019-03-05T16:34:10.201Z
+        , "updatedAt": 2019-03-06T16:34:10.201Z 
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    message: "This company cannot create a new Op, as it currently has Op(s) that are incomplete and past their grace period."
+}
+
+```
+
+<aside class="success">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Deactivate Op
+
+```shell
+curl -X DELETE "http://localhost:3000/api/ops<opId>/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint deactivates an op that doesn't have accepted bids.
+
+### HTTP Request
+
+`DELETE https://platform.veryableops.com/api/ops<opId>`
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 1235
+        , "businessId": 300
+        , "title": "Op Title 2"
+        , "opDescription": "Description of the op."
+        , "opDate": "2019-03-21T13:00:00.000Z"
+        , "earliestStartTime": "2019-03-21T13:00:00.000Z"
+        , "latestStartTime": "2019-03-21T13:00:00.000Z"
+        , "multidayEndDate": NULL
+        , "break_hours": 1
+        , "rally_point": "Front Gate"
+        , "autofill" NULL
+        , "opQuantity": 8
+        , "filledQuantity": 8
+        , multidayWorkWeek: ['Monday', 'Tuesday']
+        , isInactive: NULL
+        , "optermsId": 1
+        , "opContactId": 5
+        , "isFulfilled": TRUE
+        , "isCompleted": FALSE
+        , "isPoolOnly": FALSE
+        , "bidSetId": NULL
+        , "bidSetIds": []
+        , "contactPerson": "Peggy Gou"
+        , "businessworkareaId": 44
+        , "businesscontactId": 3
+        , "opcontactId": 65
+        , "publicId": "19-52"
+        , "createdAt": 2019-03-05T16:34:10.201Z
+        , "updatedAt": 2019-03-06T16:34:10.201Z 
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    message: "This company cannot create a new Op, as it currently has Op(s) that are incomplete and past their grace period."
+}
+
+```
+
+<aside class="success">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+<!-- REACTIVATE BUSINESS GOES HERE -->
