@@ -216,3 +216,251 @@ bidQuantity | number | yes | The desired adjusted bid quantity.
   "bidsNotAdjusted": []
 }
 ```
+
+# Ops
+
+## Get Op By Id
+
+```shell
+curl -X GET "http://localhost:3000/api/ops/<opId>/?businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint retrieves an Op by Id.
+
+### HTTP Request
+
+`GET https://platform.veryableops.com/api/ops/<opId>`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ---- | -----------
+businessId | yes | The ID of the business.
+
+### URL Parameters
+
+Parameter | Required | Description
+--------- | ---- | -----------
+opId | yes | The ID of the Op.
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 1234
+        , "businessId": 300
+        , "title": "Op Title"
+        , "opDescription": "Description of the op."
+        , "opDate": "2019-03-21T13:00:00.000Z"
+        , "earliestStartTime": "2019-03-21T13:00:00.000Z"
+        , "latestStartTime": "2019-03-21T13:00:00.000Z"
+        , "multidayEndDate": NULL
+        , "break_hours": 1
+        , "rally_point": "Front Gate"
+        , "autofill" NULL
+        , "opQuantity": 8
+        , "filledQuantity": 8
+        , multidayWorkWeek: ['Monday', 'Tuesday']
+        , isInactive: NULL
+        , "optermsId": 1
+        , "opContactId": 5
+        , "isFulfilled": TRUE
+        , "isCompleted": FALSE
+        , "isPoolOnly": FALSE
+        , "bidSetId": NULL
+        , "bidSetIds": []
+        , "contactPerson": "Peggy Gou"
+        , "businessworkareaId": 44
+        , "businesscontactId": 3
+        , "publicId": "19-52"
+        , "createdAt": "2019-03-05T16:34:10.201Z"
+        , "updatedAt": "2019-03-06T16:34:10.201Z" 
+    }
+]
+```
+
+<aside class="success">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Get Ops For Business
+
+```shell
+curl -X GET "http://localhost:3000/api/ops/business/all/?businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint retrieves all ops for a business.
+
+### HTTP Request
+
+`GET https://platform.veryableops.com/api/ops/business/all`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ---- | -----------
+businessId | yes | The ID of the business.
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 1234
+        , "businessId": 300
+        , "title": "Op Title"
+        , "opDescription": "Description of the op."
+        , "opDate": "2019-03-21T13:00:00.000Z"
+        , "earliestStartTime": "2019-03-21T13:00:00.000Z"
+        , "latestStartTime": "2019-03-21T13:00:00.000Z"
+        , "multidayEndDate": NULL
+        , "break_hours": 1
+        , "rally_point": "Front Gate"
+        , "autofill" NULL
+        , "opQuantity": 8
+        , "filledQuantity": 8
+        , multidayWorkWeek: ['Monday', 'Tuesday']
+        , isInactive: NULL
+        , "optermsId": 1
+        , "opContactId": 5
+        , "isFulfilled": TRUE
+        , "isCompleted": FALSE
+        , "isPoolOnly": FALSE
+        , o.bidSetId: NULL
+        , o.bidSetIds: []
+        , "contactPerson": "Peggy Gou"
+        , "businessworkareaId": 44
+        , "businesscontactId": 3
+        , "publicId": "19-52"
+        , "createdAt": "2019-03-05T16:34:10.201Z"
+        , "updatedAt": "2019-03-06T16:34:10.201Z" 
+    }
+    , {
+        "id": 1235
+        , "businessId": 300
+        , "title": "Op Title 2"
+        , "opDescription": "Description of the op."
+        , "opDate": "2019-03-21T13:00:00.000Z"
+        , "earliestStartTime": "2019-03-21T13:00:00.000Z"
+        , "latestStartTime": "2019-03-21T13:00:00.000Z"
+        , "multidayEndDate": NULL
+        , "break_hours": 1
+        , "rally_point": "Front Gate"
+        , "autofill" NULL
+        , "opQuantity": 8
+        , "filledQuantity": 8
+        , multidayWorkWeek: ['Monday', 'Tuesday']
+        , isInactive: NULL
+        , "optermsId": 1
+        , "opContactId": 5
+        , "isFulfilled": TRUE
+        , "isCompleted": FALSE
+        , "isPoolOnly": FALSE
+        , o.bidSetId: NULL
+        , o.bidSetIds: []
+        , "contactPerson": "Peggy Gou"
+        , "businessworkareaId": 44
+        , "businesscontactId": 3
+        , "publicId": "19-52"
+        , "createdAt": "2019-03-05T16:34:10.201Z"
+        , "updatedAt": "2019-03-06T16:34:10.201Z" 
+    }
+]
+```
+
+<aside class="success">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Update Op
+
+```shell
+curl -X GET "http://localhost:3000/api/ops/<id>"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint retrieves all ops for a business.
+
+### HTTP Request
+
+`PUT https://platform.veryableops.com/api/ops`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ---- | -----------
+businessId | yes | The ID of the business.
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 1234
+        , "businessId": 300
+        , "title": "Op Title"
+        , "opDescription": "Description of the op."
+        , "opDate": "2019-03-21T13:00:00.000Z"
+        , "earliestStartTime": "2019-03-21T13:00:00.000Z"
+        , "latestStartTime": "2019-03-21T13:00:00.000Z"
+        , "multidayEndDate": NULL
+        , "break_hours": 1
+        , "rally_point": "Front Gate"
+        , "autofill" NULL
+        , "opQuantity": 8
+        , "filledQuantity": 8
+        , multidayWorkWeek: ['Monday', 'Tuesday']
+        , isInactive: NULL
+        , "optermsId": 1
+        , "opContactId": 5
+        , "isFulfilled": TRUE
+        , "isCompleted": FALSE
+        , "isPoolOnly": FALSE
+        , o.bidSetId: NULL
+        , o.bidSetIds: []
+        , "contactPerson": "Peggy Gou"
+        , "businessworkareaId": 44
+        , "businesscontactId": 3
+        , "publicId": "19-52"
+        , "createdAt": "2019-03-05T16:34:10.201Z"
+        , "updatedAt": "2019-03-06T16:34:10.201Z" 
+    }
+    , {
+        "id": 1235
+        , "businessId": 300
+        , "title": "Op Title 2"
+        , "opDescription": "Description of the op."
+        , "opDate": "2019-03-21T13:00:00.000Z"
+        , "earliestStartTime": "2019-03-21T13:00:00.000Z"
+        , "latestStartTime": "2019-03-21T13:00:00.000Z"
+        , "multidayEndDate": NULL
+        , "break_hours": 1
+        , "rally_point": "Front Gate"
+        , "autofill" NULL
+        , "opQuantity": 8
+        , "filledQuantity": 8
+        , multidayWorkWeek: ['Monday', 'Tuesday']
+        , isInactive: NULL
+        , "optermsId": 1
+        , "opContactId": 5
+        , "isFulfilled": TRUE
+        , "isCompleted": FALSE
+        , "isPoolOnly": FALSE
+        , o.bidSetId: NULL
+        , o.bidSetIds: []
+        , "contactPerson": "Peggy Gou"
+        , "businessworkareaId": 44
+        , "businesscontactId": 3
+        , "publicId": "19-52"
+        , "createdAt": "2019-03-05T16:34:10.201Z"
+        , "updatedAt": "2019-03-06T16:34:10.201Z" 
+    }
+]
+```
+
+<aside class="success">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
