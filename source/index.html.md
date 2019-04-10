@@ -42,179 +42,6 @@ https://platform.veryableops.com/api/bids?businessId=226
 In addition, a business ID (corresponding to a business you have access to) must be passed as a <code>businessId</code> query parameter with every request, formatted like the example to the right.
 </aside>
 
-# Ops
-
-## Cancel Op
-
-```shell
-curl -X "PUT" "http://localhost:3000/api/ops/11529/cancel?businessId=226"
-     -H 'Authorization: Bearer [JWT token]'
-     -d $'{
-          "operatorIds": [
-            128
-          ],
-          "payCurrentDay": true,
-          "cancellationReason": "Project ended early, operator no longer needed."
-        }'
-```
-
-This endpoint cancels a Op and the assignments of the associated operators.
-
-### HTTP Request
-
-`PUT https://platform.veryableops.com/api/ops/<opId>/cancel`
-
-### URL Parameters
-
-Parameter | Required | Description
---------- | ---- | -----------
-opId | yes | The ID of the Op to cancel.
-
-### Body Parameters
-
-Parameter | Type | Required | Description
---------- | ------ | ---- | -----------
-operatorIds | array | yes | An array of operator IDs (integers) corresponding to the assigned operators.
-cancellationReason | string | yes | A brief description of why the Op was cancelled.
-payCurrentDay | boolean | yes | Input `true` if operator(s) should be paid for work today, else `false`.
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "message": "Op canceled for operator(s) 128.",
-  "updatedOp": [
-    {
-      "id": 11529,
-      "businessId": 226,
-      "title": "Weekday - PM Shift",
-      "opDescription": "Looking for workers that are looking for a longer-term opportunity. Need to stand for long periods of time and lift up to 30 lbs. Must be able to read and understand English. Will start in our stacking and sorting area to start, and over time will be moved to more high-skilled positions within the facility.\n\nTeam A schedule will be:\nSunday - OFF\nMonday - 7am - 1pm\nTuesday - 7am - 1pm\nWednesday - 7am - 1pm\n*Thursday - 7am - 7pm\n*Friday - 7am - 7pm\nSaturday - OFF\n\n*unpaid lunch hr for 12 hr shifts",
-      "opDate": "2019-04-09T18:00:00.000Z",
-      "totalWorkingDays": 9,
-      "earliestStartTime": "April 9th, 2019 to April 19th, 2019",
-      "multidayStartDate": "2019-04-09T18:00:00.000Z",
-      "multidayEndDate": "2019-04-19T18:00:00.000Z",
-      "multidayWorkWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday"
-      ],
-      "opQuantity": 6,
-      "opRate": 11,
-      "partialsAllowed": false,
-      "rallyPoint": "Shipping Employee Entrance",
-      "isFulfilled": false,
-      "isCompleted": true,
-      "createdAt": "2019-04-08T20:53:03.083Z",
-      "updatedAt": "2019-04-09T18:51:13.521Z",
-      "filledQuantity": 0,
-      "opSetId": null,
-      "latestStartTime": "2019-04-09T18:00:00.000Z",
-      "autofill": null,
-      "workWeek": null,
-      "bidSetId": null,
-      "optypeId": 2,
-      "optermsId": 1,
-      "opskillId": 1,
-      "estTotalHours": "6.00",
-      "estMinPerUnit": null,
-      "isInactive": null,
-      "businesscontactId": 79,
-      "businessworkareaId": 39,
-      "breakHours": null,
-      "operatorsNeeded": 3,
-      "bidSetIds": [
-        "301a85d0-5af6-11e9-b132-c320991276c8"
-      ],
-      "isPoolOnly": false,
-      "publicId": "19-15",
-      "opcontactId": 38,
-      "opTermsUnit": "Hours"
-    }
-  ],
-  "canceledBidSets": [
-    [
-      {
-        "id": 102004,
-        "bidSetId": "301a85d0-5af6-11e9-b132-c320991276c8",
-        "opId": 11529,
-        "operatorId": 128,
-        "operatorratingId": null,
-        "startTime": "2019-04-19T18:00:00.000Z",
-        "endTime": "2019-04-20T00:00:00.000Z",
-        "bidQuantity": "6",
-        "bidRateIncrease": null,
-        "isInvited": true,
-        "isAccepted": true,
-        "isCompleted": false,
-        "isPaid": false,
-        "isWithdrawn": false,
-        "withdrawalReason": null,
-        "isDisputed": false,
-        "disputeCategory": null,
-        "disputeComment": null,
-        "isCancelled": true,
-        "cancellationReason": "Project ended early, operator no longer needed.",
-        "createdAt": "2019-04-09T18:35:03.374Z",
-        "updatedAt": "2019-04-09T18:51:13.257Z"
-      },
-      {
-        "id": 101998,
-        "bidSetId": "301a85d0-5af6-11e9-b132-c320991276c8",
-        "opId": 11529,
-        "operatorId": 128,
-        "operatorratingId": null,
-        "startTime": "2019-04-09T18:00:00.000Z",
-        "endTime": "2019-04-10T00:00:00.000Z",
-        "bidQuantity": "15",
-        "bidRateIncrease": null,
-        "isInvited": true,
-        "isAccepted": true,
-        "isCompleted": false,
-        "isPaid": false,
-        "isWithdrawn": false,
-        "withdrawalReason": null,
-        "isDisputed": false,
-        "disputeCategory": null,
-        "disputeComment": null,
-        "isCancelled": true,
-        "cancellationReason": "Project ended early, operator no longer needed.",
-        "createdAt": "2019-04-09T18:35:03.042Z",
-        "updatedAt": "2019-04-09T18:51:13.257Z"
-      },
-      {
-        "id": 102000,
-        "bidSetId": "301a85d0-5af6-11e9-b132-c320991276c8",
-        "opId": 11529,
-        "operatorId": 128,
-        "operatorratingId": null,
-        "startTime": "2019-04-11T18:00:00.000Z",
-        "endTime": "2019-04-12T00:00:00.000Z",
-        "bidQuantity": "6",
-        "bidRateIncrease": null,
-        "isInvited": true,
-        "isAccepted": true,
-        "isCompleted": false,
-        "isPaid": false,
-        "isWithdrawn": false,
-        "withdrawalReason": null,
-        "isDisputed": false,
-        "disputeCategory": null,
-        "disputeComment": null,
-        "isCancelled": true,
-        "cancellationReason": "Project ended early, operator no longer needed.",
-        "createdAt": "2019-04-09T18:35:03.154Z",
-        "updatedAt": "2019-04-09T18:51:13.257Z"
-      }
-    ]
-  ],
-  "operatorsNotCanceled": [],
-  "errors": []
-}
-```
-
 # Bids
 
 ## Get Bids For Op
@@ -626,20 +453,19 @@ opId | integer | yes | The ID of the Op.
         , "opDate": "2019-03-21T13:00:00.000Z"
         , "earliestStartTime": "2019-03-21T13:00:00.000Z"
         , "latestStartTime": "2019-03-21T13:00:00.000Z"
-        , "multidayEndDate": NULL
+        , "multidayEndDate": null
         , "break_hours": 1
         , "rally_point": "Front Gate"
-        , "autofill" NULL
+        , "autofill": null
         , "opQuantity": 8
         , "filledQuantity": 8
         , multidayWorkWeek: ['Monday', 'Tuesday']
-        , isInactive: NULL
+        , isInactive: null
         , "optermsId": 1
         , "opContactId": 5
-        , "isFulfilled": TRUE
-        , "isCompleted": FALSE
-        , "isPoolOnly": FALSE
-        , "bidSetId": NULL
+        , "isFulfilled": true
+        , "isCompleted": false
+        , "isPoolOnly": false
         , "bidSetIds": []
         , "contactPerson": "Peggy Gou"
         , "businessworkareaId": 44
@@ -680,20 +506,19 @@ This endpoint retrieves all ops for a business.
         , "opDate": "2019-03-21T13:00:00.000Z"
         , "earliestStartTime": "2019-03-21T13:00:00.000Z"
         , "latestStartTime": "2019-03-21T13:00:00.000Z"
-        , "multidayEndDate": NULL
+        , "multidayEndDate": null
         , "break_hours": 1
         , "rally_point": "Front Gate"
-        , "autofill" NULL
+        , "autofill": null
         , "opQuantity": 8
         , "filledQuantity": 8
         , "multidayWorkWeek": ['Monday', 'Tuesday']
-        , "isInactive": NULL
+        , "isInactive": null
         , "optermsId": 1
         , "opContactId": 5
-        , "isFulfilled": TRUE
-        , "isCompleted": FALSE
-        , "isPoolOnly": FALSE
-        , "bidSetId": NULL
+        , "isFulfilled": true
+        , "isCompleted": false
+        , "isPoolOnly": false
         , "bidSetIds": []
         , "contactPerson": "Peggy Gou"
         , "businessworkareaId": 44
@@ -710,20 +535,19 @@ This endpoint retrieves all ops for a business.
         , "opDate": "2019-03-21T13:00:00.000Z"
         , "earliestStartTime": "2019-03-21T13:00:00.000Z"
         , "latestStartTime": "2019-03-21T13:00:00.000Z"
-        , "multidayEndDate": NULL
+        , "multidayEndDate": null
         , "break_hours": 1
         , "rally_point": "Front Gate"
-        , "autofill" NULL
+        , "autofill": null
         , "opQuantity": 8
         , "filledQuantity": 8
         , "multidayWorkWeek": ['Monday', 'Tuesday']
-        , "isInactive": NULL
+        , "isInactive": null
         , "optermsId": 1
         , "opContactId": 5
-        , "isFulfilled": TRUE
-        , "isCompleted": FALSE
-        , "isPoolOnly": FALSE
-        , "bidSetId": NULL
+        , "isFulfilled": true
+        , "isCompleted": false
+        , "isPoolOnly": false
         , "bidSetIds": []
         , "contactPerson": "Peggy Gou"
         , "businessworkareaId": 44
@@ -797,20 +621,19 @@ businessworkareaId | integer | no | Id for the business work area where the op w
         , "opDate": "2019-03-21T13:00:00.000Z"
         , "earliestStartTime": "2019-03-21T13:00:00.000Z"
         , "latestStartTime": "2019-03-21T13:00:00.000Z"
-        , "multidayEndDate": NULL
+        , "multidayEndDate": null
         , "break_hours": 1
         , "rally_point": "Front Gate"
-        , "autofill" NULL
+        , "autofill": null
         , "opQuantity": 8
         , "filledQuantity": 8
         , "multidayWorkWeek": ['Monday', 'Tuesday']
-        , "isInactive": NULL
+        , "isInactive": null
         , "optermsId": 1
         , "opContactId": 5
-        , "isFulfilled": TRUE
-        , "isCompleted": FALSE
-        , "isPoolOnly": FALSE
-        , "bidSetId": NULL
+        , "isFulfilled": true
+        , "isCompleted": false
+        , "isPoolOnly": false
         , "bidSetIds": []
         , "contactPerson": "Peggy Gou"
         , "businessworkareaId": 44
@@ -886,19 +709,18 @@ businessworkareaId | integer | yes | Id for the business work area where the op 
         , "opDate": "2019-03-21T13:00:00.000Z"
         , "earliestStartTime": "2019-03-21T13:00:00.000Z"
         , "latestStartTime": "2019-03-21T13:00:00.000Z"
-        , "multidayEndDate": NULL
+        , "multidayEndDate": null
         , "break_hours": 1
         , "rally_point": "Front Gate"
-        , "autofill" NULL
+        , "autofill": null
         , "opQuantity": 8
         , "filledQuantity": 0
-        , "isInactive": NULL
+        , "isInactive": null
         , "optermsId": 1
         , "opContactId": 5
-        , "isFulfilled": TRUE
-        , "isCompleted": FALSE
-        , "isPoolOnly": FALSE
-        , "bidSetId": NULL
+        , "isFulfilled": true
+        , "isCompleted": false
+        , "isPoolOnly": false
         , "bidSetIds": []
         , "contactPerson": "Peggy Gou"
         , "businessworkareaId": 44
@@ -949,20 +771,19 @@ This endpoint deactivates an op that doesn't have accepted bids.
         , "opDate": "2019-03-21T13:00:00.000Z"
         , "earliestStartTime": "2019-03-21T13:00:00.000Z"
         , "latestStartTime": "2019-03-21T13:00:00.000Z"
-        , "multidayEndDate": NULL
+        , "multidayEndDate": null
         , "break_hours": 1
         , "rally_point": "Front Gate"
-        , "autofill" NULL
+        , "autofill": null
         , "opQuantity": 8
         , "filledQuantity": 8
         , "multidayWorkWeek": ['Monday', 'Tuesday']
-        , "isInactive": NULL
+        , "isInactive": null
         , "optermsId": 1
         , "opContactId": 5
-        , "isFulfilled": TRUE
-        , "isCompleted": FALSE
-        , "isPoolOnly": FALSE
-        , "bidSetId": NULL
+        , "isFulfilled": true
+        , "isCompleted": false
+        , "isPoolOnly": false
         , "bidSetIds": []
         , "contactPerson": "Peggy Gou"
         , "businessworkareaId": 44
@@ -1013,20 +834,19 @@ This endpoint reactivates a previously deactivated op.
         , "opDate": "2019-03-21T13:00:00.000Z"
         , "earliestStartTime": "2019-03-21T13:00:00.000Z"
         , "latestStartTime": "2019-03-21T13:00:00.000Z"
-        , "multidayEndDate": NULL
+        , "multidayEndDate": null
         , "break_hours": 1
         , "rally_point": "Front Gate"
-        , "autofill" NULL
+        , "autofill": null
         , "opQuantity": 8
         , "filledQuantity": 8
         , "multidayWorkWeek": ['Monday', 'Tuesday']
-        , "isInactive": NULL
+        , "isInactive": null
         , "optermsId": 1
         , "opContactId": 5
-        , "isFulfilled": TRUE
-        , "isCompleted": FALSE
-        , "isPoolOnly": FALSE
-        , "bidSetId": NULL
+        , "isFulfilled": true
+        , "isCompleted": false
+        , "isPoolOnly": false
         , "bidSetIds": []
         , "contactPerson": "Peggy Gou"
         , "businessworkareaId": 44
@@ -1077,8 +897,8 @@ This endpoint gets all op contacts associated with your business.
         , "phone": "(343) 435-6643"
         , "createdAt": "2018-10-19T17:06:43.555Z"
         , "updatedAt": "2018-10-19T17:06:43.555Z"
-        , "isRemoved": FALSE
-        ,"phoneExt": NULL
+        , "isRemoved": false
+        ,"phoneExt": null
     }
 
     , {
@@ -1089,8 +909,8 @@ This endpoint gets all op contacts associated with your business.
         , "phone": "(455) 455-4545"
         , "createdAt": "2019-03-21T19:32:43.475Z"
         , "updatedAt": "2019-03-21T19:32:43.475Z"
-        , "isRemoved": FALSE
-        , "phoneExt": NULL
+        , "isRemoved": false
+        , "phoneExt": null
     }
 ]
 ```
@@ -1142,8 +962,8 @@ phoneExt | string | no | Phone extension of the op contact
         , "phone":"(343) 435-6643"
         , "createdAt":"2018-10-19T17:06:43.555Z"
         , "updatedAt":"2018-10-19T17:06:43.555Z"
-        , "isRemoved":FALSE
-        ,"phoneExt":NULL
+        , "isRemoved": false
+        ,"phoneExt": null
     }
 ]
 ```
@@ -1186,8 +1006,8 @@ This endpoint toggles an existing op contact' isRemoved property which changes w
         , "phone":"(343) 435-6643"
         , "createdAt":"2018-10-19T17:06:43.555Z"
         , "updatedAt":"2018-10-19T17:06:43.555Z"
-        , "isRemoved": TRUE
-        ,"phoneExt": NULL
+        , "isRemoved": true
+        ,"phoneExt": null
     }
 ]
 ```
