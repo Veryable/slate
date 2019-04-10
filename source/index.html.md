@@ -637,36 +637,7 @@ body | string | yes | The body of the message.
 
 ```json
 {
-  "message": "All messages sent successfully.",
-  "results": [
-    {
-      "id": "<20190410185411.1.9FA077F09C3BD365@mg.veryableops.com>",
-      "message": "Queued. Thank you."
-    },
-    [
-      {
-        "from": "+12147618335",
-        "to": "+19034524698",
-        "status": "queued",
-        "sid": "SM76221358b8ab4b5893737de53b10b817"
-      }
-    ],
-    [
-      {
-        "id": "16cfdf72-711c-4574-9fbd-f69428020ceb",
-        "recipients": 1,
-        "external_id": null
-      }
-    ],
-    [
-      {
-        "userId": 128,
-        "businessId": null,
-        "id": 125274,
-        "playerId": "3638d01c-db2b-4553-93a9-3b109ac48135"
-      }
-    ]
-  ]
+  "message": "All messages sent successfully."
 }
 ```
 
