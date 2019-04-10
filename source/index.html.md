@@ -1203,3 +1203,286 @@ This endpoint toggles an existing op contact' isRemoved property which changes w
 <aside class="success">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
+
+# Operators
+
+## Get Operators By Id
+
+```shell
+curl -X POST "http://localhost:3000/api/operators/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+    -d $'{
+          "batchOperatorIds": [544, 545]
+        }'
+```
+
+This endpoint gets one or many operators by Id
+
+### HTTP Request
+
+`POST https://platform.veryableops.com/api/operators`
+
+### Body Parameters
+
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+batchOperatorIds | array [integer] | yes | An array containing the operator Id(s) being requested.
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 544
+        , "firstName": "John"
+        , "lastName": "Smith"
+        , "fullName": "John Smith"
+        , "type": "operator"
+        , "email": "jsmith@gmail.com"
+        , "zip": 75202
+        , "lastActive": NULL
+        , "createdAt": "2018-02-26T17:51:03.774Z"
+        , "isSpanishSpeaking": TRUE
+        , "isVeteran": FALSE
+        , "isDrugScreenPassed": TRUE
+        , "district": "TX-1"
+        , "isSuspended": FALSE
+        , "ratingsCount" 23
+        , "overallRating": 5
+        , "qualityProficiencyRating": 5
+        , "safetyRating": 5
+        , "attitudeRating": 5
+        , "timelinessRating": 5
+        , "opsCompleted": 23
+        , "reqs": [ operatorReqs, bgCheck ]
+        , "experience": [certs, externalCompanies, industries]
+    }
+    , {
+        "id": 545
+        , "firstName": "Jen"
+        , "lastName": "Smith"
+        , "fullName": "Jen Smith"
+        , "type": "operator"
+        , "email": "jsmith@gmail.com"
+        , "zip": 75202
+        , "lastActive": NULL
+        , "createdAt": "2018-02-26T17:51:03.774Z"
+        , "isSpanishSpeaking": TRUE
+        , "isVeteran": FALSE
+        , "isDrugScreenPassed": TRUE
+        , "district": "TX-1"
+        , "isSuspended": FALSE
+        , "ratingsCount" 23
+        , "overallRating": 5
+        , "qualityProficiencyRating": 5
+        , "safetyRating": 5
+        , "attitudeRating": 5
+        , "timelinessRating": 5
+        , "opsCompleted": 23
+        , "reqs": [ operatorReqs, bgCheck ]
+        , "experience": [certs, externalCompanies, industries]
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    message: "You must pass at least one value inside batchOperatorIds."
+}
+```
+
+<aside class="success">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Get Operators By Filter
+
+```shell
+curl -X POST "http://localhost:3000/api/operators/filter/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+    -d $'{
+          "zip": 75202
+        }'
+```
+
+This endpoint gets operators based on various filter criteria.
+
+### HTTP Request
+
+`POST https://platform.veryableops.com/api/operators/filter`
+
+### Body Parameters
+
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+isSpanishSpeaking | boolean | no | Whether the operator speaks Spanish.
+isDrugScreenPassed | boolean | no | Whether the operator has passed a drug screen.
+isVeteran | boolean | no | Whether the operator is a veteran of the armed forces
+isFavorited | boolean | no | Whether the operator is in your labor pool
+zip | integer | no | Returns operators inside a specific zip code
+maxMilesAway | integer | no | Filter by the number of miles an operator is from your business
+businesscontactId | integer | yes if using maxMilesAway | The contact Id for your business
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 544
+        , "firstName": "John"
+        , "lastName": "Smith"
+        , "fullName": "John Smith"
+        , "type": "operator"
+        , "email": "jsmith@gmail.com"
+        , "zip": 75202
+        , "lastActive": NULL
+        , "createdAt": "2018-02-26T17:51:03.774Z"
+        , "isSpanishSpeaking": TRUE
+        , "isVeteran": FALSE
+        , "isDrugScreenPassed": TRUE
+        , "district": "TX-1"
+        , "isSuspended": FALSE
+        , "ratingsCount" 23
+        , "overallRating": 5
+        , "qualityProficiencyRating": 5
+        , "safetyRating": 5
+        , "attitudeRating": 5
+        , "timelinessRating": 5
+        , "opsCompleted": 23
+        , "reqs": [ operatorReqs, bgCheck ]
+        , "experience": [certs, externalCompanies, industries]
+    }
+    , {
+        "id": 545
+        , "firstName": "Jen"
+        , "lastName": "Smith"
+        , "fullName": "Jen Smith"
+        , "type": "operator"
+        , "email": "jsmith@gmail.com"
+        , "zip": 75202
+        , "lastActive": NULL
+        , "createdAt": "2018-02-26T17:51:03.774Z"
+        , "isSpanishSpeaking": TRUE
+        , "isVeteran": FALSE
+        , "isDrugScreenPassed": TRUE
+        , "district": "TX-1"
+        , "isSuspended": FALSE
+        , "ratingsCount" 23
+        , "overallRating": 5
+        , "qualityProficiencyRating": 5
+        , "safetyRating": 5
+        , "attitudeRating": 5
+        , "timelinessRating": 5
+        , "opsCompleted": 23
+        , "reqs": [ operatorReqs, bgCheck ]
+        , "experience": [certs, externalCompanies, industries]
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    message: "businesscontactId is required when filtering by maxMilesAway."
+}
+```
+
+<aside class="success">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+# Ratings
+
+## Post Operator Rating
+
+```shell
+curl -X POST "http://localhost:3000/api/ratings/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+    -d $'{
+          "bidId": 10021
+        , "operatorOverallRating": 5
+        , "timelinessRating": 5
+        , "attitudeRating": 5
+        , "safetyRating": 5
+        , "qualityProficiencyRating": 5 
+        }'
+```
+
+This endpoint creates a rating for an operator's bid.
+
+### HTTP Request
+
+`POST https://platform.veryableops.com/api/ratings`
+
+### Body Parameters
+
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+bidId | integer | yes if rating a single operator | Id of the bid you are rating.
+batchBidIds | array[integer] | yes if rating multiple operators | An array of bid Ids that will be rated.
+isNoShowRating | boolean | no | Passing TRUE will generate a 1 star rating for each rating category.
+attitude | integer | yes if isNoShowRating is not TRUE | A rating of 1 to 5 regarding the operator's attitude.
+timeliness | integer | yes if isNoShowRating is not TRUE | A rating of 1 to 5 regarding the operator's timeliness.
+safety | integer | yes if isNoShowRating is not TRUE | A 1 to 5 rating of the operator's safety practices.
+qualityProficiency | integer | yes if isNoShowRating is not TRUE | A 1 to 5 rating of the operator's work quality and proficiency
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 10021
+        , "bidSetId": NULL
+        , "opId": 5334
+        , "operatorId": 4443
+        , "operatorratingId": 464
+        , "businessratingId": NULL
+        , "startTime": "2019-04-03T13:00:00.201Z"
+        , "endTime": "2019-04-03T21:00:00.201Z"
+        , "bidQuantity": 8
+        , "isInvited": TRUE
+        , "hasScheduleConflict": FALSE
+        , "isAccepted": FALSE
+        , "isWithdrawn": FALSE
+        , "isCompleted": TRUE
+        , "isPaid": TRUE
+        , "isDisputed": FALSE
+        , "disputeCategory": NULL
+        , "withdrawalReason": NULL
+        , "paymentToVeryableId": NULL
+        , "paymentToOperatorId": NULL
+        , "premiumRateId": NULL
+        , "isCancelled": FALSE
+        , "cancellationReason": NULL
+        , "bidRateIncrease" NULL
+        , "operatorOverallRating": "5.0"
+        , "timelinessRating": "5.0"
+        , "attitudeRating": "5.0"
+        , "safetyRating": "5.0"
+        , "qualityProficiencyRating": "5.0"
+        , "createdAt": "2019-03-05T16:34:10.201Z"
+        , "updatedAt": "2019-03-06T16:34:10.201Z" 
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    message: "Bid not found. Please check the Id."
+}
+```
+
+<aside class="success">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+
+
+
+
+
