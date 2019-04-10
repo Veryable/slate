@@ -104,7 +104,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Bid By ID
 
 ```shell
-curl -X GET "http://localhost:3000/api/bids/101933\?businessId=226"
+curl -X GET "http://localhost:3000/api/bids/<bidId>\?businessId=226"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -310,15 +310,15 @@ This endpoint retrieves all ops for a business.
         , "autofill" NULL
         , "opQuantity": 8
         , "filledQuantity": 8
-        , multidayWorkWeek: ['Monday', 'Tuesday']
-        , isInactive: NULL
+        , "multidayWorkWeek": ['Monday', 'Tuesday']
+        , "isInactive": NULL
         , "optermsId": 1
         , "opContactId": 5
         , "isFulfilled": TRUE
         , "isCompleted": FALSE
         , "isPoolOnly": FALSE
-        , o.bidSetId: NULL
-        , o.bidSetIds: []
+        , "bidSetId": NULL
+        , "bidSetIds": []
         , "contactPerson": "Peggy Gou"
         , "businessworkareaId": 44
         , "businesscontactId": 3
@@ -340,15 +340,15 @@ This endpoint retrieves all ops for a business.
         , "autofill" NULL
         , "opQuantity": 8
         , "filledQuantity": 8
-        , multidayWorkWeek: ['Monday', 'Tuesday']
-        , isInactive: NULL
+        , "multidayWorkWeek": ['Monday', 'Tuesday']
+        , "isInactive": NULL
         , "optermsId": 1
         , "opContactId": 5
         , "isFulfilled": TRUE
         , "isCompleted": FALSE
         , "isPoolOnly": FALSE
-        , o.bidSetId: NULL
-        , o.bidSetIds: []
+        , "bidSetId": NULL
+        , "bidSetIds": []
         , "contactPerson": "Peggy Gou"
         , "businessworkareaId": 44
         , "businesscontactId": 3
@@ -427,21 +427,21 @@ businessworkareaId | integer | no | Id for the business work area where the op w
         , "autofill" NULL
         , "opQuantity": 8
         , "filledQuantity": 8
-        , multidayWorkWeek: ['Monday', 'Tuesday']
-        , isInactive: NULL
+        , "multidayWorkWeek": ['Monday', 'Tuesday']
+        , "isInactive": NULL
         , "optermsId": 1
         , "opContactId": 5
         , "isFulfilled": TRUE
         , "isCompleted": FALSE
         , "isPoolOnly": FALSE
-        , o.bidSetId: NULL
-        , o.bidSetIds: []
+        , "bidSetId": NULL
+        , "bidSetIds": []
         , "contactPerson": "Peggy Gou"
         , "businessworkareaId": 44
         , "businesscontactId": 3
         , "publicId": "19-52"
-        , "createdAt": 2019-03-05T16:34:10.201Z
-        , "updatedAt": 2019-03-06T16:34:10.201Z 
+        , "createdAt": "2019-03-05T16:34:10.201Z"
+        , "updatedAt": "2019-03-06T16:34:10.201Z"
     }
 ]
 ```
@@ -516,7 +516,7 @@ businessworkareaId | integer | yes | Id for the business work area where the op 
         , "autofill" NULL
         , "opQuantity": 8
         , "filledQuantity": 0
-        , isInactive: NULL
+        , "isInactive": NULL
         , "optermsId": 1
         , "opContactId": 5
         , "isFulfilled": TRUE
@@ -529,8 +529,8 @@ businessworkareaId | integer | yes | Id for the business work area where the op 
         , "businesscontactId": 3
         , "opcontactId": 5
         , "publicId": "19-52"
-        , "createdAt": 2019-03-05T16:34:10.201Z
-        , "updatedAt": 2019-03-06T16:34:10.201Z 
+        , "createdAt": "2019-03-05T16:34:10.201Z"
+        , "updatedAt": "2019-03-06T16:34:10.201Z"
     }
 ]
 ```
@@ -551,7 +551,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Deactivate Op
 
 ```shell
-curl -X DELETE "http://localhost:3000/api/ops<opId>/?=businessId=300"
+curl -X DELETE "http://localhost:3000/api/ops/<opId>/?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -559,7 +559,7 @@ This endpoint deactivates an op that doesn't have accepted bids.
 
 ### HTTP Request
 
-`DELETE https://platform.veryableops.com/api/ops<opId>`
+`DELETE https://platform.veryableops.com/api/ops/<opId>`
 
 > The above command returns JSON structured like this:
 
@@ -579,8 +579,8 @@ This endpoint deactivates an op that doesn't have accepted bids.
         , "autofill" NULL
         , "opQuantity": 8
         , "filledQuantity": 8
-        , multidayWorkWeek: ['Monday', 'Tuesday']
-        , isInactive: NULL
+        , "multidayWorkWeek": ['Monday', 'Tuesday']
+        , "isInactive": NULL
         , "optermsId": 1
         , "opContactId": 5
         , "isFulfilled": TRUE
@@ -593,8 +593,8 @@ This endpoint deactivates an op that doesn't have accepted bids.
         , "businesscontactId": 3
         , "opcontactId": 65
         , "publicId": "19-52"
-        , "createdAt": 2019-03-05T16:34:10.201Z
-        , "updatedAt": 2019-03-06T16:34:10.201Z 
+        , "createdAt": "2019-03-05T16:34:10.201Z"
+        , "updatedAt": "2019-03-06T16:34:10.201Z" 
     }
 ]
 ```
@@ -612,4 +612,221 @@ This endpoint deactivates an op that doesn't have accepted bids.
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
-<!-- REACTIVATE BUSINESS GOES HERE -->
+## Reactivate Op
+
+```shell
+curl -X PUT "http://localhost:3000/api/ops/reactivate/<opId>/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint reactivates a previously deactivated op.
+
+### HTTP Request
+
+`PUT https://platform.veryableops.com/api/reactivate/<opId>`
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 1235
+        , "businessId": 300
+        , "title": "Op Title 2"
+        , "opDescription": "Description of the op."
+        , "opDate": "2019-03-21T13:00:00.000Z"
+        , "earliestStartTime": "2019-03-21T13:00:00.000Z"
+        , "latestStartTime": "2019-03-21T13:00:00.000Z"
+        , "multidayEndDate": NULL
+        , "break_hours": 1
+        , "rally_point": "Front Gate"
+        , "autofill" NULL
+        , "opQuantity": 8
+        , "filledQuantity": 8
+        , "multidayWorkWeek": ['Monday', 'Tuesday']
+        , "isInactive": NULL
+        , "optermsId": 1
+        , "opContactId": 5
+        , "isFulfilled": TRUE
+        , "isCompleted": FALSE
+        , "isPoolOnly": FALSE
+        , "bidSetId": NULL
+        , "bidSetIds": []
+        , "contactPerson": "Peggy Gou"
+        , "businessworkareaId": 44
+        , "businesscontactId": 3
+        , "opcontactId": 65
+        , "publicId": "19-52"
+        , "createdAt": "2019-03-05T16:34:10.201Z"
+        , "updatedAt": "2019-03-06T16:34:10.201Z" 
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    message: "Error finding op to reactivate."
+}
+
+```
+
+<aside class="success">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Get All Op Contacts for Business
+
+```shell
+curl -X GET "http://localhost:3000/api/ops/opcontacts/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint gets all op contacts associated with your business.
+
+### HTTP Request
+
+`GET https://platform.veryableops.com/api/ops/opcontacts`
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 4
+        , "businessId": 300
+        , "firstName": "Johnny"
+        , "lastName": "Smith"
+        , "phone": "(343) 435-6643"
+        , "createdAt": "2018-10-19T17:06:43.555Z"
+        , "updatedAt": "2018-10-19T17:06:43.555Z"
+        , "isRemoved": FALSE
+        ,"phoneExt": NULL
+    }
+
+    , {
+        "id": 3
+        , "businessId": 300
+        , "firstName": "Shamus"
+        , "lastName": "O'Hoolihan"
+        , "phone": "(455) 455-4545"
+        , "createdAt": "2019-03-21T19:32:43.475Z"
+        , "updatedAt": "2019-03-21T19:32:43.475Z"
+        , "isRemoved": FALSE
+        , "phoneExt": NULL
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    message: "Error getting op contacts for business."
+}
+
+```
+
+<aside class="success">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Add Op Contact for Business
+
+```shell
+curl -X POST "http://localhost:3000/api/ops/opcontacts/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint adds an op contact person for your business.
+
+### HTTP Request
+
+`POST https://platform.veryableops.com/api/ops/opcontacts`
+
+### Body Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | ---- | -----------
+firstName | string | yes | First name of the op contact
+lastName | string | yes | Last name of the op contact
+phone | string | yes | Phone number of the op contact
+phoneExt | string | no | Phone extension of the op contact
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 1
+        , "businessId":300
+        , "firstName":"Johnny"
+        , "lastName":"Smith"
+        , "phone":"(343) 435-6643"
+        , "createdAt":"2018-10-19T17:06:43.555Z"
+        , "updatedAt":"2018-10-19T17:06:43.555Z"
+        , "isRemoved":FALSE
+        ,"phoneExt":NULL
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    message: "Error adding new op contact for business."
+}
+
+```
+
+<aside class="success">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Toggle Op Contact for Business
+
+```shell
+curl -X PUT "http://localhost:3000/api/ops/opcontacts/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint toggles an existing op contact' isRemoved property which changes whether it will be displayed in the business's active op contacts.
+
+### HTTP Request
+
+`PUT https://platform.veryableops.com/api/ops/opcontacts`
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 1
+        , "businessId":300
+        , "firstName":"Johnny"
+        , "lastName":"Smith"
+        , "phone":"(343) 435-6643"
+        , "createdAt":"2018-10-19T17:06:43.555Z"
+        , "updatedAt":"2018-10-19T17:06:43.555Z"
+        , "isRemoved": TRUE
+        ,"phoneExt": NULL
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    message: "Error toggling op contact."
+}
+```
+
+<aside class="success">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+
+
