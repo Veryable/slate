@@ -597,6 +597,11 @@ comment | string | no | If `category` is "other", this parameter must be include
   ]
 }
 ```
+
+# Ops
+
+## Get Op By Id
+
 This endpoint retrieves an Op by Id.
 
 ### HTTP Request
