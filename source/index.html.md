@@ -1665,6 +1665,329 @@ This endpoint gets locations for your business.
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
+## Update Location for Business
+
+```shell
+curl -X PUT "http://localhost:3000/api/profile/locations/<locationId>?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+    -d $'{ 
+        "name": "Updated Location Name"
+        , "addressLine1": "444 Canadian Way"
+        , "addressLine2": "suite 222"
+        , "phoneNumber": "1234567890"
+        , "city": "Dallas"
+        , "state": "TX"
+        , "zip": "75201"
+        }'
+```
+
+This endpoint updates a location for your business.
+
+### HTTP Request
+
+`PUT https://platform.veryableops.com/api/profile/locations`
+
+### Body Parameters
+
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+name | string | yes | The name of the location being created.
+isPrimary | boolean | no | Whether or not this is the primary location for your business.
+addressLine1 | string | yes | The first line of the business's address.
+addressLine2 | string | no | Optional second address line for suite #, apt #, etc.
+phoneNumber | integer | yes | A contact # for this location.
+city | string | yes | The business location's city.
+state | string | yes | The abbreviation for the state. (TX, PA, etc.)
+zip | string | yes | The business location's zip code.
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "id": 312,
+    "name": "Updated Location Name",
+    "isPrimary": false,
+    "isRemoved": false,
+    "businessId": 300,
+    "contactId": 828,
+    "districtId": 1,
+    "addressLine1": "444 Canadian Way",
+    "addressLine2": "suite 222",
+    "city": "Dallas",
+    "state": "TX",
+    "zip": "75201",
+    "latlng": {
+        "type": "Point",
+        "coordinates": [
+            -96.8841109,
+            32.6661298
+        ]
+    },
+    "phoneNumber": "9876543210"
+}
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error retrieving timezone."
+}
+```
+
+<aside class="success">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Get Workareas for Business
+
+```shell
+curl -X GET "http://localhost:3000/api/profile/work-areas/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint gets workareas associated with your business.
+
+### HTTP Request
+
+`GET https://platform.veryableops.com/api/profile/work-areas`
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 98,
+        "name": "General"
+    },
+    {
+        "id": 231,
+        "name": "Second Workarea"
+    },
+    {
+        "id": 232,
+        "name": "Third Workarea"
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error retrieving work areas."
+}
+```
+
+<aside class="success">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Create Workarea for Business
+
+```shell
+curl -X POST "http://localhost:3000/api/profile/work-areas/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+    -d $'{ "workAreas": [ "Newest WorkArea" ] }'
+```
+
+This endpoint creates a work area for your business.
+
+### HTTP Request
+
+`POST https://platform.veryableops.com/api/profile/work-areas`
+
+### Body Parameters
+
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+workAreas | array[string] | yes | An array of workArea names. You must pass at least element in the array.
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "createdWorkAreas": [
+        {
+            "id": 233,
+            "businessId": 300,
+            "name": "Newest WorkArea",
+            "isRemoved": false,
+            "createdAt": "2019-04-09T20:00:06.817Z",
+            "updatedAt": "2019-04-09T20:00:06.817Z"
+        }
+    ],
+    "links": [
+        {
+            "id": 417,
+            "businessuserId": 433,
+            "businessworkareaId": 233,
+            "createdAt": "2019-04-09T20:00:06.913Z",
+            "updatedAt": "2019-04-09T20:00:06.913Z"
+        },
+        {
+            "id": 418,
+            "businessuserId": 496,
+            "businessworkareaId": 233,
+            "createdAt": "2019-04-09T20:00:06.913Z",
+            "updatedAt": "2019-04-09T20:00:06.913Z"
+        },
+        {
+            "id": 419,
+            "businessuserId": 491,
+            "businessworkareaId": 233,
+            "createdAt": "2019-04-09T20:00:06.913Z",
+            "updatedAt": "2019-04-09T20:00:06.913Z"
+        }
+    ]
+}
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "WorkAreas param is required."
+}
+```
+
+<aside class="success">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+# Your Labor Pool (YLP)
+
+## Get Labor Pool for Business
+
+```shell
+curl -X GET "http://localhost:3000/api/labor-pool/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint gets the labor pool for your business.
+
+### HTTP Request
+
+`GET https://platform.veryableops.com/labor-pool`
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 316,
+        "businessId": 300,
+        "operatorId": 1061,
+        "createdAt": "2019-02-28T21:04:35.665Z",
+        "updatedAt": "2019-02-28T21:04:35.665Z"
+    },
+    {
+        "id": 298,
+        "businessId": 300,
+        "operatorId": 605,
+        "createdAt": "2019-01-29T16:20:09.344Z",
+        "updatedAt": "2019-03-01T17:10:34.973Z"
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error getting YLP."
+}
+```
+
+<aside class="success">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Toggle Operator in YLP
+
+```shell
+curl -X POST "http://localhost:3000/api/labor-pool/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+    -d $'{"operatorId": 361, "action": "favorite"}'
+```
+
+This endpoint toggles an operator in or out of your labor pool.
+
+### HTTP Request
+
+`POST https://platform.veryableops.com/labor-pool`
+
+### Body Parameters
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+operatorId | number | yes | The operatorId for the operator you want to toggle.
+action | string | yes | You can pass "favorite" or "unfavorite".
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "message": "Operator has been favorited.",
+    "favorite": [
+        {
+            "id": 361,
+            "businessId": 300,
+            "operatorId": 39328,
+            "createdAt": "2019-04-09T15:55:56.259Z",
+            "updatedAt": "2019-04-09T15:55:56.259Z"
+        }
+    ]
+}
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error toggling favorite."
+}
+```
+
+<aside class="success">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Toggle Operator from Blacklist
+
+```shell
+curl -X POST "http://localhost:3000/api/labor-pool/block/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+    -d $'{"operatorId": 915}'
+```
+
+This endpoint toggles an operator from a business's blacklist.
+
+### HTTP Request
+
+`POST https://platform.veryableops.com/labor-pool`
+
+### Body Parameters
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+operatorId | number | yes | The operatorId for the operator you want to toggle.
+
+> The above command returns JSON structured like this:
+
+```json
+"Operator ID 915 has been removed from the blacklist of Business ID 300."
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Blacklist query error during blacklist toggle."
+}
+```
+
+<aside class="success">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
 
 
 
