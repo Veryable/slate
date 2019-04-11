@@ -42,179 +42,6 @@ https://platform.veryableops.com/api/bids?businessId=226
 In addition, a business ID (corresponding to a business you have access to) must be passed as a <code>businessId</code> query parameter with every request, formatted like the example to the right.
 </aside>
 
-# Ops
-
-## Cancel Op
-
-```shell
-curl -X "PUT" "http://localhost:3000/api/ops/11529/cancel?businessId=226"
-     -H 'Authorization: Bearer [JWT token]'
-     -d $'{
-          "operatorIds": [
-            128
-          ],
-          "payCurrentDay": true,
-          "cancellationReason": "Project ended early, operator no longer needed."
-        }'
-```
-
-This endpoint cancels a Op and the assignments of the associated operators.
-
-### HTTP Request
-
-`PUT https://platform.veryableops.com/api/ops/<opId>/cancel`
-
-### URL Parameters
-
-Parameter | Required | Description
---------- | ---- | -----------
-opId | yes | The ID of the Op to cancel.
-
-### Body Parameters
-
-Parameter | Type | Required | Description
---------- | ------ | ---- | -----------
-operatorIds | array | yes | An array of operator IDs (integers) corresponding to the assigned operators.
-cancellationReason | string | yes | A brief description of why the Op was cancelled.
-payCurrentDay | boolean | yes | Input `true` if operator(s) should be paid for work today, else `false`.
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "message": "Op canceled for operator(s) 128.",
-  "updatedOp": [
-    {
-      "id": 11529,
-      "businessId": 226,
-      "title": "Weekday - PM Shift",
-      "opDescription": "Looking for workers that are looking for a longer-term opportunity. Need to stand for long periods of time and lift up to 30 lbs. Must be able to read and understand English. Will start in our stacking and sorting area to start, and over time will be moved to more high-skilled positions within the facility.\n\nTeam A schedule will be:\nSunday - OFF\nMonday - 7am - 1pm\nTuesday - 7am - 1pm\nWednesday - 7am - 1pm\n*Thursday - 7am - 7pm\n*Friday - 7am - 7pm\nSaturday - OFF\n\n*unpaid lunch hr for 12 hr shifts",
-      "opDate": "2019-04-09T18:00:00.000Z",
-      "totalWorkingDays": 9,
-      "earliestStartTime": "April 9th, 2019 to April 19th, 2019",
-      "multidayStartDate": "2019-04-09T18:00:00.000Z",
-      "multidayEndDate": "2019-04-19T18:00:00.000Z",
-      "multidayWorkWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday"
-      ],
-      "opQuantity": 6,
-      "opRate": 11,
-      "partialsAllowed": false,
-      "rallyPoint": "Shipping Employee Entrance",
-      "isFulfilled": false,
-      "isCompleted": true,
-      "createdAt": "2019-04-08T20:53:03.083Z",
-      "updatedAt": "2019-04-09T18:51:13.521Z",
-      "filledQuantity": 0,
-      "opSetId": null,
-      "latestStartTime": "2019-04-09T18:00:00.000Z",
-      "autofill": null,
-      "workWeek": null,
-      "bidSetId": null,
-      "optypeId": 2,
-      "optermsId": 1,
-      "opskillId": 1,
-      "estTotalHours": "6.00",
-      "estMinPerUnit": null,
-      "isInactive": null,
-      "businesscontactId": 79,
-      "businessworkareaId": 39,
-      "breakHours": null,
-      "operatorsNeeded": 3,
-      "bidSetIds": [
-        "301a85d0-5af6-11e9-b132-c320991276c8"
-      ],
-      "isPoolOnly": false,
-      "publicId": "19-15",
-      "opcontactId": 38,
-      "opTermsUnit": "Hours"
-    }
-  ],
-  "canceledBidSets": [
-    [
-      {
-        "id": 102004,
-        "bidSetId": "301a85d0-5af6-11e9-b132-c320991276c8",
-        "opId": 11529,
-        "operatorId": 128,
-        "operatorratingId": null,
-        "startTime": "2019-04-19T18:00:00.000Z",
-        "endTime": "2019-04-20T00:00:00.000Z",
-        "bidQuantity": "6",
-        "bidRateIncrease": null,
-        "isInvited": true,
-        "isAccepted": true,
-        "isCompleted": false,
-        "isPaid": false,
-        "isWithdrawn": false,
-        "withdrawalReason": null,
-        "isDisputed": false,
-        "disputeCategory": null,
-        "disputeComment": null,
-        "isCancelled": true,
-        "cancellationReason": "Project ended early, operator no longer needed.",
-        "createdAt": "2019-04-09T18:35:03.374Z",
-        "updatedAt": "2019-04-09T18:51:13.257Z"
-      },
-      {
-        "id": 101998,
-        "bidSetId": "301a85d0-5af6-11e9-b132-c320991276c8",
-        "opId": 11529,
-        "operatorId": 128,
-        "operatorratingId": null,
-        "startTime": "2019-04-09T18:00:00.000Z",
-        "endTime": "2019-04-10T00:00:00.000Z",
-        "bidQuantity": "15",
-        "bidRateIncrease": null,
-        "isInvited": true,
-        "isAccepted": true,
-        "isCompleted": false,
-        "isPaid": false,
-        "isWithdrawn": false,
-        "withdrawalReason": null,
-        "isDisputed": false,
-        "disputeCategory": null,
-        "disputeComment": null,
-        "isCancelled": true,
-        "cancellationReason": "Project ended early, operator no longer needed.",
-        "createdAt": "2019-04-09T18:35:03.042Z",
-        "updatedAt": "2019-04-09T18:51:13.257Z"
-      },
-      {
-        "id": 102000,
-        "bidSetId": "301a85d0-5af6-11e9-b132-c320991276c8",
-        "opId": 11529,
-        "operatorId": 128,
-        "operatorratingId": null,
-        "startTime": "2019-04-11T18:00:00.000Z",
-        "endTime": "2019-04-12T00:00:00.000Z",
-        "bidQuantity": "6",
-        "bidRateIncrease": null,
-        "isInvited": true,
-        "isAccepted": true,
-        "isCompleted": false,
-        "isPaid": false,
-        "isWithdrawn": false,
-        "withdrawalReason": null,
-        "isDisputed": false,
-        "disputeCategory": null,
-        "disputeComment": null,
-        "isCancelled": true,
-        "cancellationReason": "Project ended early, operator no longer needed.",
-        "createdAt": "2019-04-09T18:35:03.154Z",
-        "updatedAt": "2019-04-09T18:51:13.257Z"
-      }
-    ]
-  ],
-  "operatorsNotCanceled": [],
-  "errors": []
-}
-```
-
 # Bids
 
 ## Get Bids For Op
@@ -598,6 +425,42 @@ comment | string | no | If `category` is "other", this parameter must be include
 }
 ```
 
+# Messages
+
+## Send Message
+```shell
+curl -X "POST" "http://localhost:3000/api/messages?businessId=226" \
+     -H 'Authorization: bearer [JWT Token]' \
+     -d $'{
+          "subject": "Additional Op Requirements - See Details",
+          "body": "Please make sure to review the Op in your Veryable app for an updated list of requirements.",
+          "type": [
+            "email",
+            "text"
+          ],
+          "recipientOperatorIds": [
+            128
+          ]
+        }'
+```
+This endpoint sends a message from a business to one or more operators.
+### HTTP Request
+`POST https://platform.veryableops.com/api/messages`
+### Body Parameters
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+type | array | yes | Can be any combination of the following: `email`, `push` (for push notifications), `text`, `feed` (for Veryable notification feed)
+recipientOperatorIds | array | yes | An array containing operator IDs (formatted as numbers).
+subject | string | no | The subject line for the message. If subject is not included with the request, any emails and Veryable notification feed messages sent will have a default subject line of "You Have A Message From [BUSINESS NAME]."
+body | string | yes | The body of the message.
+> The above command returns JSON structured like this:
+```json
+{
+  "message": "All messages sent successfully."
+}
+```
+<aside class="warning">Make sure you are passing the correct <code>businessId</code> in your query parameters so that the API retrieves the correct sender info.</aside>
+
 # Ops
 
 ## Get Op By Id
@@ -632,14 +495,13 @@ opId | integer | yes | The ID of the Op.
         , "autofill": null
         , "opQuantity": 8
         , "filledQuantity": 8
-        , multidayWorkWeek: ['Monday', 'Tuesday']
-        , isInactive: null
+        , "multidayWorkWeek": ["Monday", "Tuesday"]
+        , "isInactive": null
         , "optermsId": 1
         , "opContactId": 5
         , "isFulfilled": true
         , "isCompleted": false
         , "isPoolOnly": false
-        , "bidSetId": null
         , "bidSetIds": []
         , "contactPerson": "Peggy Gou"
         , "businessworkareaId": 44
@@ -686,14 +548,13 @@ This endpoint retrieves all ops for a business.
         , "autofill": null
         , "opQuantity": 8
         , "filledQuantity": 8
-        , "multidayWorkWeek": ['Monday', 'Tuesday']
+        , "multidayWorkWeek": ["Monday", "Tuesday"]
         , "isInactive": null
         , "optermsId": 1
         , "opContactId": 5
         , "isFulfilled": true
         , "isCompleted": false
         , "isPoolOnly": false
-        , "bidSetId": null
         , "bidSetIds": []
         , "contactPerson": "Peggy Gou"
         , "businessworkareaId": 44
@@ -716,14 +577,13 @@ This endpoint retrieves all ops for a business.
         , "autofill": null
         , "opQuantity": 8
         , "filledQuantity": 8
-        , "multidayWorkWeek": ['Monday', 'Tuesday']
+        , "multidayWorkWeek": ["Monday", "Tuesday"]
         , "isInactive": null
         , "optermsId": 1
         , "opContactId": 5
         , "isFulfilled": true
         , "isCompleted": false
         , "isPoolOnly": false
-        , "bidSetId": null
         , "bidSetIds": []
         , "contactPerson": "Peggy Gou"
         , "businessworkareaId": 44
@@ -803,14 +663,13 @@ businessworkareaId | integer | no | Id for the business work area where the op w
         , "autofill": null
         , "opQuantity": 8
         , "filledQuantity": 8
-        , "multidayWorkWeek": ['Monday', 'Tuesday']
+        , "multidayWorkWeek": ["Monday", "Tuesday"]
         , "isInactive": null
         , "optermsId": 1
         , "opContactId": 5
         , "isFulfilled": true
         , "isCompleted": false
         , "isPoolOnly": false
-        , "bidSetId": null
         , "bidSetIds": []
         , "contactPerson": "Peggy Gou"
         , "businessworkareaId": 44
@@ -826,7 +685,7 @@ businessworkareaId | integer | no | Id for the business work area where the op w
 
 ```json
 {
-    message: "The op you requested could not be retrieved."
+    "message": "The op you requested could not be retrieved."
 }
 
 ```
@@ -898,7 +757,6 @@ businessworkareaId | integer | yes | Id for the business work area where the op 
         , "isFulfilled": true
         , "isCompleted": false
         , "isPoolOnly": false
-        , "bidSetId": null
         , "bidSetIds": []
         , "contactPerson": "Peggy Gou"
         , "businessworkareaId": 44
@@ -915,7 +773,7 @@ businessworkareaId | integer | yes | Id for the business work area where the op 
 
 ```json
 {
-    message: "This company cannot create a new Op, as it currently has Op(s) that are incomplete and past their grace period."
+    "message": "This company cannot create a new Op, as it currently has Op(s) that are incomplete and past their grace period."
 }
 
 ```
@@ -955,14 +813,13 @@ This endpoint deactivates an op that doesn't have accepted bids.
         , "autofill": null
         , "opQuantity": 8
         , "filledQuantity": 8
-        , "multidayWorkWeek": ['Monday', 'Tuesday']
+        , "multidayWorkWeek": ["Monday", "Tuesday"]
         , "isInactive": null
         , "optermsId": 1
         , "opContactId": 5
         , "isFulfilled": true
         , "isCompleted": false
         , "isPoolOnly": false
-        , "bidSetId": null
         , "bidSetIds": []
         , "contactPerson": "Peggy Gou"
         , "businessworkareaId": 44
@@ -979,7 +836,7 @@ This endpoint deactivates an op that doesn't have accepted bids.
 
 ```json
 {
-    message: "This company cannot create a new Op, as it currently has Op(s) that are incomplete and past their grace period."
+    "message": "This company cannot create a new Op, as it currently has Op(s) that are incomplete and past their grace period."
 }
 
 ```
@@ -1016,17 +873,16 @@ This endpoint reactivates a previously deactivated op.
         , "multidayEndDate": null
         , "break_hours": 1
         , "rally_point": "Front Gate"
-        , "autofill" null
+        , "autofill": null
         , "opQuantity": 8
         , "filledQuantity": 8
-        , "multidayWorkWeek": ['Monday', 'Tuesday']
+        , "multidayWorkWeek": ["Monday", "Tuesday"]
         , "isInactive": null
         , "optermsId": 1
         , "opContactId": 5
         , "isFulfilled": true
         , "isCompleted": false
         , "isPoolOnly": false
-        , "bidSetId": null
         , "bidSetIds": []
         , "contactPerson": "Peggy Gou"
         , "businessworkareaId": 44
@@ -1043,7 +899,7 @@ This endpoint reactivates a previously deactivated op.
 
 ```json
 {
-    message: "Error finding op to reactivate."
+    "message": "Error finding op to reactivate."
 }
 
 ```
@@ -1099,7 +955,7 @@ This endpoint gets all op contacts associated with your business.
 
 ```json
 {
-    message: "Error getting op contacts for business."
+    "message": "Error getting op contacts for business."
 }
 
 ```
@@ -1152,7 +1008,7 @@ phoneExt | string | no | Phone extension of the op contact
 
 ```json
 {
-    message: "Error adding new op contact for business."
+    "message": "Error adding new op contact for business."
 }
 
 ```
@@ -1196,7 +1052,180 @@ This endpoint toggles an existing op contact' isRemoved property which changes w
 
 ```json
 {
-    message: "Error toggling op contact."
+    "message": "Error toggling op contact."
+}
+```
+
+<aside class="success">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Cancel Op
+
+```shell
+curl -X "PUT" "http://localhost:3000/api/ops/11529/cancel?businessId=226"
+     -H 'Authorization: Bearer [JWT token]'
+     -d $'{
+          "operatorIds": [
+            128
+          ],
+          "payCurrentDay": true,
+          "cancellationReason": "Project ended early, operator no longer needed."
+        }'
+```
+
+This endpoint cancels a Op and the assignments of the associated operators.
+
+### HTTP Request
+
+`PUT https://platform.veryableops.com/api/ops/<opId>/cancel`
+
+### URL Parameters
+
+Parameter | Required | Description
+--------- | ---- | -----------
+opId | yes | The ID of the Op to cancel.
+
+### Body Parameters
+
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+operatorIds | array | yes | An array of operator IDs (integers) corresponding to the assigned operators.
+cancellationReason | string | yes | A brief description of why the Op was cancelled.
+payCurrentDay | boolean | yes | Input `true` if operator(s) should be paid for work today, else `false`.
+
+> The above command returns JSON structured like this:
+```json
+{
+  "message": "Op canceled for operator(s) 128.",
+  "updatedOp": [
+    {
+      "id": 11529,
+      "businessId": 226,
+      "title": "Weekday - PM Shift",
+      "opDescription": "Looking for workers that are looking for a longer-term opportunity. Need to stand for long periods of time and lift up to 30 lbs. Must be able to read and understand English. Will start in our stacking and sorting area to start, and over time will be moved to more high-skilled positions within the facility.\n\nTeam A schedule will be:\nSunday - OFF\nMonday - 7am - 1pm\nTuesday - 7am - 1pm\nWednesday - 7am - 1pm\n*Thursday - 7am - 7pm\n*Friday - 7am - 7pm\nSaturday - OFF\n\n*unpaid lunch hr for 12 hr shifts",
+      "opDate": "2019-04-09T18:00:00.000Z",
+      "totalWorkingDays": 9,
+      "earliestStartTime": "April 9th, 2019 to April 19th, 2019",
+      "multidayStartDate": "2019-04-09T18:00:00.000Z",
+      "multidayEndDate": "2019-04-19T18:00:00.000Z",
+      "multidayWorkWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opQuantity": 6,
+      "opRate": 11,
+      "partialsAllowed": false,
+      "rallyPoint": "Shipping Employee Entrance",
+      "isFulfilled": false,
+      "isCompleted": true,
+      "createdAt": "2019-04-08T20:53:03.083Z",
+      "updatedAt": "2019-04-09T18:51:13.521Z",
+      "filledQuantity": 0,
+      "opSetId": null,
+      "latestStartTime": "2019-04-09T18:00:00.000Z",
+      "autofill": null,
+      "workWeek": null,
+      "optypeId": 2,
+      "optermsId": 1,
+      "opskillId": 1,
+      "estTotalHours": "6.00",
+      "estMinPerUnit": null,
+      "isInactive": null,
+      "businesscontactId": 79,
+      "businessworkareaId": 39,
+      "breakHours": null,
+      "operatorsNeeded": 3,
+      "bidSetIds": [
+        "301a85d0-5af6-11e9-b132-c320991276c8"
+      ],
+      "isPoolOnly": false,
+      "publicId": "19-15",
+      "opcontactId": 38,
+      "opTermsUnit": "Hours"
+    }
+  ],
+  "canceledBidSets": [
+    [
+      {
+        "id": 102004,
+        "bidSetId": "301a85d0-5af6-11e9-b132-c320991276c8",
+        "opId": 11529,
+        "operatorId": 128,
+        "operatorratingId": null,
+        "startTime": "2019-04-19T18:00:00.000Z",
+        "endTime": "2019-04-20T00:00:00.000Z",
+        "bidQuantity": "6",
+        "bidRateIncrease": null,
+        "isInvited": true,
+        "isAccepted": true,
+        "isCompleted": false,
+        "isPaid": false,
+        "isWithdrawn": false,
+        "withdrawalReason": null,
+        "isDisputed": false,
+        "disputeCategory": null,
+        "disputeComment": null,
+        "isCancelled": true,
+        "cancellationReason": "Project ended early, operator no longer needed.",
+        "createdAt": "2019-04-09T18:35:03.374Z",
+        "updatedAt": "2019-04-09T18:51:13.257Z"
+      },
+      {
+        "id": 101998,
+        "bidSetId": "301a85d0-5af6-11e9-b132-c320991276c8",
+        "opId": 11529,
+        "operatorId": 128,
+        "operatorratingId": null,
+        "startTime": "2019-04-09T18:00:00.000Z",
+        "endTime": "2019-04-10T00:00:00.000Z",
+        "bidQuantity": "15",
+        "bidRateIncrease": null,
+        "isInvited": true,
+        "isAccepted": true,
+        "isCompleted": false,
+        "isPaid": false,
+        "isWithdrawn": false,
+        "withdrawalReason": null,
+        "isDisputed": false,
+        "disputeCategory": null,
+        "disputeComment": null,
+        "isCancelled": true,
+        "cancellationReason": "Project ended early, operator no longer needed.",
+        "createdAt": "2019-04-09T18:35:03.042Z",
+        "updatedAt": "2019-04-09T18:51:13.257Z"
+      },
+      {
+        "id": 102000,
+        "bidSetId": "301a85d0-5af6-11e9-b132-c320991276c8",
+        "opId": 11529,
+        "operatorId": 128,
+        "operatorratingId": null,
+        "startTime": "2019-04-11T18:00:00.000Z",
+        "endTime": "2019-04-12T00:00:00.000Z",
+        "bidQuantity": "6",
+        "bidRateIncrease": null,
+        "isInvited": true,
+        "isAccepted": true,
+        "isCompleted": false,
+        "isPaid": false,
+        "isWithdrawn": false,
+        "withdrawalReason": null,
+        "isDisputed": false,
+        "disputeCategory": null,
+        "disputeComment": null,
+        "isCancelled": true,
+        "cancellationReason": "Project ended early, operator no longer needed.",
+        "createdAt": "2019-04-09T18:35:03.154Z",
+        "updatedAt": "2019-04-09T18:51:13.257Z"
+      }
+    ]
+  ],
+  "operatorsNotCanceled": [],
+  "errors": []
 }
 ```
 
@@ -1289,7 +1318,7 @@ batchOperatorIds | array [integer] | yes | An array containing the operator Id(s
 
 ```json
 {
-    message: "You must pass at least one value inside batchOperatorIds."
+    "message": "You must pass at least one value inside batchOperatorIds."
 }
 ```
 
@@ -1386,7 +1415,7 @@ businesscontactId | integer | yes if using maxMilesAway | The contact Id for you
 
 ```json
 {
-    message: "businesscontactId is required when filtering by maxMilesAway."
+    "message": "businesscontactId is required when filtering by maxMilesAway."
 }
 ```
 
@@ -1473,13 +1502,172 @@ qualityProficiency | integer | yes if isNoShowRating is not true | A 1 to 5 rati
 
 ```json
 {
-    message: "Bid not found. Please check the Id."
+    "message": "Bid not found. Please check the Id."
 }
 ```
 
 <aside class="success">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
+
+# Profile
+
+## Add Location for Business
+
+```shell
+curl -X POST "http://localhost:3000/api/profile/locations/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+    -d $'{
+          "name": "New Location"
+        , "isPrimary": false
+        , "addressLine1": "444 American Way"
+        , "addressLine2": "Suite 2"
+        , "phoneNumber": "232-445-4545"
+        , "state": "TX"
+        , "zip": "75202" 
+        }'
+```
+
+This endpoint creates a location for your business.
+
+### HTTP Request
+
+`POST https://platform.veryableops.com/api/profile/locations`
+
+### Body Parameters
+
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+name | string | yes | The name of the location being created.
+isPrimary | boolean | no | Whether or not this is the primary location for your business.
+addressLine1 | string | yes | The first line of the business's address.
+addressLine2 | string | no | Optional second address line for suite #, apt #, etc.
+phoneNumber | integer | yes | A contact # for this location.
+city | string | yes | The business location's city.
+state | string | yes | The abbreviation for the state. (TX, PA, etc.)
+zip | string | yes | The business location's zip code.
+
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 313,
+        "name": "new location (Santa Fe)",
+        "isPrimary": false,
+        "isRemoved": false,
+        "businessId": 300,
+        "contactId": 857,
+        "districtId": 1,
+        "addressLine1": "444 American Way",
+        "addressLine2": null,
+        "city": "Dallas",
+        "state": "TX",
+        "zip": "75202",
+        "latlng": {
+            "type": "Point",
+            "coordinates": [
+                -96.8841109,
+                32.6661298
+            ]
+        },
+        "phoneNumber": "1234567890"
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Unable to retrieve default district."
+}
+```
+
+<aside class="success">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Get Locations for Business
+
+```shell
+curl -X GET "http://localhost:3000/api/profile/locations/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint gets locations for your business.
+
+### HTTP Request
+
+`GET https://platform.veryableops.com/api/profile/locations`
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 313,
+        "name": "new location (Santa Fe)",
+        "isPrimary": false,
+        "isRemoved": false,
+        "businessId": 300,
+        "contactId": 857,
+        "districtId": 1,
+        "addressLine1": "444 American Way",
+        "addressLine2": null,
+        "city": "Dallas",
+        "state": "TX",
+        "zip": "75202",
+        "latlng": {
+            "type": "Point",
+            "coordinates": [
+                -96.8841109,
+                32.6661298
+            ]
+        },
+        "phoneNumber": "1234567890"
+    },
+    {
+        "id": 314,
+        "name": "second location (Monterrey)",
+        "isPrimary": false,
+        "isRemoved": false,
+        "businessId": 300,
+        "contactId": 857,
+        "districtId": 1,
+        "addressLine1": "220 American Way",
+        "addressLine2": null,
+        "city": "Dallas",
+        "state": "TX",
+        "zip": "75202",
+        "latlng": {
+            "type": "Point",
+            "coordinates": [
+                -96.8841109,
+                32.6661298
+            ]
+        },
+        "phoneNumber": "1234567890"
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Unable to retrieve default district."
+}
+```
+
+<aside class="success">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+
+
+
 
 
 
