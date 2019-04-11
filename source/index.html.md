@@ -1739,7 +1739,7 @@ zip | string | yes | The business location's zip code.
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
-## Get Workareas for Business
+## Get WorkAreas for Business
 
 ```shell
 curl -X GET "http://localhost:3000/api/profile/work-areas/?=businessId=300"
