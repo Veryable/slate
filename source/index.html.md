@@ -626,20 +626,20 @@ opId | integer | yes | The ID of the Op.
         , "opDate": "2019-03-21T13:00:00.000Z"
         , "earliestStartTime": "2019-03-21T13:00:00.000Z"
         , "latestStartTime": "2019-03-21T13:00:00.000Z"
-        , "multidayEndDate": NULL
+        , "multidayEndDate": null
         , "break_hours": 1
         , "rally_point": "Front Gate"
-        , "autofill" NULL
+        , "autofill": null
         , "opQuantity": 8
         , "filledQuantity": 8
         , multidayWorkWeek: ['Monday', 'Tuesday']
-        , isInactive: NULL
+        , isInactive: null
         , "optermsId": 1
         , "opContactId": 5
-        , "isFulfilled": TRUE
-        , "isCompleted": FALSE
-        , "isPoolOnly": FALSE
-        , "bidSetId": NULL
+        , "isFulfilled": true
+        , "isCompleted": false
+        , "isPoolOnly": false
+        , "bidSetId": null
         , "bidSetIds": []
         , "contactPerson": "Peggy Gou"
         , "businessworkareaId": 44
@@ -680,20 +680,20 @@ This endpoint retrieves all ops for a business.
         , "opDate": "2019-03-21T13:00:00.000Z"
         , "earliestStartTime": "2019-03-21T13:00:00.000Z"
         , "latestStartTime": "2019-03-21T13:00:00.000Z"
-        , "multidayEndDate": NULL
+        , "multidayEndDate": null
         , "break_hours": 1
         , "rally_point": "Front Gate"
-        , "autofill" NULL
+        , "autofill": null
         , "opQuantity": 8
         , "filledQuantity": 8
         , "multidayWorkWeek": ['Monday', 'Tuesday']
-        , "isInactive": NULL
+        , "isInactive": null
         , "optermsId": 1
         , "opContactId": 5
-        , "isFulfilled": TRUE
-        , "isCompleted": FALSE
-        , "isPoolOnly": FALSE
-        , "bidSetId": NULL
+        , "isFulfilled": true
+        , "isCompleted": false
+        , "isPoolOnly": false
+        , "bidSetId": null
         , "bidSetIds": []
         , "contactPerson": "Peggy Gou"
         , "businessworkareaId": 44
@@ -710,20 +710,20 @@ This endpoint retrieves all ops for a business.
         , "opDate": "2019-03-21T13:00:00.000Z"
         , "earliestStartTime": "2019-03-21T13:00:00.000Z"
         , "latestStartTime": "2019-03-21T13:00:00.000Z"
-        , "multidayEndDate": NULL
+        , "multidayEndDate": null
         , "break_hours": 1
         , "rally_point": "Front Gate"
-        , "autofill" NULL
+        , "autofill": null
         , "opQuantity": 8
         , "filledQuantity": 8
         , "multidayWorkWeek": ['Monday', 'Tuesday']
-        , "isInactive": NULL
+        , "isInactive": null
         , "optermsId": 1
         , "opContactId": 5
-        , "isFulfilled": TRUE
-        , "isCompleted": FALSE
-        , "isPoolOnly": FALSE
-        , "bidSetId": NULL
+        , "isFulfilled": true
+        , "isCompleted": false
+        , "isPoolOnly": false
+        , "bidSetId": null
         , "bidSetIds": []
         , "contactPerson": "Peggy Gou"
         , "businessworkareaId": 44
@@ -797,20 +797,20 @@ businessworkareaId | integer | no | Id for the business work area where the op w
         , "opDate": "2019-03-21T13:00:00.000Z"
         , "earliestStartTime": "2019-03-21T13:00:00.000Z"
         , "latestStartTime": "2019-03-21T13:00:00.000Z"
-        , "multidayEndDate": NULL
+        , "multidayEndDate": null
         , "break_hours": 1
         , "rally_point": "Front Gate"
-        , "autofill" NULL
+        , "autofill": null
         , "opQuantity": 8
         , "filledQuantity": 8
         , "multidayWorkWeek": ['Monday', 'Tuesday']
-        , "isInactive": NULL
+        , "isInactive": null
         , "optermsId": 1
         , "opContactId": 5
-        , "isFulfilled": TRUE
-        , "isCompleted": FALSE
-        , "isPoolOnly": FALSE
-        , "bidSetId": NULL
+        , "isFulfilled": true
+        , "isCompleted": false
+        , "isPoolOnly": false
+        , "bidSetId": null
         , "bidSetIds": []
         , "contactPerson": "Peggy Gou"
         , "businessworkareaId": 44
@@ -886,19 +886,19 @@ businessworkareaId | integer | yes | Id for the business work area where the op 
         , "opDate": "2019-03-21T13:00:00.000Z"
         , "earliestStartTime": "2019-03-21T13:00:00.000Z"
         , "latestStartTime": "2019-03-21T13:00:00.000Z"
-        , "multidayEndDate": NULL
+        , "multidayEndDate": null
         , "break_hours": 1
         , "rally_point": "Front Gate"
-        , "autofill" NULL
+        , "autofill": null
         , "opQuantity": 8
         , "filledQuantity": 0
-        , "isInactive": NULL
+        , "isInactive": null
         , "optermsId": 1
         , "opContactId": 5
-        , "isFulfilled": TRUE
-        , "isCompleted": FALSE
-        , "isPoolOnly": FALSE
-        , "bidSetId": NULL
+        , "isFulfilled": true
+        , "isCompleted": false
+        , "isPoolOnly": false
+        , "bidSetId": null
         , "bidSetIds": []
         , "contactPerson": "Peggy Gou"
         , "businessworkareaId": 44
@@ -949,20 +949,20 @@ This endpoint deactivates an op that doesn't have accepted bids.
         , "opDate": "2019-03-21T13:00:00.000Z"
         , "earliestStartTime": "2019-03-21T13:00:00.000Z"
         , "latestStartTime": "2019-03-21T13:00:00.000Z"
-        , "multidayEndDate": NULL
+        , "multidayEndDate": null
         , "break_hours": 1
         , "rally_point": "Front Gate"
-        , "autofill" NULL
+        , "autofill": null
         , "opQuantity": 8
         , "filledQuantity": 8
         , "multidayWorkWeek": ['Monday', 'Tuesday']
-        , "isInactive": NULL
+        , "isInactive": null
         , "optermsId": 1
         , "opContactId": 5
-        , "isFulfilled": TRUE
-        , "isCompleted": FALSE
-        , "isPoolOnly": FALSE
-        , "bidSetId": NULL
+        , "isFulfilled": true
+        , "isCompleted": false
+        , "isPoolOnly": false
+        , "bidSetId": null
         , "bidSetIds": []
         , "contactPerson": "Peggy Gou"
         , "businessworkareaId": 44
@@ -1013,20 +1013,20 @@ This endpoint reactivates a previously deactivated op.
         , "opDate": "2019-03-21T13:00:00.000Z"
         , "earliestStartTime": "2019-03-21T13:00:00.000Z"
         , "latestStartTime": "2019-03-21T13:00:00.000Z"
-        , "multidayEndDate": NULL
+        , "multidayEndDate": null
         , "break_hours": 1
         , "rally_point": "Front Gate"
-        , "autofill" NULL
+        , "autofill" null
         , "opQuantity": 8
         , "filledQuantity": 8
         , "multidayWorkWeek": ['Monday', 'Tuesday']
-        , "isInactive": NULL
+        , "isInactive": null
         , "optermsId": 1
         , "opContactId": 5
-        , "isFulfilled": TRUE
-        , "isCompleted": FALSE
-        , "isPoolOnly": FALSE
-        , "bidSetId": NULL
+        , "isFulfilled": true
+        , "isCompleted": false
+        , "isPoolOnly": false
+        , "bidSetId": null
         , "bidSetIds": []
         , "contactPerson": "Peggy Gou"
         , "businessworkareaId": 44
@@ -1074,11 +1074,11 @@ This endpoint gets all op contacts associated with your business.
         , "businessId": 300
         , "firstName": "Johnny"
         , "lastName": "Smith"
-        , "phone": "(343) 435-6643"
+        , "phone": "(343)-435-6643"
         , "createdAt": "2018-10-19T17:06:43.555Z"
         , "updatedAt": "2018-10-19T17:06:43.555Z"
-        , "isRemoved": FALSE
-        ,"phoneExt": NULL
+        , "isRemoved": false
+        , "phoneExt": null
     }
 
     , {
@@ -1086,11 +1086,11 @@ This endpoint gets all op contacts associated with your business.
         , "businessId": 300
         , "firstName": "Shamus"
         , "lastName": "O'Hoolihan"
-        , "phone": "(455) 455-4545"
+        , "phone": "(455)-455-4545"
         , "createdAt": "2019-03-21T19:32:43.475Z"
         , "updatedAt": "2019-03-21T19:32:43.475Z"
-        , "isRemoved": FALSE
-        , "phoneExt": NULL
+        , "isRemoved": false
+        , "phoneExt": null
     }
 ]
 ```
@@ -1136,14 +1136,14 @@ phoneExt | string | no | Phone extension of the op contact
 [
     {
         "id": 1
-        , "businessId":300
-        , "firstName":"Johnny"
-        , "lastName":"Smith"
-        , "phone":"(343) 435-6643"
-        , "createdAt":"2018-10-19T17:06:43.555Z"
-        , "updatedAt":"2018-10-19T17:06:43.555Z"
-        , "isRemoved":FALSE
-        ,"phoneExt":NULL
+        , "businessId": 300
+        , "firstName": "Johnny"
+        , "lastName": "Smith"
+        , "phone": "(343)-435-6643"
+        , "createdAt": "2018-10-19T17:06:43.555Z"
+        , "updatedAt": "2018-10-19T17:06:43.555Z"
+        , "isRemoved": false
+        , "phoneExt": null
     }
 ]
 ```
@@ -1180,14 +1180,14 @@ This endpoint toggles an existing op contact' isRemoved property which changes w
 [
     {
         "id": 1
-        , "businessId":300
-        , "firstName":"Johnny"
-        , "lastName":"Smith"
-        , "phone":"(343) 435-6643"
-        , "createdAt":"2018-10-19T17:06:43.555Z"
-        , "updatedAt":"2018-10-19T17:06:43.555Z"
-        , "isRemoved": TRUE
-        ,"phoneExt": NULL
+        , "businessId": 300
+        , "firstName": "Johnny"
+        , "lastName": "Smith"
+        , "phone": "(343)-435-6643"
+        , "createdAt": "2018-10-19T17:06:43.555Z"
+        , "updatedAt": "2018-10-19T17:06:43.555Z"
+        , "isRemoved": true
+        , "phoneExt": null
     }
 ]
 ```
@@ -1240,13 +1240,13 @@ batchOperatorIds | array [integer] | yes | An array containing the operator Id(s
         , "type": "operator"
         , "email": "jsmith@gmail.com"
         , "zip": 75202
-        , "lastActive": NULL
+        , "lastActive": null
         , "createdAt": "2018-02-26T17:51:03.774Z"
-        , "isSpanishSpeaking": TRUE
-        , "isVeteran": FALSE
-        , "isDrugScreenPassed": TRUE
+        , "isSpanishSpeaking": true
+        , "isVeteran": false
+        , "isDrugScreenPassed": true
         , "district": "TX-1"
-        , "isSuspended": FALSE
+        , "isSuspended": false
         , "ratingsCount" 23
         , "overallRating": 5
         , "qualityProficiencyRating": 5
@@ -1265,14 +1265,14 @@ batchOperatorIds | array [integer] | yes | An array containing the operator Id(s
         , "type": "operator"
         , "email": "jsmith@gmail.com"
         , "zip": 75202
-        , "lastActive": NULL
+        , "lastActive": null
         , "createdAt": "2018-02-26T17:51:03.774Z"
-        , "isSpanishSpeaking": TRUE
-        , "isVeteran": FALSE
-        , "isDrugScreenPassed": TRUE
+        , "isSpanishSpeaking": true
+        , "isVeteran": false
+        , "isDrugScreenPassed": true
         , "district": "TX-1"
-        , "isSuspended": FALSE
-        , "ratingsCount" 23
+        , "isSuspended": false
+        , "ratingsCount": 23
         , "overallRating": 5
         , "qualityProficiencyRating": 5
         , "safetyRating": 5
@@ -1337,14 +1337,14 @@ businesscontactId | integer | yes if using maxMilesAway | The contact Id for you
         , "type": "operator"
         , "email": "jsmith@gmail.com"
         , "zip": 75202
-        , "lastActive": NULL
+        , "lastActive": null
         , "createdAt": "2018-02-26T17:51:03.774Z"
-        , "isSpanishSpeaking": TRUE
-        , "isVeteran": FALSE
-        , "isDrugScreenPassed": TRUE
+        , "isSpanishSpeaking": true
+        , "isVeteran": false
+        , "isDrugScreenPassed": true
         , "district": "TX-1"
-        , "isSuspended": FALSE
-        , "ratingsCount" 23
+        , "isSuspended": false
+        , "ratingsCount": 23
         , "overallRating": 5
         , "qualityProficiencyRating": 5
         , "safetyRating": 5
@@ -1362,14 +1362,14 @@ businesscontactId | integer | yes if using maxMilesAway | The contact Id for you
         , "type": "operator"
         , "email": "jsmith@gmail.com"
         , "zip": 75202
-        , "lastActive": NULL
+        , "lastActive": null
         , "createdAt": "2018-02-26T17:51:03.774Z"
-        , "isSpanishSpeaking": TRUE
-        , "isVeteran": FALSE
-        , "isDrugScreenPassed": TRUE
+        , "isSpanishSpeaking": true
+        , "isVeteran": false
+        , "isDrugScreenPassed": true
         , "district": "TX-1"
-        , "isSuspended": FALSE
-        , "ratingsCount" 23
+        , "isSuspended": false
+        , "ratingsCount": 23
         , "overallRating": 5
         , "qualityProficiencyRating": 5
         , "safetyRating": 5
@@ -1423,11 +1423,11 @@ Parameter | Type | Required | Description
 --------- | ------ | ---- | -----------
 bidId | integer | yes if rating a single operator | Id of the bid you are rating.
 batchBidIds | array[integer] | yes if rating multiple operators | An array of bid Ids that will be rated.
-isNoShowRating | boolean | no | Passing TRUE will generate a 1 star rating for each rating category.
-attitude | integer | yes if isNoShowRating is not TRUE | A rating of 1 to 5 regarding the operator's attitude.
-timeliness | integer | yes if isNoShowRating is not TRUE | A rating of 1 to 5 regarding the operator's timeliness.
-safety | integer | yes if isNoShowRating is not TRUE | A 1 to 5 rating of the operator's safety practices.
-qualityProficiency | integer | yes if isNoShowRating is not TRUE | A 1 to 5 rating of the operator's work quality and proficiency
+isNoShowRating | boolean | no | Passing true will generate a 1 star rating for each rating category.
+attitude | integer | yes if isNoShowRating is not true | A rating of 1 to 5 regarding the operator's attitude.
+timeliness | integer | yes if isNoShowRating is not true | A rating of 1 to 5 regarding the operator's timeliness.
+safety | integer | yes if isNoShowRating is not true | A 1 to 5 rating of the operator's safety practices.
+qualityProficiency | integer | yes if isNoShowRating is not true | A 1 to 5 rating of the operator's work quality and proficiency
 
 > The above command returns JSON structured like this:
 
@@ -1435,29 +1435,29 @@ qualityProficiency | integer | yes if isNoShowRating is not TRUE | A 1 to 5 rati
 [
     {
         "id": 10021
-        , "bidSetId": NULL
+        , "bidSetId": null
         , "opId": 5334
         , "operatorId": 4443
         , "operatorratingId": 464
-        , "businessratingId": NULL
+        , "businessratingId": null
         , "startTime": "2019-04-03T13:00:00.201Z"
         , "endTime": "2019-04-03T21:00:00.201Z"
         , "bidQuantity": 8
-        , "isInvited": TRUE
-        , "hasScheduleConflict": FALSE
-        , "isAccepted": FALSE
-        , "isWithdrawn": FALSE
-        , "isCompleted": TRUE
-        , "isPaid": TRUE
-        , "isDisputed": FALSE
-        , "disputeCategory": NULL
-        , "withdrawalReason": NULL
-        , "paymentToVeryableId": NULL
-        , "paymentToOperatorId": NULL
-        , "premiumRateId": NULL
-        , "isCancelled": FALSE
-        , "cancellationReason": NULL
-        , "bidRateIncrease" NULL
+        , "isInvited": true
+        , "hasScheduleConflict": false
+        , "isAccepted": false
+        , "isWithdrawn": false
+        , "isCompleted": true
+        , "isPaid": true
+        , "isDisputed": false
+        , "disputeCategory": null
+        , "withdrawalReason": null
+        , "paymentToVeryableId": null
+        , "paymentToOperatorId": null
+        , "premiumRateId": null
+        , "isCancelled": false
+        , "cancellationReason": null
+        , "bidRateIncrease": null
         , "operatorOverallRating": "5.0"
         , "timelinessRating": "5.0"
         , "attitudeRating": "5.0"
@@ -1480,9 +1480,6 @@ qualityProficiency | integer | yes if isNoShowRating is not TRUE | A 1 to 5 rati
 <aside class="success">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
-
-
-
 
 
 
