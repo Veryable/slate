@@ -97,7 +97,7 @@ opId | yes | The ID of the Op.
 }
 ```
 
-<aside class="success">
+<aside class="warning">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
@@ -425,6 +425,42 @@ comment | string | no | If `category` is "other", this parameter must be include
 }
 ```
 
+# Messages
+
+## Send Message
+```shell
+curl -X "POST" "http://localhost:3000/api/messages?businessId=226" \
+     -H 'Authorization: bearer [JWT Token]' \
+     -d $'{
+          "subject": "Additional Op Requirements - See Details",
+          "body": "Please make sure to review the Op in your Veryable app for an updated list of requirements.",
+          "type": [
+            "email",
+            "text"
+          ],
+          "recipientOperatorIds": [
+            128
+          ]
+        }'
+```
+This endpoint sends a message from a business to one or more operators.
+### HTTP Request
+`POST https://platform.veryableops.com/api/messages`
+### Body Parameters
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+type | array | yes | Can be any combination of the following: `email`, `push` (for push notifications), `text`, `feed` (for Veryable notification feed)
+recipientOperatorIds | array | yes | An array containing operator IDs (formatted as numbers).
+subject | string | no | The subject line for the message. If subject is not included with the request, any emails and Veryable notification feed messages sent will have a default subject line of "You Have A Message From [BUSINESS NAME]."
+body | string | yes | The body of the message.
+> The above command returns JSON structured like this:
+```json
+{
+  "message": "All messages sent successfully."
+}
+```
+<aside class="warning">Make sure you are passing the correct <code>businessId</code> in your query parameters so that the API retrieves the correct sender info.</aside>
+
 # Ops
 
 ## Get Op By Id
@@ -459,8 +495,8 @@ opId | integer | yes | The ID of the Op.
         , "autofill": null
         , "opQuantity": 8
         , "filledQuantity": 8
-        , multidayWorkWeek: ['Monday', 'Tuesday']
-        , isInactive: null
+        , "multidayWorkWeek": ["Monday", "Tuesday"]
+        , "isInactive": null
         , "optermsId": 1
         , "opContactId": 5
         , "isFulfilled": true
@@ -477,7 +513,7 @@ opId | integer | yes | The ID of the Op.
 ]
 ```
 
-<aside class="success">
+<aside class="warning">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
@@ -512,7 +548,7 @@ This endpoint retrieves all ops for a business.
         , "autofill": null
         , "opQuantity": 8
         , "filledQuantity": 8
-        , "multidayWorkWeek": ['Monday', 'Tuesday']
+        , "multidayWorkWeek": ["Monday", "Tuesday"]
         , "isInactive": null
         , "optermsId": 1
         , "opContactId": 5
@@ -541,7 +577,7 @@ This endpoint retrieves all ops for a business.
         , "autofill": null
         , "opQuantity": 8
         , "filledQuantity": 8
-        , "multidayWorkWeek": ['Monday', 'Tuesday']
+        , "multidayWorkWeek": ["Monday", "Tuesday"]
         , "isInactive": null
         , "optermsId": 1
         , "opContactId": 5
@@ -568,7 +604,7 @@ This endpoint retrieves all ops for a business.
 
 ```
 
-<aside class="success">
+<aside class="warning">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
@@ -627,7 +663,7 @@ businessworkareaId | integer | no | Id for the business work area where the op w
         , "autofill": null
         , "opQuantity": 8
         , "filledQuantity": 8
-        , "multidayWorkWeek": ['Monday', 'Tuesday']
+        , "multidayWorkWeek": ["Monday", "Tuesday"]
         , "isInactive": null
         , "optermsId": 1
         , "opContactId": 5
@@ -649,12 +685,12 @@ businessworkareaId | integer | no | Id for the business work area where the op w
 
 ```json
 {
-    message: "The op you requested could not be retrieved."
+    "message": "The op you requested could not be retrieved."
 }
 
 ```
 
-<aside class="success">
+<aside class="warning">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
@@ -737,12 +773,12 @@ businessworkareaId | integer | yes | Id for the business work area where the op 
 
 ```json
 {
-    message: "This company cannot create a new Op, as it currently has Op(s) that are incomplete and past their grace period."
+    "message": "This company cannot create a new Op, as it currently has Op(s) that are incomplete and past their grace period."
 }
 
 ```
 
-<aside class="success">
+<aside class="warning">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
@@ -777,7 +813,7 @@ This endpoint deactivates an op that doesn't have accepted bids.
         , "autofill": null
         , "opQuantity": 8
         , "filledQuantity": 8
-        , "multidayWorkWeek": ['Monday', 'Tuesday']
+        , "multidayWorkWeek": ["Monday", "Tuesday"]
         , "isInactive": null
         , "optermsId": 1
         , "opContactId": 5
@@ -800,12 +836,12 @@ This endpoint deactivates an op that doesn't have accepted bids.
 
 ```json
 {
-    message: "This company cannot create a new Op, as it currently has Op(s) that are incomplete and past their grace period."
+    "message": "This company cannot create a new Op, as it currently has Op(s) that are incomplete and past their grace period."
 }
 
 ```
 
-<aside class="success">
+<aside class="warning">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
@@ -840,7 +876,7 @@ This endpoint reactivates a previously deactivated op.
         , "autofill": null
         , "opQuantity": 8
         , "filledQuantity": 8
-        , "multidayWorkWeek": ['Monday', 'Tuesday']
+        , "multidayWorkWeek": ["Monday", "Tuesday"]
         , "isInactive": null
         , "optermsId": 1
         , "opContactId": 5
@@ -863,12 +899,12 @@ This endpoint reactivates a previously deactivated op.
 
 ```json
 {
-    message: "Error finding op to reactivate."
+    "message": "Error finding op to reactivate."
 }
 
 ```
 
-<aside class="success">
+<aside class="warning">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
@@ -894,7 +930,7 @@ This endpoint gets all op contacts associated with your business.
         , "businessId": 300
         , "firstName": "Johnny"
         , "lastName": "Smith"
-        , "phone": "(343) 435-6643"
+        , "phone": "(343)-435-6643"
         , "createdAt": "2018-10-19T17:06:43.555Z"
         , "updatedAt": "2018-10-19T17:06:43.555Z"
         , "isRemoved": false
@@ -906,7 +942,7 @@ This endpoint gets all op contacts associated with your business.
         , "businessId": 300
         , "firstName": "Shamus"
         , "lastName": "O'Hoolihan"
-        , "phone": "(455) 455-4545"
+        , "phone": "(455)-455-4545"
         , "createdAt": "2019-03-21T19:32:43.475Z"
         , "updatedAt": "2019-03-21T19:32:43.475Z"
         , "isRemoved": false
@@ -919,12 +955,12 @@ This endpoint gets all op contacts associated with your business.
 
 ```json
 {
-    message: "Error getting op contacts for business."
+    "message": "Error getting op contacts for business."
 }
 
 ```
 
-<aside class="success">
+<aside class="warning">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
@@ -956,12 +992,12 @@ phoneExt | string | no | Phone extension of the op contact
 [
     {
         "id": 1
-        , "businessId":300
-        , "firstName":"Johnny"
-        , "lastName":"Smith"
-        , "phone":"(343) 435-6643"
-        , "createdAt":"2018-10-19T17:06:43.555Z"
-        , "updatedAt":"2018-10-19T17:06:43.555Z"
+        , "businessId": 300
+        , "firstName": "Johnny"
+        , "lastName": "Smith"
+        , "phone": "(343)-435-6643"
+        , "createdAt": "2018-10-19T17:06:43.555Z"
+        , "updatedAt": "2018-10-19T17:06:43.555Z"
         , "isRemoved": false
         , "phoneExt": null
     }
@@ -972,12 +1008,12 @@ phoneExt | string | no | Phone extension of the op contact
 
 ```json
 {
-    message: "Error adding new op contact for business."
+    "message": "Error adding new op contact for business."
 }
 
 ```
 
-<aside class="success">
+<aside class="warning">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
@@ -1000,12 +1036,12 @@ This endpoint toggles an existing op contact' isRemoved property which changes w
 [
     {
         "id": 1
-        , "businessId":300
-        , "firstName":"Johnny"
-        , "lastName":"Smith"
-        , "phone":"(343) 435-6643"
-        , "createdAt":"2018-10-19T17:06:43.555Z"
-        , "updatedAt":"2018-10-19T17:06:43.555Z"
+        , "businessId": 300
+        , "firstName": "Johnny"
+        , "lastName": "Smith"
+        , "phone": "(343)-435-6643"
+        , "createdAt": "2018-10-19T17:06:43.555Z"
+        , "updatedAt": "2018-10-19T17:06:43.555Z"
         , "isRemoved": true
         , "phoneExt": null
     }
@@ -1016,11 +1052,11 @@ This endpoint toggles an existing op contact' isRemoved property which changes w
 
 ```json
 {
-    message: "Error toggling op contact."
+    "message": "Error toggling op contact."
 }
 ```
 
-<aside class="success">
+<aside class="warning">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
@@ -1059,7 +1095,6 @@ cancellationReason | string | yes | A brief description of why the Op was cancel
 payCurrentDay | boolean | yes | Input `true` if operator(s) should be paid for work today, else `false`.
 
 > The above command returns JSON structured like this:
-
 ```json
 {
   "message": "Op canceled for operator(s) 128.",
@@ -1194,47 +1229,745 @@ payCurrentDay | boolean | yes | Input `true` if operator(s) should be paid for w
 }
 ```
 
-# Messages
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
 
-## Send Message
+# Operators
+
+## Get Operators By Id
 
 ```shell
-curl -X "POST" "http://localhost:3000/api/messages?businessId=226" \
-     -H 'Authorization: bearer [JWT Token]' \
-     -d $'{
-          "subject": "Additional Op Requirements - See Details",
-          "body": "Please make sure to review the Op in your Veryable app for an updated list of requirements.",
-          "type": [
-            "email",
-            "text"
-          ],
-          "recipientOperatorIds": [
-            128
-          ]
+curl -X POST "http://localhost:3000/api/operators/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+    -d $'{
+          "batchOperatorIds": [544, 545]
         }'
 ```
 
-This endpoint sends a message from a business to one or more operators.
+This endpoint gets one or many operators by Id
 
 ### HTTP Request
 
-`POST https://platform.veryableops.com/api/messages`
+`POST https://platform.veryableops.com/api/operators`
 
 ### Body Parameters
 
 Parameter | Type | Required | Description
 --------- | ------ | ---- | -----------
-type | array | yes | Can be any combination of the following: `email`, `push` (for push notifications), `text`, `feed` (for Veryable notification feed)
-recipientOperatorIds | array | yes | An array containing operator IDs (formatted as numbers).
-subject | string | no | The subject line for the message. If subject is not included with the request, any emails and Veryable notification feed messages sent will have a default subject line of "You Have A Message From [BUSINESS NAME]."
-body | string | yes | The body of the message.
+batchOperatorIds | array [integer] | yes | An array containing the operator Id(s) being requested.
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 544
+        , "firstName": "John"
+        , "lastName": "Smith"
+        , "fullName": "John Smith"
+        , "type": "operator"
+        , "email": "jsmith@gmail.com"
+        , "zip": 75202
+        , "lastActive": null
+        , "createdAt": "2018-02-26T17:51:03.774Z"
+        , "isSpanishSpeaking": true
+        , "isVeteran": false
+        , "isDrugScreenPassed": true
+        , "district": "TX-1"
+        , "isSuspended": false
+        , "ratingsCount" 23
+        , "overallRating": 5
+        , "qualityProficiencyRating": 5
+        , "safetyRating": 5
+        , "attitudeRating": 5
+        , "timelinessRating": 5
+        , "opsCompleted": 23
+        , "reqs": [ operatorReqs, bgCheck ]
+        , "experience": [certs, externalCompanies, industries]
+    }
+    , {
+        "id": 545
+        , "firstName": "Jen"
+        , "lastName": "Smith"
+        , "fullName": "Jen Smith"
+        , "type": "operator"
+        , "email": "jsmith@gmail.com"
+        , "zip": 75202
+        , "lastActive": null
+        , "createdAt": "2018-02-26T17:51:03.774Z"
+        , "isSpanishSpeaking": true
+        , "isVeteran": false
+        , "isDrugScreenPassed": true
+        , "district": "TX-1"
+        , "isSuspended": false
+        , "ratingsCount": 23
+        , "overallRating": 5
+        , "qualityProficiencyRating": 5
+        , "safetyRating": 5
+        , "attitudeRating": 5
+        , "timelinessRating": 5
+        , "opsCompleted": 23
+        , "reqs": [ operatorReqs, bgCheck ]
+        , "experience": [certs, externalCompanies, industries]
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "You must pass at least one value inside batchOperatorIds."
+}
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Get Operators By Filter
+
+```shell
+curl -X POST "http://localhost:3000/api/operators/filter/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+    -d $'{
+          "zip": 75202
+        }'
+```
+
+This endpoint gets operators based on various filter criteria.
+
+### HTTP Request
+
+`POST https://platform.veryableops.com/api/operators/filter`
+
+### Body Parameters
+
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+isSpanishSpeaking | boolean | no | Whether the operator speaks Spanish.
+isDrugScreenPassed | boolean | no | Whether the operator has passed a drug screen.
+isVeteran | boolean | no | Whether the operator is a veteran of the armed forces
+isFavorited | boolean | no | Whether the operator is in your labor pool
+zip | integer | no | Returns operators inside a specific zip code
+maxMilesAway | integer | no | Filter by the number of miles an operator is from your business
+businesscontactId | integer | yes if using maxMilesAway | The contact Id for your business
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 544
+        , "firstName": "John"
+        , "lastName": "Smith"
+        , "fullName": "John Smith"
+        , "type": "operator"
+        , "email": "jsmith@gmail.com"
+        , "zip": 75202
+        , "lastActive": null
+        , "createdAt": "2018-02-26T17:51:03.774Z"
+        , "isSpanishSpeaking": true
+        , "isVeteran": false
+        , "isDrugScreenPassed": true
+        , "district": "TX-1"
+        , "isSuspended": false
+        , "ratingsCount": 23
+        , "overallRating": 5
+        , "qualityProficiencyRating": 5
+        , "safetyRating": 5
+        , "attitudeRating": 5
+        , "timelinessRating": 5
+        , "opsCompleted": 23
+        , "reqs": [ operatorReqs, bgCheck ]
+        , "experience": [certs, externalCompanies, industries]
+    }
+    , {
+        "id": 545
+        , "firstName": "Jen"
+        , "lastName": "Smith"
+        , "fullName": "Jen Smith"
+        , "type": "operator"
+        , "email": "jsmith@gmail.com"
+        , "zip": 75202
+        , "lastActive": null
+        , "createdAt": "2018-02-26T17:51:03.774Z"
+        , "isSpanishSpeaking": true
+        , "isVeteran": false
+        , "isDrugScreenPassed": true
+        , "district": "TX-1"
+        , "isSuspended": false
+        , "ratingsCount": 23
+        , "overallRating": 5
+        , "qualityProficiencyRating": 5
+        , "safetyRating": 5
+        , "attitudeRating": 5
+        , "timelinessRating": 5
+        , "opsCompleted": 23
+        , "reqs": [ operatorReqs, bgCheck ]
+        , "experience": [certs, externalCompanies, industries]
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "businesscontactId is required when filtering by maxMilesAway."
+}
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+# Ratings
+
+## Post Operator Rating
+
+```shell
+curl -X POST "http://localhost:3000/api/ratings/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+    -d $'{
+          "bidId": 10021
+        , "operatorOverallRating": 5
+        , "timelinessRating": 5
+        , "attitudeRating": 5
+        , "safetyRating": 5
+        , "qualityProficiencyRating": 5 
+        }'
+```
+
+This endpoint creates a rating for an operator's bid.
+
+### HTTP Request
+
+`POST https://platform.veryableops.com/api/ratings`
+
+### Body Parameters
+
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+bidId | integer | yes if rating a single operator | Id of the bid you are rating.
+batchBidIds | array[integer] | yes if rating multiple operators | An array of bid Ids that will be rated.
+isNoShowRating | boolean | no | Passing true will generate a 1 star rating for each rating category.
+attitude | integer | yes if isNoShowRating is not true | A rating of 1 to 5 regarding the operator's attitude.
+timeliness | integer | yes if isNoShowRating is not true | A rating of 1 to 5 regarding the operator's timeliness.
+safety | integer | yes if isNoShowRating is not true | A 1 to 5 rating of the operator's safety practices.
+qualityProficiency | integer | yes if isNoShowRating is not true | A 1 to 5 rating of the operator's work quality and proficiency
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 10021
+        , "bidSetId": null
+        , "opId": 5334
+        , "operatorId": 4443
+        , "operatorratingId": 464
+        , "businessratingId": null
+        , "startTime": "2019-04-03T13:00:00.201Z"
+        , "endTime": "2019-04-03T21:00:00.201Z"
+        , "bidQuantity": 8
+        , "isInvited": true
+        , "hasScheduleConflict": false
+        , "isAccepted": false
+        , "isWithdrawn": false
+        , "isCompleted": true
+        , "isPaid": true
+        , "isDisputed": false
+        , "disputeCategory": null
+        , "withdrawalReason": null
+        , "paymentToVeryableId": null
+        , "paymentToOperatorId": null
+        , "premiumRateId": null
+        , "isCancelled": false
+        , "cancellationReason": null
+        , "bidRateIncrease": null
+        , "operatorOverallRating": "5.0"
+        , "timelinessRating": "5.0"
+        , "attitudeRating": "5.0"
+        , "safetyRating": "5.0"
+        , "qualityProficiencyRating": "5.0"
+        , "createdAt": "2019-03-05T16:34:10.201Z"
+        , "updatedAt": "2019-03-06T16:34:10.201Z" 
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Bid not found. Please check the Id."
+}
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+# Profile
+
+## Add Location for Business
+
+```shell
+curl -X POST "http://localhost:3000/api/profile/locations/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+    -d $'{
+          "name": "New Location"
+        , "isPrimary": false
+        , "addressLine1": "444 American Way"
+        , "addressLine2": "Suite 2"
+        , "phoneNumber": "232-445-4545"
+        , "state": "TX"
+        , "zip": "75202" 
+        }'
+```
+
+This endpoint creates a location for your business.
+
+### HTTP Request
+
+`POST https://platform.veryableops.com/api/profile/locations`
+
+### Body Parameters
+
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+name | string | yes | The name of the location being created.
+isPrimary | boolean | no | Whether or not this is the primary location for your business.
+addressLine1 | string | yes | The first line of the business's address.
+addressLine2 | string | no | Optional second address line for suite #, apt #, etc.
+phoneNumber | integer | yes | A contact # for this location.
+city | string | yes | The business location's city.
+state | string | yes | The abbreviation for the state. (TX, PA, etc.)
+zip | string | yes | The business location's zip code.
+
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 313,
+        "name": "new location (Santa Fe)",
+        "isPrimary": false,
+        "isRemoved": false,
+        "businessId": 300,
+        "contactId": 857,
+        "districtId": 1,
+        "addressLine1": "444 American Way",
+        "addressLine2": null,
+        "city": "Dallas",
+        "state": "TX",
+        "zip": "75202",
+        "latlng": {
+            "type": "Point",
+            "coordinates": [
+                -96.8841109,
+                32.6661298
+            ]
+        },
+        "phoneNumber": "1234567890"
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Unable to retrieve default district."
+}
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Get Locations for Business
+
+```shell
+curl -X GET "http://localhost:3000/api/profile/locations/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint gets locations for your business.
+
+### HTTP Request
+
+`GET https://platform.veryableops.com/api/profile/locations`
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 313,
+        "name": "new location (Santa Fe)",
+        "isPrimary": false,
+        "isRemoved": false,
+        "businessId": 300,
+        "contactId": 857,
+        "districtId": 1,
+        "addressLine1": "444 American Way",
+        "addressLine2": null,
+        "city": "Dallas",
+        "state": "TX",
+        "zip": "75202",
+        "latlng": {
+            "type": "Point",
+            "coordinates": [
+                -96.8841109,
+                32.6661298
+            ]
+        },
+        "phoneNumber": "1234567890"
+    },
+    {
+        "id": 314,
+        "name": "second location (Monterrey)",
+        "isPrimary": false,
+        "isRemoved": false,
+        "businessId": 300,
+        "contactId": 857,
+        "districtId": 1,
+        "addressLine1": "220 American Way",
+        "addressLine2": null,
+        "city": "Dallas",
+        "state": "TX",
+        "zip": "75202",
+        "latlng": {
+            "type": "Point",
+            "coordinates": [
+                -96.8841109,
+                32.6661298
+            ]
+        },
+        "phoneNumber": "1234567890"
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Unable to retrieve default district."
+}
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Update Location for Business
+
+```shell
+curl -X PUT "http://localhost:3000/api/profile/locations/<locationId>?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+    -d $'{ 
+        "name": "Updated Location Name"
+        , "addressLine1": "444 Canadian Way"
+        , "addressLine2": "suite 222"
+        , "phoneNumber": "1234567890"
+        , "city": "Dallas"
+        , "state": "TX"
+        , "zip": "75201"
+        }'
+```
+
+This endpoint updates a location for your business.
+
+### HTTP Request
+
+`PUT https://platform.veryableops.com/api/profile/locations`
+
+### Body Parameters
+
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+name | string | yes | The name of the location being created.
+isPrimary | boolean | yes | Whether or not this is the primary location for your business.
+addressLine1 | string | yes | The first line of the business's address.
+addressLine2 | string | no | Optional second address line for suite #, apt #, etc.
+phoneNumber | integer | yes | A contact # for this location.
+city | string | yes | The business location's city.
+state | string | yes | The abbreviation for the state. (TX, PA, etc.)
+zip | string | yes | The business location's zip code.
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "message": "All messages sent successfully."
+    "id": 312,
+    "name": "Updated Location Name",
+    "isPrimary": false,
+    "isRemoved": false,
+    "businessId": 300,
+    "contactId": 828,
+    "districtId": 1,
+    "addressLine1": "444 Canadian Way",
+    "addressLine2": "suite 222",
+    "city": "Dallas",
+    "state": "TX",
+    "zip": "75201",
+    "latlng": {
+        "type": "Point",
+        "coordinates": [
+            -96.8841109,
+            32.6661298
+        ]
+    },
+    "phoneNumber": "9876543210"
 }
 ```
 
-<aside class="warning">Make sure you are passing the correct <code>businessId</code> in your query parameters so that the API retrieves the correct sender info.</aside>
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error retrieving timezone."
+}
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Get WorkAreas for Business
+
+```shell
+curl -X GET "http://localhost:3000/api/profile/work-areas/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint gets work areas associated with your business.
+
+### HTTP Request
+
+`GET https://platform.veryableops.com/api/profile/work-areas`
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 98,
+        "name": "General"
+    },
+    {
+        "id": 231,
+        "name": "Second Workarea"
+    },
+    {
+        "id": 232,
+        "name": "Third Workarea"
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error retrieving work areas."
+}
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Create Work Area for Business
+
+```shell
+curl -X POST "http://localhost:3000/api/profile/work-areas/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+    -d $'{ "workAreas": [ "Newest WorkArea" ] }'
+```
+
+This endpoint creates a work area for your business.
+
+### HTTP Request
+
+`POST https://platform.veryableops.com/api/profile/work-areas`
+
+### Body Parameters
+
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+workAreas | array[string] | yes | An array of workArea names. You must pass at least one element in the array.
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "createdWorkAreas": [
+        {
+            "id": 233,
+            "businessId": 300,
+            "name": "Newest WorkArea",
+            "isRemoved": false,
+            "createdAt": "2019-04-09T20:00:06.817Z",
+            "updatedAt": "2019-04-09T20:00:06.817Z"
+        }
+    ]
+}
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "WorkAreas param is required."
+}
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+# Your Labor Pool (YLP)
+
+## Get Labor Pool for Business
+
+```shell
+curl -X GET "http://localhost:3000/api/labor-pool/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint gets the labor pool for your business.
+
+### HTTP Request
+
+`GET https://platform.veryableops.com/labor-pool`
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 316,
+        "businessId": 300,
+        "operatorId": 1061,
+        "createdAt": "2019-02-28T21:04:35.665Z",
+        "updatedAt": "2019-02-28T21:04:35.665Z"
+    },
+    {
+        "id": 298,
+        "businessId": 300,
+        "operatorId": 605,
+        "createdAt": "2019-01-29T16:20:09.344Z",
+        "updatedAt": "2019-03-01T17:10:34.973Z"
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error getting YLP."
+}
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Toggle Operator in YLP
+
+```shell
+curl -X POST "http://localhost:3000/api/labor-pool/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+    -d $'{"operatorId": 361, "action": "favorite"}'
+```
+
+This endpoint toggles an operator in or out of your labor pool.
+
+### HTTP Request
+
+`POST https://platform.veryableops.com/labor-pool`
+
+### Body Parameters
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+operatorId | number | yes | The operatorId for the operator you want to toggle.
+action | string | yes | You can pass "favorite" or "unfavorite".
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "message": "Operator has been favorited.",
+    "favorite": [
+        {
+            "id": 361,
+            "businessId": 300,
+            "operatorId": 39328,
+            "createdAt": "2019-04-09T15:55:56.259Z",
+            "updatedAt": "2019-04-09T15:55:56.259Z"
+        }
+    ]
+}
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error toggling favorite."
+}
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Toggle Block Operator
+
+```shell
+curl -X POST "http://localhost:3000/api/labor-pool/block/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+    -d $'{"operatorId": 915}'
+```
+
+This endpoint toggles an operator from a business's blacklist.
+
+### HTTP Request
+
+`POST https://platform.veryableops.com/labor-pool`
+
+### Body Parameters
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+operatorId | number | yes | The operatorId for the operator you want to toggle.
+
+> The above command returns JSON structured like this:
+
+```json
+"Operator ID 915 has been removed from the blacklist of Business ID 300."
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error during block operator toggle."
+}
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+
+
+
+
+
