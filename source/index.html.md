@@ -97,7 +97,7 @@ opId | yes | The ID of the Op.
 }
 ```
 
-<aside class="success">
+<aside class="warning">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
@@ -513,7 +513,7 @@ opId | integer | yes | The ID of the Op.
 ]
 ```
 
-<aside class="success">
+<aside class="warning">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
@@ -604,7 +604,7 @@ This endpoint retrieves all ops for a business.
 
 ```
 
-<aside class="success">
+<aside class="warning">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
@@ -690,7 +690,7 @@ businessworkareaId | integer | no | Id for the business work area where the op w
 
 ```
 
-<aside class="success">
+<aside class="warning">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
@@ -778,7 +778,7 @@ businessworkareaId | integer | yes | Id for the business work area where the op 
 
 ```
 
-<aside class="success">
+<aside class="warning">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
@@ -841,7 +841,7 @@ This endpoint deactivates an op that doesn't have accepted bids.
 
 ```
 
-<aside class="success">
+<aside class="warning">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
@@ -904,7 +904,7 @@ This endpoint reactivates a previously deactivated op.
 
 ```
 
-<aside class="success">
+<aside class="warning">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
@@ -960,7 +960,7 @@ This endpoint gets all op contacts associated with your business.
 
 ```
 
-<aside class="success">
+<aside class="warning">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
@@ -1013,7 +1013,7 @@ phoneExt | string | no | Phone extension of the op contact
 
 ```
 
-<aside class="success">
+<aside class="warning">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
@@ -1056,7 +1056,7 @@ This endpoint toggles an existing op contact' isRemoved property which changes w
 }
 ```
 
-<aside class="success">
+<aside class="warning">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
@@ -1229,7 +1229,7 @@ payCurrentDay | boolean | yes | Input `true` if operator(s) should be paid for w
 }
 ```
 
-<aside class="success">
+<aside class="warning">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
@@ -1322,7 +1322,7 @@ batchOperatorIds | array [integer] | yes | An array containing the operator Id(s
 }
 ```
 
-<aside class="success">
+<aside class="warning">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
@@ -1419,7 +1419,7 @@ businesscontactId | integer | yes if using maxMilesAway | The contact Id for you
 }
 ```
 
-<aside class="success">
+<aside class="warning">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
@@ -1506,7 +1506,7 @@ qualityProficiency | integer | yes if isNoShowRating is not true | A 1 to 5 rati
 }
 ```
 
-<aside class="success">
+<aside class="warning">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
@@ -1585,7 +1585,7 @@ zip | string | yes | The business location's zip code.
 }
 ```
 
-<aside class="success">
+<aside class="warning">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
@@ -1661,7 +1661,7 @@ This endpoint gets locations for your business.
 }
 ```
 
-<aside class="success">
+<aside class="warning">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
@@ -1692,7 +1692,7 @@ This endpoint updates a location for your business.
 Parameter | Type | Required | Description
 --------- | ------ | ---- | -----------
 name | string | yes | The name of the location being created.
-isPrimary | boolean | no | Whether or not this is the primary location for your business.
+isPrimary | boolean | yes | Whether or not this is the primary location for your business.
 addressLine1 | string | yes | The first line of the business's address.
 addressLine2 | string | no | Optional second address line for suite #, apt #, etc.
 phoneNumber | integer | yes | A contact # for this location.
@@ -1735,7 +1735,7 @@ zip | string | yes | The business location's zip code.
 }
 ```
 
-<aside class="success">
+<aside class="warning">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
@@ -1746,7 +1746,7 @@ curl -X GET "http://localhost:3000/api/profile/work-areas/?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
-This endpoint gets workareas associated with your business.
+This endpoint gets work areas associated with your business.
 
 ### HTTP Request
 
@@ -1779,11 +1779,11 @@ This endpoint gets workareas associated with your business.
 }
 ```
 
-<aside class="success">
+<aside class="warning">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
-## Create Workarea for Business
+## Create Work Area for Business
 
 ```shell
 curl -X POST "http://localhost:3000/api/profile/work-areas/?=businessId=300"
@@ -1801,7 +1801,7 @@ This endpoint creates a work area for your business.
 
 Parameter | Type | Required | Description
 --------- | ------ | ---- | -----------
-workAreas | array[string] | yes | An array of workArea names. You must pass at least element in the array.
+workAreas | array[string] | yes | An array of workArea names. You must pass at least one element in the array.
 
 > The above command returns JSON structured like this:
 
@@ -1816,29 +1816,6 @@ workAreas | array[string] | yes | An array of workArea names. You must pass at l
             "createdAt": "2019-04-09T20:00:06.817Z",
             "updatedAt": "2019-04-09T20:00:06.817Z"
         }
-    ],
-    "links": [
-        {
-            "id": 417,
-            "businessuserId": 433,
-            "businessworkareaId": 233,
-            "createdAt": "2019-04-09T20:00:06.913Z",
-            "updatedAt": "2019-04-09T20:00:06.913Z"
-        },
-        {
-            "id": 418,
-            "businessuserId": 496,
-            "businessworkareaId": 233,
-            "createdAt": "2019-04-09T20:00:06.913Z",
-            "updatedAt": "2019-04-09T20:00:06.913Z"
-        },
-        {
-            "id": 419,
-            "businessuserId": 491,
-            "businessworkareaId": 233,
-            "createdAt": "2019-04-09T20:00:06.913Z",
-            "updatedAt": "2019-04-09T20:00:06.913Z"
-        }
     ]
 }
 ```
@@ -1851,7 +1828,7 @@ workAreas | array[string] | yes | An array of workArea names. You must pass at l
 }
 ```
 
-<aside class="success">
+<aside class="warning">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
@@ -1899,7 +1876,7 @@ This endpoint gets the labor pool for your business.
 }
 ```
 
-<aside class="success">
+<aside class="warning">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
@@ -1948,11 +1925,11 @@ action | string | yes | You can pass "favorite" or "unfavorite".
 }
 ```
 
-<aside class="success">
+<aside class="warning">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
-## Toggle Operator from Blacklist
+## Toggle Block Operator
 
 ```shell
 curl -X POST "http://localhost:3000/api/labor-pool/block/?=businessId=300"
@@ -1981,11 +1958,11 @@ operatorId | number | yes | The operatorId for the operator you want to toggle.
 
 ```json
 {
-    "message": "Blacklist query error during blacklist toggle."
+    "message": "Error during block operator toggle."
 }
 ```
 
-<aside class="success">
+<aside class="warning">
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
