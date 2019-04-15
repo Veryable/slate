@@ -1668,7 +1668,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Update Location for Business
 
 ```shell
-curl -X PUT "http://localhost:3000/api/profile/locations/<locationId>?=businessId=300"
+curl -X PUT "http://localhost:3000/api/profile/locations/312/?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -d $'{ 
         "name": "Updated Location Name"
@@ -1685,7 +1685,13 @@ This endpoint updates a location for your business.
 
 ### HTTP Request
 
-`PUT https://platform.veryableops.com/api/profile/locations`
+`PUT https://platform.veryableops.com/api/profile/locations/:locationId`
+
+### URL Parameters
+
+Parameter | Required | Description
+--------- | ---- | -----------
+locationId | yes | The ID of the location to update.
 
 ### Body Parameters
 
@@ -1699,6 +1705,8 @@ phoneNumber | integer | yes | A contact # for this location.
 city | string | yes | The business location's city.
 state | string | yes | The abbreviation for the state. (TX, PA, etc.)
 zip | string | yes | The business location's zip code.
+
+
 
 > The above command returns JSON structured like this:
 
@@ -1966,8 +1974,873 @@ operatorId | number | yes | The operatorId for the operator you want to toggle.
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
+# Work Centers (API Config)
+
+## Get Work Centers for Business
+
+```shell
+curl -X GET "http://localhost:3000/api/workcenters/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint gets the work centers for your business.
+
+### HTTP Request
+
+`GET https://platform.veryableops.com/workcenters`
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 1
+        , "businessId": 300
+        , "name": "Lathe Workcenter"
+        , "description": "..."
+        , "operatorCapacity": 10
+        , "unitCapacity": 10
+        , "timePerUnit": 10
+        , "createdAt": "2019-03-05T16:34:10.201Z"
+        , "updatedAt": "2019-03-05T16:34:10.201Z" 
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error getting business work centers for business [ businessId ] - [errorMessage]."
+}
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Update Work Center for Business
+
+```shell
+curl -X PUT "http://localhost:3000/api/workcenters/1/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint gets the work centers for your business.
+
+### HTTP Request
+
+`PUT https://platform.veryableops.com/workcenters/:workcenterId`
+
+### URL Parameters
+
+Parameter | Required | Description
+--------- | ---- | -----------
+workcenterId | yes | The ID of the workcenter to update.
+
+### Body Parameters
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+name | string | no | The name of the work center.
+description | string | no | The description of the work center.
+operatorCapacity | integer | no | The maximum number of operators that can utilize this workcenter at once.
+unitCapacity | integer | no | The maximum number of units that can be produced in a work day.
+timePerUnit | integer | no | The time it takes to complete one unit of product in this workcenter.
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "businessId": 300,
+        "name": "Updated Lathe Workcenter",
+        "description": "This is a workcenter description.",
+        "operatorCapacity": 10,
+        "unitCapacity": 10,
+        "timePerUnit": 10
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error updating business work centers for business [ businessId ] - [errorMessage]."
+}
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Create Work Center for Business
+
+```shell
+curl -X POST "http://localhost:3000/api/workcenters/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint creates a work center for your business.
+
+### HTTP Request
+
+`POST https://platform.veryableops.com/workcenters`
+
+### Body Parameters
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+name | string | no | The name of the work center.
+description | string | no | The description of the work center.
+operatorCapacity | integer | no | The maximum number of operators that can utilize this workcenter at once.
+unitCapacity | integer | no | The maximum number of units that can be produced in a work day.
+timePerUnit | integer | no | The time it takes to complete one unit of product in this workcenter.
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "businessId": 300,
+        "name": "New Lathe Workcenter",
+        "description": "This is a workcenter description.",
+        "operatorCapacity": 10,
+        "unitCapacity": 10,
+        "timePerUnit": 10
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error creating new business work center row- [errorMessage]."
+}
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Delete Work Center for Business
+
+```shell
+curl -X DELETE "http://localhost:3000/api/workcenters/1/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint deletes a work center for a business.
+
+### HTTP Request
+
+`DELETE https://platform.veryableops.com/workcenters/:workcenterId`
+
+### URL Parameters
+
+Parameter | Required | Description
+--------- | ---- | -----------
+workcenterId | yes | The ID of the work center to delete.
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 1
+        , "businessId": 300
+        , "name": "Deleted Workcenter"
+        , "description": "This is a workcenter description."
+        , "operatorCapacity": 10
+        , "unitCapacity": 10
+        , "timePerUnit": 10
+        , "createdAt": "2019-03-05T16:34:10.201Z"
+        , "updatedAt": "2019-03-05T16:34:10.201Z" 
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Row [ workcenterId ] was not able to be deleted. - [errMessage]"
+}
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+# Business Customers (API Config)
+
+## Get Customers for Business
+
+```shell
+curl -X GET "http://localhost:3000/api/customers/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint gets customers for your business.
+
+### HTTP Request
+
+`GET https://platform.veryableops.com/customers`
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 1
+        , "businessId": 300
+        , "customerName": "Our Customer"
+        , "createdAt": "2019-03-05T16:34:10.201Z"
+        , "updatedAt": "2019-03-06T16:34:10.201Z" 
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error getting business customers for business [businessId] - [errorMessage]."
+}
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Update Customer for Business
+
+```shell
+curl -X PUT "http://localhost:3000/api/customers/1/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint updates a customer for your business.
+
+### HTTP Request
+
+`PUT https://platform.veryableops.com/customers/:customerId`
+
+### URL Parameters
+
+Parameter | Required | Description
+--------- | ---- | -----------
+customerId | yes | The ID of the customer to update.
+
+### Body Parameters
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+customerName | string | yes | The name of the business customer.
 
 
+> The above command returns JSON structured like this:
 
+```json
+[
+    {
+        "id": 1
+        , "businessId": 300
+        , "customerName": "Our Updated Customer"
+        , "createdAt": "2019-03-05T16:34:10.201Z"
+        , "updatedAt": "2019-03-06T16:34:10.201Z" 
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error updating customer row [ customerId ] - [errorMessage]."
+}
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Create Customer for Business
+
+```shell
+curl -X POST "http://localhost:3000/api/customers/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint creates a customer for your business.
+
+### HTTP Request
+
+`POST https://platform.veryableops.com/customers`
+
+### Body Parameters
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+customerName | string | yes | The name of the business customer.
+
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 1
+        , "businessId": 300
+        , "customerName": "Our Customer"
+        , "createdAt": "2019-03-05T16:34:10.201Z"
+        , "updatedAt": "2019-03-06T16:34:10.201Z" 
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error creating new business customers row - [errorMessage]."
+}
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Delete Customer for Business
+
+```shell
+curl -X DELETE "http://localhost:3000/api/customers/1/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint deletes a customer for your business.
+
+### HTTP Request
+
+`DELETE https://platform.veryableops.com/customers/:customerId`
+
+### URL Parameters
+
+Parameter | Required | Description
+--------- | ---- | -----------
+customerId | yes | The ID of the customer to delete.
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 1
+        , "businessId": 300
+        , "customerName": "Our Deleted Customer"
+        , "createdAt": "2019-03-05T16:34:10.201Z"
+        , "updatedAt": "2019-03-06T16:34:10.201Z" 
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error deleting business customer - [errorMessage]."
+}
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+# Production Schedules (API Config)
+
+## Get Production Schedules for Business
+
+```shell
+curl -X GET "http://localhost:3000/api/schedules?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint gets production schedules for your business.
+
+### HTTP Request
+
+`GET https://platform.veryableops.com/schedules`
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 1
+        , "businessId": 300
+        , "createdAt": "2019-03-05T16:34:10.201Z"
+        , "updatedAt": "2019-03-06T16:34:10.201Z" 
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error getting business production schedules for business [businessId] - [errorMessage]."
+}
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Create Production Schedules for Business
+
+```shell
+curl -X POST "http://localhost:3000/api/schedules?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint creates a production schedule for your business.
+
+### HTTP Request
+
+`POST https://platform.veryableops.com/schedules`
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 1
+        , "businessId": 300
+        , "createdAt": "2019-03-05T16:34:10.201Z"
+        , "updatedAt": "2019-03-06T16:34:10.201Z" 
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error creating business production schedule for business [businessId] - [errorMessage]."
+}
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Delete Production Schedule for Business
+
+```shell
+curl -X DELETE "http://localhost:3000/api/schedules/1/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint creates a production schedule for your business.
+
+### HTTP Request
+
+`DELETE https://platform.veryableops.com/schedules/:scheduleId`
+
+### URL Parameters
+
+Parameter | Required | Description
+--------- | ---- | -----------
+scheduleId | yes | The ID of the schedule to delete.
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 1
+        , "businessId": 300
+        , "createdAt": "2019-03-05T16:34:10.201Z"
+        , "updatedAt": "2019-03-06T16:34:10.201Z" 
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Business schedule [ scheduleId ] was not able to be deleted  - [errorMessage]."
+}
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+# Routing (API Config)
+
+## Get Routing for Business
+
+```shell
+curl -X GET "http://localhost:3000/api/routings/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint gets the routings for your business.
+
+### HTTP Request
+
+`GET https://platform.veryableops.com/routings`
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 1
+        , "businessId": 300
+        , "businessContactId": 163
+        , "businessworkareaId": 98
+        , "name": "Primary Routing System"
+        , "createdAt": "2019-03-05T16:34:10.201Z"
+        , "updatedAt": "2019-03-06T16:34:10.201Z" 
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error getting business routings for [ businessId ] - [errorMessage]."
+}
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Update Routing for Business
+
+```shell
+curl -X PUT "http://localhost:3000/api/routings/1/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint gets the routings for your business.
+
+### HTTP Request
+
+`PUT https://platform.veryableops.com/routings/:routingId`
+
+### URL Parameters
+
+Parameter | Required | Description
+--------- | ---- | -----------
+routingId | yes | The ID of routing to update.
+
+### Body Parameters
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+name | string | yes | The name of the routing to update.
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 1
+        , "businessId": 300
+        , "businessContactId": 163
+        , "businessworkareaId": 98
+        , "name": "Secondary Routing System"
+        , "createdAt": "2019-03-05T16:34:10.201Z"
+        , "updatedAt": "2019-03-06T16:34:10.201Z" 
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error updating business routings for [ businessId ] - [errorMessage]."
+}
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Create Routing for Business
+
+```shell
+curl -X POST "http://localhost:3000/api/routings/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint creates a routing for your business.
+
+### HTTP Request
+
+`POST https://platform.veryableops.com/routings`
+
+### Body Parameters
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+name | string | yes | The name of the routing.
+businessContactId | integer | yes | The contact Id for your business.
+businessWorkareaId | integer | yes | The work area for your business.
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 1
+        , "businessId": 300
+        , "businessContactId": 163
+        , "businessworkareaId": 98
+        , "name": "New Routing System"
+        , "createdAt": "2019-03-05T16:34:10.201Z"
+        , "updatedAt": "2019-03-06T16:34:10.201Z" 
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error creating new business routings row - [errorMessage]."
+}
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Delete Routing for Business
+
+```shell
+curl -X DELETE "http://localhost:3000/api/routings/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint deletes a routing for a business.
+
+### HTTP Request
+
+`DELETE https://platform.veryableops.com/routings/:routingId`
+
+### URL Parameters
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+routingId | intger | yes | The Id for the routing to be deleted.
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 1
+        , "businessId": 300
+        , "businessContactId": 163
+        , "businessworkareaId": 98
+        , "name": "Deleted Routing System"
+        , "createdAt": "2019-03-05T16:34:10.201Z"
+        , "updatedAt": "2019-03-06T16:34:10.201Z" 
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error deleting routing - [errorMessage]."
+}
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+# SKUs (API Config)
+
+## Get SKUs for Business
+
+```shell
+curl -X GET "http://localhost:3000/api/skus/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint gets SKUs for a business.
+
+### HTTP Request
+
+`GET https://platform.veryableops.com/skus`
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 1
+        , "businessId": 300
+        , "sku": "GFDA46RERTE4"
+        , "createdAt": "2019-03-05T16:34:10.201Z"
+        , "updatedAt": "2019-03-05T16:34:10.201Z" 
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error getting business SKUs for business [ businessId ] - [errorMessage]."
+}
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Update SKU for Business
+
+```shell
+curl -X PUT "http://localhost:3000/api/skus/1/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint updates a SKU for a business.
+
+### HTTP Request
+
+`PUT https://platform.veryableops.com/skus/:skuId`
+
+### URL Parameters
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+skuId | integer | yes | The Id for the SKU to update.
+
+### Body Parameters
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+sku | string | yes | The Stock Keeping Unit for a product.
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 1
+        , "businessId": 300
+        , "sku": "3542KD435"
+        , "createdAt": "2019-03-05T16:34:10.201Z"
+        , "updatedAt": "2019-03-05T16:34:10.201Z" 
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error updating business SKU for business [ businessId ] - [errorMessage]."
+}
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Create SKU for Business
+
+```shell
+curl -X POST "http://localhost:3000/api/skus/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint creates a SKU for a business.
+
+### HTTP Request
+
+`POST https://platform.veryableops.com/skus/:skuId`
+
+### Body Parameters
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+sku | string | yes | The Stock Keeping Unit for a product.
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 1
+        , "businessId": 300
+        , "sku": "55FFADG34"
+        , "createdAt": "2019-03-05T16:34:10.201Z"
+        , "updatedAt": "2019-03-05T16:34:10.201Z" 
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error creating new business SKU row - [errorMessage]."
+}
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Delete SKU for Business
+
+```shell
+curl -X DELETE "http://localhost:3000/api/skus/1/?=businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint deletes a SKU for a business.
+
+### HTTP Request
+
+`DELETE https://platform.veryableops.com/skus/:skuId`
+
+### URL Parameters
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+skuId | integer | yes | The Id for the SKU to be deleted.
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+        "id": 1
+        , "businessId": 300
+        , "sku": "55FFADG34"
+        , "createdAt": "2019-03-05T16:34:10.201Z"
+        , "updatedAt": "2019-03-05T16:34:10.201Z" 
+    }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error deleting SKU row - [errorMessage]."
+}
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
 
 
