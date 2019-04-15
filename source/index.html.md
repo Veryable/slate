@@ -2835,7 +2835,7 @@ skuId | integer | yes | The Id for the SKU to be deleted.
 
 ```json
 {
-    "message": "Error deleting SKU row - [errorMessage]."
+    "message": "Error deleting SKU row - [ errorMessage ]."
 }
 ```
 
