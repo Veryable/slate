@@ -2066,7 +2066,7 @@ timePerUnit | integer | no | The time it takes to complete one unit of product i
 
 ```json
 {
-    "message": "Error updating business work centers for business [ businessId ] - [errorMessage]."
+    "message": "The work center was not able to be updated - [errorMessage]."
 }
 ```
 
@@ -2115,7 +2115,7 @@ timePerUnit | integer | no | The time it takes to complete one unit of product i
 
 ```json
 {
-    "message": "Error creating new business work center row- [errorMessage]."
+    "message": "Error creating new business work center row - [errorMessage]."
 }
 ```
 
@@ -2164,7 +2164,7 @@ workcenterId | yes | The ID of the work center to delete.
 
 ```json
 {
-    "message": "Row [ workcenterId ] was not able to be deleted. - [errMessage]"
+    "message": "The work center was not able to be deleted. - [errMessage]"
 }
 ```
 
@@ -2256,7 +2256,7 @@ customerName | string | yes | The name of the business customer.
 
 ```json
 {
-    "message": "Error updating customer row [ customerId ] - [errorMessage]."
+    "message": "The business customer was not able to be updated. - [errorMessage]."
 }
 ```
 
@@ -2346,7 +2346,7 @@ customerId | yes | The ID of the customer to delete.
 
 ```json
 {
-    "message": "Error deleting business customer - [errorMessage]."
+    "message": "The business customer was not able to be deleted. - [errorMessage]."
 }
 ```
 
@@ -2468,7 +2468,7 @@ scheduleId | yes | The ID of the schedule to delete.
 
 ```json
 {
-    "message": "Business schedule [ scheduleId ] was not able to be deleted  - [errorMessage]."
+    "message": "The business schedule was not able to be deleted. - [errorMessage]."
 }
 ```
 
@@ -2476,9 +2476,9 @@ scheduleId | yes | The ID of the schedule to delete.
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
-# Routing (API Config)
+# Routings (API Config)
 
-## Get Routing for Business
+## Get Routings for Business
 
 ```shell
 curl -X GET "http://localhost:3000/api/routings/?=businessId=300"
@@ -2511,7 +2511,7 @@ This endpoint gets the routings for your business.
 
 ```json
 {
-    "message": "Error getting business routings for [ businessId ] - [errorMessage]."
+    "message": "Error getting business routings for business [ businessId ] - [ errorMessage ]."
 }
 ```
 
@@ -2526,7 +2526,7 @@ curl -X PUT "http://localhost:3000/api/routings/1/?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
-This endpoint gets the routings for your business.
+This endpoint updates a routing for your business.
 
 ### HTTP Request
 
@@ -2563,7 +2563,7 @@ name | string | yes | The name of the routing to update.
 
 ```json
 {
-    "message": "Error updating business routings for [ businessId ] - [errorMessage]."
+    "message": "Routing was not able to be updated - [errorMessage]."
 }
 ```
 
@@ -2657,7 +2657,7 @@ routingId | intger | yes | The Id for the routing to be deleted.
 
 ```json
 {
-    "message": "Error deleting routing - [errorMessage]."
+    "message": "Routing was not able to be deleted - [errorMessage]."
 }
 ```
 
@@ -2747,7 +2747,7 @@ sku | string | yes | The Stock Keeping Unit for a product.
 
 ```json
 {
-    "message": "Error updating business SKU for business [ businessId ] - [errorMessage]."
+    "message": "Error updating SKU - [errorMessage]."
 }
 ```
 
@@ -2835,7 +2835,7 @@ skuId | integer | yes | The Id for the SKU to be deleted.
 
 ```json
 {
-    "message": "Error deleting SKU row - [ errorMessage ]."
+    "message": "Error deleting SKU - [ errorMessage ]."
 }
 ```
 
