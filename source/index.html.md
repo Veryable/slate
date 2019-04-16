@@ -2073,6 +2073,13 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ```shell
 curl -X PUT "http://localhost:3000/api/workcenters/1/?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
+    -d $'{
+            "name": "My updated work center",
+            "description": "Description of updated work center.",
+            "operatorCapacity": 10,
+            "unitCapacity": 20,
+            "timePerUnit": 30,
+        }'
 ```
 
 This endpoint gets the work centers for your business.
@@ -2100,14 +2107,17 @@ timePerUnit | integer | no | The time it takes to complete one unit of product i
 
 ```json
 [
-    {
-        "businessId": 300,
-        "name": "Updated Lathe Workcenter",
-        "description": "This is a workcenter description.",
-        "operatorCapacity": 10,
-        "unitCapacity": 10,
-        "timePerUnit": 10
-    }
+{
+    "id": 4,
+    "businessId": 300,
+    "name": "My updated work center",
+    "description": "Description of updated work center.",
+    "operatorCapacity": 10,
+    "unitCapacity": 20,
+    "timePerUnit": 30,
+    "createdAt": "2019-04-14T18:54:56.583Z",
+    "updatedAt": "2019-04-14T18:54:56.583Z"
+}
 ]
 ```
 
