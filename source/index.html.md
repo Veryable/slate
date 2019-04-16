@@ -1579,6 +1579,7 @@ curl -X POST "http://localhost:3000/api/profile/locations/?=businessId=300"
         , "addressLine1": "444 American Way"
         , "addressLine2": "Suite 2"
         , "phoneNumber": "232-445-4545"
+        , "city": "Dallas"
         , "state": "TX"
         , "zip": "75202" 
         }'
