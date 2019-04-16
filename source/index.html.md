@@ -888,7 +888,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Reactivate Op
 
 ```shell
-curl -X PUT "http://localhost:3000/api/ops/reactivate/<opId>/?=businessId=300"
+curl -X PUT "http://localhost:3000/api/ops/reactivate/6342/?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -903,34 +903,43 @@ This endpoint reactivates a previously deactivated op.
 ```json
 [
     {
-        "id": 1235
-        , "businessId": 300
-        , "title": "Op Title 2"
-        , "opDescription": "Description of the op."
-        , "opDate": "2019-03-21T13:00:00.000Z"
-        , "earliestStartTime": "2019-03-21T13:00:00.000Z"
-        , "latestStartTime": "2019-03-21T13:00:00.000Z"
-        , "multidayEndDate": null
-        , "break_hours": 1
-        , "rally_point": "Front Gate"
-        , "autofill": null
-        , "opQuantity": 8
-        , "filledQuantity": 8
-        , "multidayWorkWeek": ["Monday", "Tuesday"]
-        , "isInactive": null
-        , "optermsId": 1
-        , "opContactId": 5
-        , "isFulfilled": true
-        , "isCompleted": false
-        , "isPoolOnly": false
-        , "bidSetIds": []
-        , "contactPerson": "Peggy Gou"
-        , "businessworkareaId": 44
-        , "businesscontactId": 3
-        , "opcontactId": 65
-        , "publicId": "19-52"
-        , "createdAt": "2019-03-05T16:34:10.201Z"
-        , "updatedAt": "2019-03-06T16:34:10.201Z" 
+        "id": 6342,
+        "businessId": 300,
+        "title": "Warehouse Worker 1",
+        "opDescription": "Please bring sturdy shoes and be ready to work.",
+        "opDate": "2019-05-06T13:00:00.000Z",
+        "totalWorkingDays": 0,
+        "earliestStartTime": "2019-05-06T13:00:00.000Z",
+        "multidayStartDate": "2019-05-06T13:00:00.000Z",
+        "multidayEndDate": "2019-05-07T13:00:00.000Z",
+        "multidayWorkWeek": [],
+        "opQuantity": 8,
+        "opRate": 10.5,
+        "partialsAllowed": false,
+        "rallyPoint": "Front Gate",
+        "isFulfilled": false,
+        "isCompleted": false,
+        "createdAt": "2019-04-16T18:34:27.699Z",
+        "updatedAt": "2019-04-16T19:07:19.566Z",
+        "filledQuantity": 0,
+        "opSetId": null,
+        "latestStartTime": "2019-05-06T13:00:00.000Z",
+        "autofill": null,
+        "workWeek": null,
+        "optypeId": 2,
+        "optermsId": 1,
+        "opskillId": 2,
+        "estTotalHours": null,
+        "estMinPerUnit": null,
+        "isInactive": false,
+        "businesscontactId": 289,
+        "businessworkareaId": 98,
+        "breakHours": "1.00",
+        "operatorsNeeded": 1,
+        "bidSetIds": [],
+        "isPoolOnly": null,
+        "publicId": "19-106",
+        "opcontactId": 65
     }
 ]
 ```
@@ -2751,6 +2760,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ```shell
 curl -X PUT "http://localhost:3000/api/skus/1/?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
+    -d $'{"sku": 3542KD435}'
 ```
 
 This endpoint updates a SKU for a business.
