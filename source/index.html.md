@@ -47,7 +47,7 @@ In addition, a business ID (corresponding to a business you have access to) must
 ## Get Bids For Op
 
 ```shell
-curl -X GET "http://localhost:3000/api/bids\?businessId=226&opId=6134"
+curl -X GET "http://localhost:3000/api/bids?businessId=226&opId=6134"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -66,9 +66,7 @@ opId | yes | The ID of the Op.
 > The above command returns JSON structured like this:
 
 ```json
-{
-  "message": "Bids have successfully been retrieved.",
-  "bids": [
+[
     {
       "id": 101006,
       "bidSetId": null,
@@ -93,8 +91,7 @@ opId | yes | The ID of the Op.
       "createdAt": "2019-01-28T23:14:49.648Z",
       "updatedAt": "2019-01-28T23:14:49.648Z"
     }
-  ]
-}
+]
 ```
 
 <aside class="warning">
@@ -104,7 +101,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Bid By ID
 
 ```shell
-curl -X GET "http://localhost:3000/api/bids/<bidId>\?businessId=226"
+curl -X GET "http://localhost:3000/api/bids/<bidId>?businessId=226"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -123,9 +120,7 @@ bidId | yes | The ID of the bid to retrieve.
 > The above command returns JSON structured like this:
 
 ```json
-{
-  "message": "Bid has successfully been retrieved.",
-  "bid": [
+[
     {
       "id": 101933,
       "bidSetId": "521bb780-5727-11e9-b855-874765ebbcf8",
@@ -150,8 +145,7 @@ bidId | yes | The ID of the bid to retrieve.
       "createdAt": "2019-04-04T22:16:40.850Z",
       "updatedAt": "2019-04-05T15:06:55.590Z"
     }
-  ]
-}
+]
 ```
 
 <aside class="warning">Make sure you lower the font size prior to submitting your request.</aside>
@@ -186,7 +180,6 @@ bidQuantity | number | yes | The desired adjusted bid quantity.
 
 ```json
 {
-  "message": "Bid(s) adjusted.",
   "adjustedBids": [
     {
       "id": 101933,
@@ -253,7 +246,6 @@ adjustments | array | yes | An array of objects, each containing `id` (the ID of
 
 ```json
 {
-  "message": "Bid(s) adjusted.",
   "adjustedBids": [
     {
       "id": 101933,
@@ -330,9 +322,7 @@ bidId | yes | The ID of the bid to accept.
 > The above command returns JSON structured like this:
 
 ```json
-{
-  "message": "Bid accepted.",
-  "bid": [
+[
     {
       "id": 101933,
       "bidSetId": "521bb780-5727-11e9-b855-874765ebbcf8",
@@ -357,8 +347,7 @@ bidId | yes | The ID of the bid to accept.
       "createdAt": "2019-04-04T22:16:40.850Z",
       "updatedAt": "2019-04-05T19:15:57.930Z"
     }
-  ]
-}
+]
 ```
 
 ## Dispute Bid
@@ -376,7 +365,7 @@ This endpoint disputes a bid.
 
 ### HTTP Request
 
-`PUT https://platform.veryableops.com/api/bids/101933/dispute`
+`PUT https://platform.veryableops.com/api/bids/<bidId>/dispute`
 
 ### URL Parameters
 
@@ -394,9 +383,7 @@ comment | string | no | If `category` is "other", this parameter must be include
 > The above command returns JSON structured like this:
 
 ```json
-{
-  "message": "Bid disputed.",
-  "bid": [
+[
     {
       "id": 101933,
       "bidSetId": "521bb780-5727-11e9-b855-874765ebbcf8",
@@ -421,13 +408,13 @@ comment | string | no | If `category` is "other", this parameter must be include
       "createdAt": "2019-04-04T22:16:40.850Z",
       "updatedAt": "2019-04-05T19:15:57.930Z"
     }
-  ]
-}
+]
 ```
 
 # Messages
 
 ## Send Message
+
 ```shell
 curl -X "POST" "http://localhost:3000/api/messages?businessId=226" \
      -H 'Authorization: bearer [JWT Token]' \
@@ -444,8 +431,11 @@ curl -X "POST" "http://localhost:3000/api/messages?businessId=226" \
         }'
 ```
 This endpoint sends a message from a business to one or more operators.
+
 ### HTTP Request
+
 `POST https://platform.veryableops.com/api/messages`
+
 ### Body Parameters
 Parameter | Type | Required | Description
 --------- | ------ | ---- | -----------
@@ -453,12 +443,15 @@ type | array | yes | Can be any combination of the following: `email`, `push` (f
 recipientOperatorIds | array | yes | An array containing operator IDs (formatted as numbers).
 subject | string | no | The subject line for the message. If subject is not included with the request, any emails and Veryable notification feed messages sent will have a default subject line of "You Have A Message From [BUSINESS NAME]."
 body | string | yes | The body of the message.
+
 > The above command returns JSON structured like this:
+
 ```json
 {
   "message": "All messages sent successfully."
 }
 ```
+
 <aside class="warning">Make sure you are passing the correct <code>businessId</code> in your query parameters so that the API retrieves the correct sender info.</aside>
 
 # Ops
@@ -520,7 +513,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Ops For Business
 
 ```shell
-curl -X GET "http://localhost:3000/api/ops/business/all/?businessId=300"
+curl -X GET "http://localhost:3000/api/ops/business/all?businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -611,7 +604,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Update Op
 
 ```shell
-curl -X PUT "http://localhost:3000/api/ops/<id>/?=businessId=300"
+curl -X PUT "http://localhost:3000/api/ops/<id>?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -697,8 +690,29 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Post Op
 
 ```shell
-curl -X POST "http://localhost:3000/api/ops/?=businessId=300"
+curl -X POST "http://localhost:3000/api/ops?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
+     -d $'{
+        "title": "Warehouse Worker 1"
+        , "opDescription": "Please bring sturdy shoes and be ready to work."
+        , "opDate": "2019-05-06 13:00:00+00"
+        , "earliestStartTime": "2019-05-06 13:00:00+00"
+        , "latestStartTime": "2019-05-06 13:00:00+00"
+        , "multidayEndDate": "2019-05-06 13:00:00+00"
+        , "breakHours": 1
+        , "rallyPoint": "Front Gate"
+        , "opQuantity": 8
+        , "optermsId": 1
+        , "opcontactId": 65
+        , "optypeId": 2
+        , "opskillId": 2
+        , "businesscontactId": 289
+        , "operatorsNeeded": 1
+        , "opRate":10.5
+        , "opRateMax": 12.5
+        , "businessworkareaId": 98
+        , "partialsAllowed": false
+    }'
 ```
 
 This endpoint creates an op for a business.
@@ -738,37 +752,47 @@ businessworkareaId | integer | yes | Id for the business work area where the op 
 ```json
 [
     {
-        "id": 1235
-        , "businessId": 300
-        , "title": "My New Op"
-        , "opDescription": "My op description."
-        , "opDate": "2019-03-21T13:00:00.000Z"
-        , "earliestStartTime": "2019-03-21T13:00:00.000Z"
-        , "latestStartTime": "2019-03-21T13:00:00.000Z"
-        , "multidayEndDate": null
-        , "break_hours": 1
-        , "rally_point": "Front Gate"
-        , "autofill": null
-        , "opQuantity": 8
-        , "filledQuantity": 0
-        , "isInactive": null
-        , "optermsId": 1
-        , "opContactId": 5
-        , "isFulfilled": true
-        , "isCompleted": false
-        , "isPoolOnly": false
-        , "bidSetIds": []
-        , "contactPerson": "Peggy Gou"
-        , "businessworkareaId": 44
-        , "businesscontactId": 3
-        , "opcontactId": 5
-        , "publicId": "19-52"
-        , "createdAt": "2019-03-05T16:34:10.201Z"
-        , "updatedAt": "2019-03-06T16:34:10.201Z"
+        "id": 6342,
+        "businessId": 300,
+        "title": "Warehouse Worker 1",
+        "opDescription": "Please bring sturdy shoes and be ready to work.",
+        "opDate": "2019-05-06T13:00:00.000Z",
+        "totalWorkingDays": 0,
+        "earliestStartTime": "2019-05-06T13:00:00.000Z",
+        "multidayStartDate": "2019-05-06T13:00:00.000Z",
+        "multidayEndDate": "2019-05-07T13:00:00.000Z",
+        "multidayWorkWeek": [],
+        "opQuantity": 8,
+        "opRate": 10.5,
+        "partialsAllowed": false,
+        "rallyPoint": "Front Gate",
+        "isFulfilled": false,
+        "isCompleted": false,
+        "createdAt": "2019-04-16T18:34:27.699Z",
+        "updatedAt": "2019-04-16T18:34:27.699Z",
+        "filledQuantity": 0,
+        "opSetId": null,
+        "latestStartTime": "2019-05-06T13:00:00.000Z",
+        "autofill": null,
+        "workWeek": null,
+        "optypeId": 2,
+        "optermsId": 1,
+        "opskillId": 2,
+        "estTotalHours": null,
+        "estMinPerUnit": null,
+        "isInactive": null,
+        "businesscontactId": 289,
+        "businessworkareaId": 98,
+        "breakHours": "1.00",
+        "operatorsNeeded": 1,
+        "bidSetIds": [],
+        "isPoolOnly": null,
+        "publicId": "19-106",
+        "opcontactId": 65
     }
 ]
-```
 
+```
 > Here is an example of an error response:
 
 ```json
@@ -785,7 +809,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Deactivate Op
 
 ```shell
-curl -X DELETE "http://localhost:3000/api/ops/<opId>/?=businessId=300"
+curl -X DELETE "http://localhost:3000/api/ops/6342?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -800,34 +824,43 @@ This endpoint deactivates an op that doesn't have accepted bids.
 ```json
 [
     {
-        "id": 1235
-        , "businessId": 300
-        , "title": "Op Title 2"
-        , "opDescription": "Description of the op."
-        , "opDate": "2019-03-21T13:00:00.000Z"
-        , "earliestStartTime": "2019-03-21T13:00:00.000Z"
-        , "latestStartTime": "2019-03-21T13:00:00.000Z"
-        , "multidayEndDate": null
-        , "break_hours": 1
-        , "rally_point": "Front Gate"
-        , "autofill": null
-        , "opQuantity": 8
-        , "filledQuantity": 8
-        , "multidayWorkWeek": ["Monday", "Tuesday"]
-        , "isInactive": null
-        , "optermsId": 1
-        , "opContactId": 5
-        , "isFulfilled": true
-        , "isCompleted": false
-        , "isPoolOnly": false
-        , "bidSetIds": []
-        , "contactPerson": "Peggy Gou"
-        , "businessworkareaId": 44
-        , "businesscontactId": 3
-        , "opcontactId": 65
-        , "publicId": "19-52"
-        , "createdAt": "2019-03-05T16:34:10.201Z"
-        , "updatedAt": "2019-03-06T16:34:10.201Z" 
+        "id": 6342,
+        "businessId": 300,
+        "title": "Warehouse Worker 1",
+        "opDescription": "Please bring sturdy shoes and be ready to work.",
+        "opDate": "2019-05-06T13:00:00.000Z",
+        "totalWorkingDays": 0,
+        "earliestStartTime": "2019-05-06T13:00:00.000Z",
+        "multidayStartDate": "2019-05-06T13:00:00.000Z",
+        "multidayEndDate": "2019-05-07T13:00:00.000Z",
+        "multidayWorkWeek": [],
+        "opQuantity": 8,
+        "opRate": 10.5,
+        "partialsAllowed": false,
+        "rallyPoint": "Front Gate",
+        "isFulfilled": false,
+        "isCompleted": false,
+        "createdAt": "2019-04-16T18:34:27.699Z",
+        "updatedAt": "2019-04-16T18:34:27.699Z",
+        "filledQuantity": 0,
+        "opSetId": null,
+        "latestStartTime": "2019-05-06T13:00:00.000Z",
+        "autofill": null,
+        "workWeek": null,
+        "optypeId": 2,
+        "optermsId": 1,
+        "opskillId": 2,
+        "estTotalHours": null,
+        "estMinPerUnit": null,
+        "isInactive": null,
+        "businesscontactId": 289,
+        "businessworkareaId": 98,
+        "breakHours": "1.00",
+        "operatorsNeeded": 1,
+        "bidSetIds": [],
+        "isPoolOnly": null,
+        "publicId": "19-106",
+        "opcontactId": 65
     }
 ]
 ```
@@ -848,7 +881,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Reactivate Op
 
 ```shell
-curl -X PUT "http://localhost:3000/api/ops/reactivate/<opId>/?=businessId=300"
+curl -X PUT "http://localhost:3000/api/ops/reactivate/6342?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -863,34 +896,43 @@ This endpoint reactivates a previously deactivated op.
 ```json
 [
     {
-        "id": 1235
-        , "businessId": 300
-        , "title": "Op Title 2"
-        , "opDescription": "Description of the op."
-        , "opDate": "2019-03-21T13:00:00.000Z"
-        , "earliestStartTime": "2019-03-21T13:00:00.000Z"
-        , "latestStartTime": "2019-03-21T13:00:00.000Z"
-        , "multidayEndDate": null
-        , "break_hours": 1
-        , "rally_point": "Front Gate"
-        , "autofill": null
-        , "opQuantity": 8
-        , "filledQuantity": 8
-        , "multidayWorkWeek": ["Monday", "Tuesday"]
-        , "isInactive": null
-        , "optermsId": 1
-        , "opContactId": 5
-        , "isFulfilled": true
-        , "isCompleted": false
-        , "isPoolOnly": false
-        , "bidSetIds": []
-        , "contactPerson": "Peggy Gou"
-        , "businessworkareaId": 44
-        , "businesscontactId": 3
-        , "opcontactId": 65
-        , "publicId": "19-52"
-        , "createdAt": "2019-03-05T16:34:10.201Z"
-        , "updatedAt": "2019-03-06T16:34:10.201Z" 
+        "id": 6342,
+        "businessId": 300,
+        "title": "Warehouse Worker 1",
+        "opDescription": "Please bring sturdy shoes and be ready to work.",
+        "opDate": "2019-05-06T13:00:00.000Z",
+        "totalWorkingDays": 0,
+        "earliestStartTime": "2019-05-06T13:00:00.000Z",
+        "multidayStartDate": "2019-05-06T13:00:00.000Z",
+        "multidayEndDate": "2019-05-07T13:00:00.000Z",
+        "multidayWorkWeek": [],
+        "opQuantity": 8,
+        "opRate": 10.5,
+        "partialsAllowed": false,
+        "rallyPoint": "Front Gate",
+        "isFulfilled": false,
+        "isCompleted": false,
+        "createdAt": "2019-04-16T18:34:27.699Z",
+        "updatedAt": "2019-04-16T19:07:19.566Z",
+        "filledQuantity": 0,
+        "opSetId": null,
+        "latestStartTime": "2019-05-06T13:00:00.000Z",
+        "autofill": null,
+        "workWeek": null,
+        "optypeId": 2,
+        "optermsId": 1,
+        "opskillId": 2,
+        "estTotalHours": null,
+        "estMinPerUnit": null,
+        "isInactive": false,
+        "businesscontactId": 289,
+        "businessworkareaId": 98,
+        "breakHours": "1.00",
+        "operatorsNeeded": 1,
+        "bidSetIds": [],
+        "isPoolOnly": null,
+        "publicId": "19-106",
+        "opcontactId": 65
     }
 ]
 ```
@@ -911,7 +953,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get All Op Contacts for Business
 
 ```shell
-curl -X GET "http://localhost:3000/api/ops/opcontacts/?=businessId=300"
+curl -X GET "http://localhost:3000/api/ops/opcontacts?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -967,7 +1009,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Add Op Contact for Business
 
 ```shell
-curl -X POST "http://localhost:3000/api/ops/opcontacts/?=businessId=300"
+curl -X POST "http://localhost:3000/api/ops/opcontacts?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -1020,7 +1062,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Toggle Op Contact for Business
 
 ```shell
-curl -X PUT "http://localhost:3000/api/ops/opcontacts/?=businessId=300"
+curl -X PUT "http://localhost:3000/api/ops/opcontacts?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -1238,7 +1280,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Operators By Id
 
 ```shell
-curl -X POST "http://localhost:3000/api/operators/?=businessId=300"
+curl -X POST "http://localhost:3000/api/operators?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -d $'{
           "batchOperatorIds": [544, 545]
@@ -1329,7 +1371,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Operators By Filter
 
 ```shell
-curl -X POST "http://localhost:3000/api/operators/filter/?=businessId=300"
+curl -X POST "http://localhost:3000/api/operators/filter?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -d $'{
           "zip": 75202
@@ -1428,7 +1470,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Post Operator Rating
 
 ```shell
-curl -X POST "http://localhost:3000/api/ratings/?=businessId=300"
+curl -X POST "http://localhost:3000/api/ratings?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -d $'{
           "bidId": 10021
@@ -1515,7 +1557,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Add Location for Business
 
 ```shell
-curl -X POST "http://localhost:3000/api/profile/locations/?=businessId=300"
+curl -X POST "http://localhost:3000/api/profile/locations?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -d $'{
           "name": "New Location"
@@ -1523,6 +1565,7 @@ curl -X POST "http://localhost:3000/api/profile/locations/?=businessId=300"
         , "addressLine1": "444 American Way"
         , "addressLine2": "Suite 2"
         , "phoneNumber": "232-445-4545"
+        , "city": "Dallas"
         , "state": "TX"
         , "zip": "75202" 
         }'
@@ -1592,7 +1635,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Locations for Business
 
 ```shell
-curl -X GET "http://localhost:3000/api/profile/locations/?=businessId=300"
+curl -X GET "http://localhost:3000/api/profile/locations?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -1668,7 +1711,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Update Location for Business
 
 ```shell
-curl -X PUT "http://localhost:3000/api/profile/locations/312/?=businessId=300"
+curl -X PUT "http://localhost:3000/api/profile/locations/312?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -d $'{ 
         "name": "Updated Location Name"
@@ -1747,10 +1790,10 @@ zip | string | yes | The business location's zip code.
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
-## Get WorkAreas for Business
+## Get Work Areas for Business
 
 ```shell
-curl -X GET "http://localhost:3000/api/profile/work-areas/?=businessId=300"
+curl -X GET "http://localhost:3000/api/profile/work-areas?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -1770,11 +1813,11 @@ This endpoint gets work areas associated with your business.
     },
     {
         "id": 231,
-        "name": "Second Workarea"
+        "name": "Second Work Area"
     },
     {
         "id": 232,
-        "name": "Third Workarea"
+        "name": "Third Work Area"
     }
 ]
 ```
@@ -1794,9 +1837,9 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Create Work Area for Business
 
 ```shell
-curl -X POST "http://localhost:3000/api/profile/work-areas/?=businessId=300"
+curl -X POST "http://localhost:3000/api/profile/work-areas?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
-    -d $'{ "workAreas": [ "Newest WorkArea" ] }'
+    -d $'{ "workAreas": [ "Newest Work Area" ] }'
 ```
 
 This endpoint creates a work area for your business.
@@ -1809,30 +1852,28 @@ This endpoint creates a work area for your business.
 
 Parameter | Type | Required | Description
 --------- | ------ | ---- | -----------
-workAreas | array[string] | yes | An array of workArea names. You must pass at least one element in the array.
+workAreas | array[string] | yes | An array of work area names. You must pass at least one element in the array.
 
 > The above command returns JSON structured like this:
 
 ```json
-{
-    "createdWorkAreas": [
-        {
-            "id": 233,
-            "businessId": 300,
-            "name": "Newest WorkArea",
-            "isRemoved": false,
-            "createdAt": "2019-04-09T20:00:06.817Z",
-            "updatedAt": "2019-04-09T20:00:06.817Z"
-        }
-    ]
-}
+[
+    {
+        "id": 233,
+        "businessId": 300,
+        "name": "Newest Work Area",
+        "isRemoved": false,
+        "createdAt": "2019-04-09T20:00:06.817Z",
+        "updatedAt": "2019-04-09T20:00:06.817Z"
+    }
+]
 ```
 
 > Here is an example of an error response:
 
 ```json
 {
-    "message": "WorkAreas param is required."
+    "message": "Work areas param is required."
 }
 ```
 
@@ -1845,7 +1886,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Labor Pool for Business
 
 ```shell
-curl -X GET "http://localhost:3000/api/labor-pool/?=businessId=300"
+curl -X GET "http://localhost:3000/api/labor-pool?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -1853,7 +1894,7 @@ This endpoint gets the labor pool for your business.
 
 ### HTTP Request
 
-`GET https://platform.veryableops.com/labor-pool`
+`GET https://platform.veryableops.com/api/labor-pool`
 
 > The above command returns JSON structured like this:
 
@@ -1891,7 +1932,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Toggle Operator in YLP
 
 ```shell
-curl -X POST "http://localhost:3000/api/labor-pool/?=businessId=300"
+curl -X POST "http://localhost:3000/api/labor-pool?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -d $'{"operatorId": 361, "action": "favorite"}'
 ```
@@ -1900,7 +1941,7 @@ This endpoint toggles an operator in or out of your labor pool.
 
 ### HTTP Request
 
-`POST https://platform.veryableops.com/labor-pool`
+`POST https://platform.veryableops.com/api/labor-pool`
 
 ### Body Parameters
 Parameter | Type | Required | Description
@@ -1940,7 +1981,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Toggle Block Operator
 
 ```shell
-curl -X POST "http://localhost:3000/api/labor-pool/block/?=businessId=300"
+curl -X POST "http://localhost:3000/api/labor-pool/block?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -d $'{"operatorId": 915}'
 ```
@@ -1949,7 +1990,7 @@ This endpoint toggles an operator from a business's blacklist.
 
 ### HTTP Request
 
-`POST https://platform.veryableops.com/labor-pool`
+`POST https://platform.veryableops.com/api/labor-pool`
 
 ### Body Parameters
 Parameter | Type | Required | Description
@@ -1979,7 +2020,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Work Centers for Business
 
 ```shell
-curl -X GET "http://localhost:3000/api/workcenters/?=businessId=300"
+curl -X GET "http://localhost:3000/api/workcenters?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -1987,7 +2028,7 @@ This endpoint gets the work centers for your business.
 
 ### HTTP Request
 
-`GET https://platform.veryableops.com/workcenters`
+`GET https://platform.veryableops.com/api/workcenters`
 
 > The above command returns JSON structured like this:
 
@@ -2022,15 +2063,22 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Update Work Center for Business
 
 ```shell
-curl -X PUT "http://localhost:3000/api/workcenters/1/?=businessId=300"
+curl -X PUT "http://localhost:3000/api/workcenters/1?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
+    -d $'{
+            "name": "My updated work center",
+            "description": "Description of updated work center.",
+            "operatorCapacity": 10,
+            "unitCapacity": 20,
+            "timePerUnit": 30,
+        }'
 ```
 
 This endpoint gets the work centers for your business.
 
 ### HTTP Request
 
-`PUT https://platform.veryableops.com/workcenters/<workcenterId>`
+`PUT https://platform.veryableops.com/api/workcenters/<workcenterId>`
 
 ### URL Parameters
 
@@ -2051,14 +2099,17 @@ timePerUnit | integer | no | The time it takes to complete one unit of product i
 
 ```json
 [
-    {
-        "businessId": 300,
-        "name": "Updated Lathe Workcenter",
-        "description": "This is a workcenter description.",
-        "operatorCapacity": 10,
-        "unitCapacity": 10,
-        "timePerUnit": 10
-    }
+{
+    "id": 4,
+    "businessId": 300,
+    "name": "My updated work center",
+    "description": "Description of updated work center.",
+    "operatorCapacity": 10,
+    "unitCapacity": 20,
+    "timePerUnit": 30,
+    "createdAt": "2019-04-14T18:54:56.583Z",
+    "updatedAt": "2019-04-14T18:54:56.583Z"
+}
 ]
 ```
 
@@ -2077,7 +2128,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Create Work Center for Business
 
 ```shell
-curl -X POST "http://localhost:3000/api/workcenters/?=businessId=300"
+curl -X POST "http://localhost:3000/api/workcenters?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -2085,7 +2136,7 @@ This endpoint creates a work center for your business.
 
 ### HTTP Request
 
-`POST https://platform.veryableops.com/workcenters`
+`POST https://platform.veryableops.com/api/workcenters`
 
 ### Body Parameters
 Parameter | Type | Required | Description
@@ -2102,8 +2153,8 @@ timePerUnit | integer | no | The time it takes to complete one unit of product i
 [
     {
         "businessId": 300,
-        "name": "New Lathe Workcenter",
-        "description": "This is a workcenter description.",
+        "name": "New Lathe Work Center",
+        "description": "This is a work center description.",
         "operatorCapacity": 10,
         "unitCapacity": 10,
         "timePerUnit": 10
@@ -2126,7 +2177,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Delete Work Center for Business
 
 ```shell
-curl -X DELETE "http://localhost:3000/api/workcenters/1/?=businessId=300"
+curl -X DELETE "http://localhost:3000/api/workcenters/1?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -2134,7 +2185,7 @@ This endpoint deletes a work center for a business.
 
 ### HTTP Request
 
-`DELETE https://platform.veryableops.com/workcenters/<workcenterId>`
+`DELETE https://platform.veryableops.com/api/workcenters/<workcenterId>`
 
 ### URL Parameters
 
@@ -2149,8 +2200,8 @@ workcenterId | yes | The ID of the work center to delete.
     {
         "id": 1
         , "businessId": 300
-        , "name": "Deleted Workcenter"
-        , "description": "This is a workcenter description."
+        , "name": "Deleted Work Center"
+        , "description": "This is a work center description."
         , "operatorCapacity": 10
         , "unitCapacity": 10
         , "timePerUnit": 10
@@ -2177,7 +2228,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Customers for Business
 
 ```shell
-curl -X GET "http://localhost:3000/api/customers/?=businessId=300"
+curl -X GET "http://localhost:3000/api/customers?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -2185,7 +2236,7 @@ This endpoint gets customers for your business.
 
 ### HTTP Request
 
-`GET https://platform.veryableops.com/customers`
+`GET https://platform.veryableops.com/api/customers`
 
 > The above command returns JSON structured like this:
 
@@ -2216,7 +2267,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Update Customer for Business
 
 ```shell
-curl -X PUT "http://localhost:3000/api/customers/1/?=businessId=300"
+curl -X PUT "http://localhost:3000/api/customers/1?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -2224,7 +2275,7 @@ This endpoint updates a customer for your business.
 
 ### HTTP Request
 
-`PUT https://platform.veryableops.com/customers/<customerId>`
+`PUT https://platform.veryableops.com/api/customers/<customerId>`
 
 ### URL Parameters
 
@@ -2267,7 +2318,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Create Customer for Business
 
 ```shell
-curl -X POST "http://localhost:3000/api/customers/?=businessId=300"
+curl -X POST "http://localhost:3000/api/customers?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -2275,7 +2326,7 @@ This endpoint creates a customer for your business.
 
 ### HTTP Request
 
-`POST https://platform.veryableops.com/customers`
+`POST https://platform.veryableops.com/api/customers`
 
 ### Body Parameters
 Parameter | Type | Required | Description
@@ -2312,7 +2363,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Delete Customer for Business
 
 ```shell
-curl -X DELETE "http://localhost:3000/api/customers/1/?=businessId=300"
+curl -X DELETE "http://localhost:3000/api/customers/1?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -2320,7 +2371,7 @@ This endpoint deletes a customer for your business.
 
 ### HTTP Request
 
-`DELETE https://platform.veryableops.com/customers/<customerId>`
+`DELETE https://platform.veryableops.com/api/customers/<customerId>`
 
 ### URL Parameters
 
@@ -2367,7 +2418,7 @@ This endpoint gets production schedules for your business.
 
 ### HTTP Request
 
-`GET https://platform.veryableops.com/schedules`
+`GET https://platform.veryableops.com/api/schedules`
 
 > The above command returns JSON structured like this:
 
@@ -2405,7 +2456,7 @@ This endpoint creates a production schedule for your business.
 
 ### HTTP Request
 
-`POST https://platform.veryableops.com/schedules`
+`POST https://platform.veryableops.com/api/schedules`
 
 > The above command returns JSON structured like this:
 
@@ -2435,7 +2486,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Delete Production Schedule for Business
 
 ```shell
-curl -X DELETE "http://localhost:3000/api/schedules/1/?=businessId=300"
+curl -X DELETE "http://localhost:3000/api/schedules/1?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -2443,7 +2494,7 @@ This endpoint creates a production schedule for your business.
 
 ### HTTP Request
 
-`DELETE https://platform.veryableops.com/schedules/<scheduleId>`
+`DELETE https://platform.veryableops.com/api/schedules/<scheduleId>`
 
 ### URL Parameters
 
@@ -2481,7 +2532,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Routings for Business
 
 ```shell
-curl -X GET "http://localhost:3000/api/routings/?=businessId=300"
+curl -X GET "http://localhost:3000/api/routings?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -2489,7 +2540,7 @@ This endpoint gets the routings for your business.
 
 ### HTTP Request
 
-`GET https://platform.veryableops.com/routings`
+`GET https://platform.veryableops.com/api/routings`
 
 > The above command returns JSON structured like this:
 
@@ -2498,7 +2549,7 @@ This endpoint gets the routings for your business.
     {
         "id": 1
         , "businessId": 300
-        , "businessContactId": 163
+        , "businesscontactId": 163
         , "businessworkareaId": 98
         , "name": "Primary Routing System"
         , "createdAt": "2019-03-05T16:34:10.201Z"
@@ -2522,7 +2573,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Update Routing for Business
 
 ```shell
-curl -X PUT "http://localhost:3000/api/routings/1/?=businessId=300"
+curl -X PUT "http://localhost:3000/api/routings/1?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -2530,7 +2581,7 @@ This endpoint updates a routing for your business.
 
 ### HTTP Request
 
-`PUT https://platform.veryableops.com/routings/<routingId>`
+`PUT https://platform.veryableops.com/api/routings/<routingId>`
 
 ### URL Parameters
 
@@ -2550,7 +2601,7 @@ name | string | yes | The name of the routing to update.
     {
         "id": 1
         , "businessId": 300
-        , "businessContactId": 163
+        , "businesscontactId": 163
         , "businessworkareaId": 98
         , "name": "Secondary Routing System"
         , "createdAt": "2019-03-05T16:34:10.201Z"
@@ -2574,7 +2625,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Create Routing for Business
 
 ```shell
-curl -X POST "http://localhost:3000/api/routings/?=businessId=300"
+curl -X POST "http://localhost:3000/api/routings?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -2582,13 +2633,13 @@ This endpoint creates a routing for your business.
 
 ### HTTP Request
 
-`POST https://platform.veryableops.com/routings`
+`POST https://platform.veryableops.com/api/routings`
 
 ### Body Parameters
 Parameter | Type | Required | Description
 --------- | ------ | ---- | -----------
 name | string | yes | The name of the routing.
-businessContactId | integer | yes | The contact Id for your business.
+businesscontactId | integer | yes | The contact Id for your business.
 businessWorkareaId | integer | yes | The work area for your business.
 
 > The above command returns JSON structured like this:
@@ -2598,7 +2649,7 @@ businessWorkareaId | integer | yes | The work area for your business.
     {
         "id": 1
         , "businessId": 300
-        , "businessContactId": 163
+        , "businesscontactId": 163
         , "businessworkareaId": 98
         , "name": "New Routing System"
         , "createdAt": "2019-03-05T16:34:10.201Z"
@@ -2622,7 +2673,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Delete Routing for Business
 
 ```shell
-curl -X DELETE "http://localhost:3000/api/routings/?=businessId=300"
+curl -X DELETE "http://localhost:3000/api/routings?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -2630,7 +2681,7 @@ This endpoint deletes a routing for a business.
 
 ### HTTP Request
 
-`DELETE https://platform.veryableops.com/routings/<routingId>`
+`DELETE https://platform.veryableops.com/api/routings/<routingId>`
 
 ### URL Parameters
 Parameter | Type | Required | Description
@@ -2644,7 +2695,7 @@ routingId | intger | yes | The Id for the routing to be deleted.
     {
         "id": 1
         , "businessId": 300
-        , "businessContactId": 163
+        , "businesscontactId": 163
         , "businessworkareaId": 98
         , "name": "Deleted Routing System"
         , "createdAt": "2019-03-05T16:34:10.201Z"
@@ -2670,7 +2721,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get SKUs for Business
 
 ```shell
-curl -X GET "http://localhost:3000/api/skus/?=businessId=300"
+curl -X GET "http://localhost:3000/api/skus?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -2678,7 +2729,7 @@ This endpoint gets SKUs for a business.
 
 ### HTTP Request
 
-`GET https://platform.veryableops.com/skus`
+`GET https://platform.veryableops.com/api/skus`
 
 > The above command returns JSON structured like this:
 
@@ -2709,15 +2760,16 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Update SKU for Business
 
 ```shell
-curl -X PUT "http://localhost:3000/api/skus/1/?=businessId=300"
+curl -X PUT "http://localhost:3000/api/skus/1?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
+    -d $'{"sku": "3542KD435"}'
 ```
 
 This endpoint updates a SKU for a business.
 
 ### HTTP Request
 
-`PUT https://platform.veryableops.com/skus/<skuId>`
+`PUT https://platform.veryableops.com/api/skus/<skuId>`
 
 ### URL Parameters
 Parameter | Type | Required | Description
@@ -2758,15 +2810,16 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Create SKU for Business
 
 ```shell
-curl -X POST "http://localhost:3000/api/skus/?=businessId=300"
+curl -X POST "http://localhost:3000/api/skus?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
+    -d $'{"sku": 55FFADG34}'
 ```
 
 This endpoint creates a SKU for a business.
 
 ### HTTP Request
 
-`POST https://platform.veryableops.com/skus/<skuId>`
+`POST https://platform.veryableops.com/api/skus/<skuId>`
 
 ### Body Parameters
 Parameter | Type | Required | Description
@@ -2802,7 +2855,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Delete SKU for Business
 
 ```shell
-curl -X DELETE "http://localhost:3000/api/skus/1/?=businessId=300"
+curl -X DELETE "http://localhost:3000/api/skus/1?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -2810,7 +2863,7 @@ This endpoint deletes a SKU for a business.
 
 ### HTTP Request
 
-`DELETE https://platform.veryableops.com/skus/<skuId>`
+`DELETE https://platform.veryableops.com/api/skus/<skuId>`
 
 ### URL Parameters
 Parameter | Type | Required | Description
