@@ -2810,6 +2810,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ```shell
 curl -X POST "http://localhost:3000/api/skus/?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
+    -d $'{"sku": 55FFADG34}'
 ```
 
 This endpoint creates a SKU for a business.
