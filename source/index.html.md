@@ -1866,22 +1866,18 @@ This endpoint creates a work area for your business.
 
 Parameter | Type | Required | Description
 --------- | ------ | ---- | -----------
-workAreas | array[string] | yes | An array of workArea names. You must pass at least one element in the array.
+workAreas | array[string] | yes | An array of work area names. You must pass at least one element in the array.
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-    "createdWorkAreas": [
-        {
             "id": 233,
             "businessId": 300,
             "name": "Newest Work Area",
             "isRemoved": false,
             "createdAt": "2019-04-09T20:00:06.817Z",
             "updatedAt": "2019-04-09T20:00:06.817Z"
-        }
-    ]
 }
 ```
 
