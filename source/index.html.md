@@ -2443,7 +2443,7 @@ This endpoint creates a production schedule for your business.
 
 ### HTTP Request
 
-`DELETE https://platform.veryableops.com/schedules<scheduleId>`
+`DELETE https://platform.veryableops.com/schedules/<scheduleId>`
 
 ### URL Parameters
 
@@ -2766,7 +2766,7 @@ This endpoint creates a SKU for a business.
 
 ### HTTP Request
 
-`POST https://platform.veryableops.com/skus<skuId>`
+`POST https://platform.veryableops.com/skus/<skuId>`
 
 ### Body Parameters
 Parameter | Type | Required | Description
