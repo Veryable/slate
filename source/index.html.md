@@ -47,8 +47,7 @@ In addition, a business ID (corresponding to a business you have access to) must
 ## Login to Veryable API
 
 ```shell
-curl -X GET "http://localhost:3000/api/login"
-    -H "Authorization: Bearer [JWT string]"
+curl -X POST "http://platform.veryableops.com/api/login"
 ```
 
 This endpoint logs you into the Veryable API -- You must log in before hitting any other endpoints.
@@ -120,7 +119,7 @@ Remember — You must pass the token in your authorization header with every sub
 ## Get Bids For Op
 
 ```shell
-curl -X GET "http://localhost:3000/api/bids?businessId=226&opId=6134"
+curl -X GET "http://platform.veryableops.com/api/bids?businessId=226&opId=6134"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -174,7 +173,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Bid By ID
 
 ```shell
-curl -X GET "http://localhost:3000/api/bids/<bidId>?businessId=226"
+curl -X GET "http://platform.veryableops.com/api/bids/<bidId>?businessId=226"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -226,7 +225,7 @@ bidId | yes | The ID of the bid to retrieve.
 ## Adjust Bid By ID
 
 ```shell
-curl -X "PUT" "http://localhost:3000/api/bids/101933/adjust?businessId=226"
+curl -X "PUT" "http://platform.veryableops.com/api/bids/101933/adjust?businessId=226"
      -H 'Authorization: Bearer [JWT token]'
      -d $'{"bidQuantity": 6}'
 ```
@@ -286,7 +285,7 @@ bidQuantity | number | yes | The desired adjusted bid quantity.
 ## Adjust Multiple Bids
 
 ```shell
-curl -X "PUT" "http://localhost:3000/api/bids/adjust?businessId=226"
+curl -X "PUT" "http://platform.veryableops.com/api/bids/adjust?businessId=226"
      -H 'Authorization: Bearer [JWT token]'
      -d $'{
           "adjustments": [
@@ -376,7 +375,7 @@ adjustments | array | yes | An array of objects, each containing `id` (the ID of
 ## Accept Bid
 
 ```shell
-curl -X "PUT" "http://localhost:3000/api/bids/101933/accept?businessId=226"
+curl -X "PUT" "http://platform.veryableops.com/api/bids/101933/accept?businessId=226"
      -H 'Authorization: Bearer [JWT token]'
 ```
 
@@ -426,7 +425,7 @@ bidId | yes | The ID of the bid to accept.
 ## Dispute Bid
 
 ```shell
-curl -X "PUT" "http://localhost:3000/api/bids/<bidId>/dispute?businessId=226"
+curl -X "PUT" "http://platform.veryableops.com/api/bids/<bidId>/dispute?businessId=226"
      -H 'Authorization: Bearer [JWT token]'
      -d $'{
           "category": "other",
@@ -489,7 +488,7 @@ comment | string | no | If `category` is "other", this parameter must be include
 ## Send Message
 
 ```shell
-curl -X "POST" "http://localhost:3000/api/messages?businessId=226" \
+curl -X "POST" "http://platform.veryableops.com/api/messages?businessId=226" \
      -H 'Authorization: bearer [JWT Token]' \
      -d $'{
           "subject": "Additional Op Requirements - See Details",
@@ -532,7 +531,7 @@ body | string | yes | The body of the message.
 ## Get Op By Id
 
 ```shell
-curl -X GET "http://localhost:3000/api/ops/<opId>?businessId=300"
+curl -X GET "http://platform.veryableops.com/api/ops/<opId>?businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -591,7 +590,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Ops For Business
 
 ```shell
-curl -X GET "http://localhost:3000/api/ops/business/all?businessId=300"
+curl -X GET "http://platform.veryableops.com/api/ops/business/all?businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -682,7 +681,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Update Op
 
 ```shell
-curl -X PUT "http://localhost:3000/api/ops/<id>?=businessId=300"
+curl -X PUT "http://platform.veryableops.com/api/ops/<id>?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -768,7 +767,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Post Op
 
 ```shell
-curl -X POST "http://localhost:3000/api/ops?=businessId=300"
+curl -X POST "http://platform.veryableops.com/api/ops?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
      -d $'{
         "title": "Warehouse Worker 1"
@@ -887,7 +886,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Deactivate Op
 
 ```shell
-curl -X DELETE "http://localhost:3000/api/ops/6342?=businessId=300"
+curl -X DELETE "http://platform.veryableops.com/api/ops/6342?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -959,7 +958,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Reactivate Op
 
 ```shell
-curl -X PUT "http://localhost:3000/api/ops/reactivate/6342?=businessId=300"
+curl -X PUT "http://platform.veryableops.com/api/ops/reactivate/6342?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -1031,7 +1030,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get All Op Contacts for Business
 
 ```shell
-curl -X GET "http://localhost:3000/api/ops/opcontacts?=businessId=300"
+curl -X GET "http://platform.veryableops.com/api/ops/opcontacts?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -1087,7 +1086,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Add Op Contact for Business
 
 ```shell
-curl -X POST "http://localhost:3000/api/ops/opcontacts?=businessId=300"
+curl -X POST "http://platform.veryableops.com/api/ops/opcontacts?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -1140,7 +1139,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Toggle Op Contact for Business
 
 ```shell
-curl -X PUT "http://localhost:3000/api/ops/opcontacts?=businessId=300"
+curl -X PUT "http://platform.veryableops.com/api/ops/opcontacts?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -1183,7 +1182,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Cancel Op
 
 ```shell
-curl -X "PUT" "http://localhost:3000/api/ops/11529/cancel?businessId=226"
+curl -X "PUT" "http://platform.veryableops.com/api/ops/11529/cancel?businessId=226"
      -H 'Authorization: Bearer [JWT token]'
      -d $'{
           "operatorIds": [
@@ -1358,7 +1357,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Operators By Id
 
 ```shell
-curl -X POST "http://localhost:3000/api/operators?=businessId=300"
+curl -X POST "http://platform.veryableops.com/api/operators?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -d $'{
           "batchOperatorIds": [544, 545]
@@ -1449,7 +1448,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Operators By Filter
 
 ```shell
-curl -X POST "http://localhost:3000/api/operators/filter?=businessId=300"
+curl -X POST "http://platform.veryableops.com/api/operators/filter?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -d $'{
           "zip": 75202
@@ -1548,7 +1547,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Post Operator Rating
 
 ```shell
-curl -X POST "http://localhost:3000/api/ratings?=businessId=300"
+curl -X POST "http://platform.veryableops.com/api/ratings?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -d $'{
           "bidId": 10021
@@ -1635,7 +1634,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Add Location for Business
 
 ```shell
-curl -X POST "http://localhost:3000/api/profile/locations?=businessId=300"
+curl -X POST "http://platform.veryableops.com/api/profile/locations?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -d $'{
           "name": "New Location"
@@ -1713,7 +1712,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Locations for Business
 
 ```shell
-curl -X GET "http://localhost:3000/api/profile/locations?=businessId=300"
+curl -X GET "http://platform.veryableops.com/api/profile/locations?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -1789,7 +1788,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Update Location for Business
 
 ```shell
-curl -X PUT "http://localhost:3000/api/profile/locations/312?=businessId=300"
+curl -X PUT "http://platform.veryableops.com/api/profile/locations/312?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -d $'{ 
         "name": "Updated Location Name"
@@ -1871,7 +1870,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Work Areas for Business
 
 ```shell
-curl -X GET "http://localhost:3000/api/profile/work-areas?=businessId=300"
+curl -X GET "http://platform.veryableops.com/api/profile/work-areas?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -1915,7 +1914,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Create Work Area for Business
 
 ```shell
-curl -X POST "http://localhost:3000/api/profile/work-areas?=businessId=300"
+curl -X POST "http://platform.veryableops.com/api/profile/work-areas?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -d $'{ "workAreas": [ "Newest Work Area" ] }'
 ```
@@ -1964,7 +1963,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Labor Pool for Business
 
 ```shell
-curl -X GET "http://localhost:3000/api/labor-pool?=businessId=300"
+curl -X GET "http://platform.veryableops.com/api/labor-pool?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -2010,7 +2009,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Toggle Operator in YLP
 
 ```shell
-curl -X POST "http://localhost:3000/api/labor-pool?=businessId=300"
+curl -X POST "http://platform.veryableops.com/api/labor-pool?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -d $'{"operatorId": 361, "action": "favorite"}'
 ```
@@ -2059,7 +2058,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Toggle Block Operator
 
 ```shell
-curl -X POST "http://localhost:3000/api/labor-pool/block?=businessId=300"
+curl -X POST "http://platform.veryableops.com/api/labor-pool/block?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -d $'{"operatorId": 915}'
 ```
@@ -2098,7 +2097,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Work Centers for Business
 
 ```shell
-curl -X GET "http://localhost:3000/api/workcenters?=businessId=300"
+curl -X GET "http://platform.veryableops.com/api/workcenters?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -2141,7 +2140,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Update Work Center for Business
 
 ```shell
-curl -X PUT "http://localhost:3000/api/workcenters/1?=businessId=300"
+curl -X PUT "http://platform.veryableops.com/api/workcenters/1?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -d $'{
             "name": "My updated work center",
@@ -2206,7 +2205,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Create Work Center for Business
 
 ```shell
-curl -X POST "http://localhost:3000/api/workcenters?=businessId=300"
+curl -X POST "http://platform.veryableops.com/api/workcenters?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -2255,7 +2254,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Delete Work Center for Business
 
 ```shell
-curl -X DELETE "http://localhost:3000/api/workcenters/1?=businessId=300"
+curl -X DELETE "http://platform.veryableops.com/api/workcenters/1?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -2306,7 +2305,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Customers for Business
 
 ```shell
-curl -X GET "http://localhost:3000/api/customers?=businessId=300"
+curl -X GET "http://platform.veryableops.com/api/customers?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -2345,7 +2344,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Update Customer for Business
 
 ```shell
-curl -X PUT "http://localhost:3000/api/customers/1?=businessId=300"
+curl -X PUT "http://platform.veryableops.com/api/customers/1?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -2396,7 +2395,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Create Customer for Business
 
 ```shell
-curl -X POST "http://localhost:3000/api/customers?=businessId=300"
+curl -X POST "http://platform.veryableops.com/api/customers?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -2441,7 +2440,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Delete Customer for Business
 
 ```shell
-curl -X DELETE "http://localhost:3000/api/customers/1?=businessId=300"
+curl -X DELETE "http://platform.veryableops.com/api/customers/1?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -2488,7 +2487,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Production Schedules for Business
 
 ```shell
-curl -X GET "http://localhost:3000/api/schedules?=businessId=300"
+curl -X GET "http://platform.veryableops.com/api/schedules?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -2526,7 +2525,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Create Production Schedules for Business
 
 ```shell
-curl -X POST "http://localhost:3000/api/schedules?=businessId=300"
+curl -X POST "http://platform.veryableops.com/api/schedules?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -2564,7 +2563,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Delete Production Schedule for Business
 
 ```shell
-curl -X DELETE "http://localhost:3000/api/schedules/1?=businessId=300"
+curl -X DELETE "http://platform.veryableops.com/api/schedules/1?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -2610,7 +2609,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Routings for Business
 
 ```shell
-curl -X GET "http://localhost:3000/api/routings?=businessId=300"
+curl -X GET "http://platform.veryableops.com/api/routings?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -2651,7 +2650,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Update Routing for Business
 
 ```shell
-curl -X PUT "http://localhost:3000/api/routings/1?=businessId=300"
+curl -X PUT "http://platform.veryableops.com/api/routings/1?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -2703,7 +2702,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Create Routing for Business
 
 ```shell
-curl -X POST "http://localhost:3000/api/routings?=businessId=300"
+curl -X POST "http://platform.veryableops.com/api/routings?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -2751,7 +2750,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Delete Routing for Business
 
 ```shell
-curl -X DELETE "http://localhost:3000/api/routings?=businessId=300"
+curl -X DELETE "http://platform.veryableops.com/api/routings?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -2799,7 +2798,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get SKUs for Business
 
 ```shell
-curl -X GET "http://localhost:3000/api/skus?=businessId=300"
+curl -X GET "http://platform.veryableops.com/api/skus?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
@@ -2838,7 +2837,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Update SKU for Business
 
 ```shell
-curl -X PUT "http://localhost:3000/api/skus/1?=businessId=300"
+curl -X PUT "http://platform.veryableops.com/api/skus/1?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -d $'{"sku": "3542KD435"}'
 ```
@@ -2888,7 +2887,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Create SKU for Business
 
 ```shell
-curl -X POST "http://localhost:3000/api/skus?=businessId=300"
+curl -X POST "http://platform.veryableops.com/api/skus?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -d $'{"sku": 55FFADG34}'
 ```
@@ -2933,7 +2932,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Delete SKU for Business
 
 ```shell
-curl -X DELETE "http://localhost:3000/api/skus/1?=businessId=300"
+curl -X DELETE "http://platform.veryableops.com/api/skus/1?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
 ```
 
