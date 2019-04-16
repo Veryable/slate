@@ -365,7 +365,7 @@ This endpoint disputes a bid.
 
 ### HTTP Request
 
-`PUT https://platform.veryableops.com/api/bids/101933/dispute`
+`PUT https://platform.veryableops.com/api/bids/<bidId>/dispute`
 
 ### URL Parameters
 
@@ -2762,7 +2762,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ```shell
 curl -X PUT "http://localhost:3000/api/skus/1?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
-    -d $'{"sku": 3542KD435}'
+    -d $'{"sku": "3542KD435"}'
 ```
 
 This endpoint updates a SKU for a business.
