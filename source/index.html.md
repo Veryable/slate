@@ -2810,7 +2810,7 @@ This endpoint deletes a SKU for a business.
 
 ### HTTP Request
 
-`DELETE https://platform.veryableops.com/skus/:skuId`
+`DELETE https://platform.veryableops.com/skus/<skuId>`
 
 ### URL Parameters
 Parameter | Type | Required | Description
