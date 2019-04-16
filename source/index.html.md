@@ -2547,7 +2547,7 @@ This endpoint gets the routings for your business.
     {
         "id": 1
         , "businessId": 300
-        , "businessContactId": 163
+        , "businesscontactId": 163
         , "businessworkareaId": 98
         , "name": "Primary Routing System"
         , "createdAt": "2019-03-05T16:34:10.201Z"
@@ -2599,7 +2599,7 @@ name | string | yes | The name of the routing to update.
     {
         "id": 1
         , "businessId": 300
-        , "businessContactId": 163
+        , "businesscontactId": 163
         , "businessworkareaId": 98
         , "name": "Secondary Routing System"
         , "createdAt": "2019-03-05T16:34:10.201Z"
@@ -2637,7 +2637,7 @@ This endpoint creates a routing for your business.
 Parameter | Type | Required | Description
 --------- | ------ | ---- | -----------
 name | string | yes | The name of the routing.
-businessContactId | integer | yes | The contact Id for your business.
+businesscontactId | integer | yes | The contact Id for your business.
 businessWorkareaId | integer | yes | The work area for your business.
 
 > The above command returns JSON structured like this:
@@ -2647,7 +2647,7 @@ businessWorkareaId | integer | yes | The work area for your business.
     {
         "id": 1
         , "businessId": 300
-        , "businessContactId": 163
+        , "businesscontactId": 163
         , "businessworkareaId": 98
         , "name": "New Routing System"
         , "createdAt": "2019-03-05T16:34:10.201Z"
@@ -2693,7 +2693,7 @@ routingId | intger | yes | The Id for the routing to be deleted.
     {
         "id": 1
         , "businessId": 300
-        , "businessContactId": 163
+        , "businesscontactId": 163
         , "businessworkareaId": 98
         , "name": "Deleted Routing System"
         , "createdAt": "2019-03-05T16:34:10.201Z"
