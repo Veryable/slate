@@ -1685,7 +1685,7 @@ This endpoint updates a location for your business.
 
 ### HTTP Request
 
-`PUT https://platform.veryableops.com/api/profile/locations/:locationId`
+`PUT https://platform.veryableops.com/api/profile/locations/<locationId>`
 
 ### URL Parameters
 
@@ -2030,7 +2030,7 @@ This endpoint gets the work centers for your business.
 
 ### HTTP Request
 
-`PUT https://platform.veryableops.com/workcenters/:workcenterId`
+`PUT https://platform.veryableops.com/workcenters/<workcenterId>`
 
 ### URL Parameters
 
@@ -2134,7 +2134,7 @@ This endpoint deletes a work center for a business.
 
 ### HTTP Request
 
-`DELETE https://platform.veryableops.com/workcenters/:workcenterId`
+`DELETE https://platform.veryableops.com/workcenters/<workcenterId>`
 
 ### URL Parameters
 
@@ -2224,7 +2224,7 @@ This endpoint updates a customer for your business.
 
 ### HTTP Request
 
-`PUT https://platform.veryableops.com/customers/:customerId`
+`PUT https://platform.veryableops.com/customers/<customerId>`
 
 ### URL Parameters
 
@@ -2320,7 +2320,7 @@ This endpoint deletes a customer for your business.
 
 ### HTTP Request
 
-`DELETE https://platform.veryableops.com/customers/:customerId`
+`DELETE https://platform.veryableops.com/customers/<customerId>`
 
 ### URL Parameters
 
@@ -2443,7 +2443,7 @@ This endpoint creates a production schedule for your business.
 
 ### HTTP Request
 
-`DELETE https://platform.veryableops.com/schedules/:scheduleId`
+`DELETE https://platform.veryableops.com/schedules<scheduleId>`
 
 ### URL Parameters
 
@@ -2530,7 +2530,7 @@ This endpoint updates a routing for your business.
 
 ### HTTP Request
 
-`PUT https://platform.veryableops.com/routings/:routingId`
+`PUT https://platform.veryableops.com/routings/<routingId>`
 
 ### URL Parameters
 
@@ -2630,7 +2630,7 @@ This endpoint deletes a routing for a business.
 
 ### HTTP Request
 
-`DELETE https://platform.veryableops.com/routings/:routingId`
+`DELETE https://platform.veryableops.com/routings/<routingId>`
 
 ### URL Parameters
 Parameter | Type | Required | Description
@@ -2717,7 +2717,7 @@ This endpoint updates a SKU for a business.
 
 ### HTTP Request
 
-`PUT https://platform.veryableops.com/skus/:skuId`
+`PUT https://platform.veryableops.com/skus/<skuId>`
 
 ### URL Parameters
 Parameter | Type | Required | Description
@@ -2766,7 +2766,7 @@ This endpoint creates a SKU for a business.
 
 ### HTTP Request
 
-`POST https://platform.veryableops.com/skus/:skuId`
+`POST https://platform.veryableops.com/skus<skuId>`
 
 ### Body Parameters
 Parameter | Type | Required | Description
