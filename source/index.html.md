@@ -1902,7 +1902,7 @@ This endpoint gets the labor pool for your business.
 
 ### HTTP Request
 
-`GET https://platform.veryableops.com/labor-pool`
+`GET https://platform.veryableops.com/api/labor-pool`
 
 > The above command returns JSON structured like this:
 
@@ -1949,7 +1949,7 @@ This endpoint toggles an operator in or out of your labor pool.
 
 ### HTTP Request
 
-`POST https://platform.veryableops.com/labor-pool`
+`POST https://platform.veryableops.com/api/labor-pool`
 
 ### Body Parameters
 Parameter | Type | Required | Description
@@ -1998,7 +1998,7 @@ This endpoint toggles an operator from a business's blacklist.
 
 ### HTTP Request
 
-`POST https://platform.veryableops.com/labor-pool`
+`POST https://platform.veryableops.com/api/labor-pool`
 
 ### Body Parameters
 Parameter | Type | Required | Description
@@ -2036,7 +2036,7 @@ This endpoint gets the work centers for your business.
 
 ### HTTP Request
 
-`GET https://platform.veryableops.com/workcenters`
+`GET https://platform.veryableops.com/api/workcenters`
 
 > The above command returns JSON structured like this:
 
@@ -2079,7 +2079,7 @@ This endpoint gets the work centers for your business.
 
 ### HTTP Request
 
-`PUT https://platform.veryableops.com/workcenters/<workcenterId>`
+`PUT https://platform.veryableops.com/api/workcenters/<workcenterId>`
 
 ### URL Parameters
 
@@ -2134,7 +2134,7 @@ This endpoint creates a work center for your business.
 
 ### HTTP Request
 
-`POST https://platform.veryableops.com/workcenters`
+`POST https://platform.veryableops.com/api/workcenters`
 
 ### Body Parameters
 Parameter | Type | Required | Description
@@ -2183,7 +2183,7 @@ This endpoint deletes a work center for a business.
 
 ### HTTP Request
 
-`DELETE https://platform.veryableops.com/workcenters/<workcenterId>`
+`DELETE https://platform.veryableops.com/api/workcenters/<workcenterId>`
 
 ### URL Parameters
 
@@ -2234,7 +2234,7 @@ This endpoint gets customers for your business.
 
 ### HTTP Request
 
-`GET https://platform.veryableops.com/customers`
+`GET https://platform.veryableops.com/api/customers`
 
 > The above command returns JSON structured like this:
 
@@ -2273,7 +2273,7 @@ This endpoint updates a customer for your business.
 
 ### HTTP Request
 
-`PUT https://platform.veryableops.com/customers/<customerId>`
+`PUT https://platform.veryableops.com/api/customers/<customerId>`
 
 ### URL Parameters
 
@@ -2324,7 +2324,7 @@ This endpoint creates a customer for your business.
 
 ### HTTP Request
 
-`POST https://platform.veryableops.com/customers`
+`POST https://platform.veryableops.com/api/customers`
 
 ### Body Parameters
 Parameter | Type | Required | Description
@@ -2369,7 +2369,7 @@ This endpoint deletes a customer for your business.
 
 ### HTTP Request
 
-`DELETE https://platform.veryableops.com/customers/<customerId>`
+`DELETE https://platform.veryableops.com/api/customers/<customerId>`
 
 ### URL Parameters
 
@@ -2416,7 +2416,7 @@ This endpoint gets production schedules for your business.
 
 ### HTTP Request
 
-`GET https://platform.veryableops.com/schedules`
+`GET https://platform.veryableops.com/api/schedules`
 
 > The above command returns JSON structured like this:
 
@@ -2454,7 +2454,7 @@ This endpoint creates a production schedule for your business.
 
 ### HTTP Request
 
-`POST https://platform.veryableops.com/schedules`
+`POST https://platform.veryableops.com/api/schedules`
 
 > The above command returns JSON structured like this:
 
@@ -2492,7 +2492,7 @@ This endpoint creates a production schedule for your business.
 
 ### HTTP Request
 
-`DELETE https://platform.veryableops.com/schedules/<scheduleId>`
+`DELETE https://platform.veryableops.com/api/schedules/<scheduleId>`
 
 ### URL Parameters
 
@@ -2538,7 +2538,7 @@ This endpoint gets the routings for your business.
 
 ### HTTP Request
 
-`GET https://platform.veryableops.com/routings`
+`GET https://platform.veryableops.com/api/routings`
 
 > The above command returns JSON structured like this:
 
@@ -2579,7 +2579,7 @@ This endpoint updates a routing for your business.
 
 ### HTTP Request
 
-`PUT https://platform.veryableops.com/routings/<routingId>`
+`PUT https://platform.veryableops.com/api/routings/<routingId>`
 
 ### URL Parameters
 
@@ -2631,7 +2631,7 @@ This endpoint creates a routing for your business.
 
 ### HTTP Request
 
-`POST https://platform.veryableops.com/routings`
+`POST https://platform.veryableops.com/api/routings`
 
 ### Body Parameters
 Parameter | Type | Required | Description
@@ -2679,7 +2679,7 @@ This endpoint deletes a routing for a business.
 
 ### HTTP Request
 
-`DELETE https://platform.veryableops.com/routings/<routingId>`
+`DELETE https://platform.veryableops.com/api/routings/<routingId>`
 
 ### URL Parameters
 Parameter | Type | Required | Description
@@ -2727,7 +2727,7 @@ This endpoint gets SKUs for a business.
 
 ### HTTP Request
 
-`GET https://platform.veryableops.com/skus`
+`GET https://platform.veryableops.com/api/skus`
 
 > The above command returns JSON structured like this:
 
@@ -2767,7 +2767,7 @@ This endpoint updates a SKU for a business.
 
 ### HTTP Request
 
-`PUT https://platform.veryableops.com/skus/<skuId>`
+`PUT https://platform.veryableops.com/api/skus/<skuId>`
 
 ### URL Parameters
 Parameter | Type | Required | Description
@@ -2816,7 +2816,7 @@ This endpoint creates a SKU for a business.
 
 ### HTTP Request
 
-`POST https://platform.veryableops.com/skus/<skuId>`
+`POST https://platform.veryableops.com/api/skus/<skuId>`
 
 ### Body Parameters
 Parameter | Type | Required | Description
@@ -2860,7 +2860,7 @@ This endpoint deletes a SKU for a business.
 
 ### HTTP Request
 
-`DELETE https://platform.veryableops.com/skus/<skuId>`
+`DELETE https://platform.veryableops.com/api/skus/<skuId>`
 
 ### URL Parameters
 Parameter | Type | Required | Description
