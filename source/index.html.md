@@ -1804,7 +1804,7 @@ zip | string | yes | The business location's zip code.
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
-## Get WorkAreas for Business
+## Get Work Areas for Business
 
 ```shell
 curl -X GET "http://localhost:3000/api/profile/work-areas/?=businessId=300"
@@ -1827,11 +1827,11 @@ This endpoint gets work areas associated with your business.
     },
     {
         "id": 231,
-        "name": "Second Workarea"
+        "name": "Second Work Area"
     },
     {
         "id": 232,
-        "name": "Third Workarea"
+        "name": "Third Work Area"
     }
 ]
 ```
@@ -1853,7 +1853,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ```shell
 curl -X POST "http://localhost:3000/api/profile/work-areas/?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
-    -d $'{ "workAreas": [ "Newest WorkArea" ] }'
+    -d $'{ "workAreas": [ "Newest Work Area" ] }'
 ```
 
 This endpoint creates a work area for your business.
@@ -1876,7 +1876,7 @@ workAreas | array[string] | yes | An array of workArea names. You must pass at l
         {
             "id": 233,
             "businessId": 300,
-            "name": "Newest WorkArea",
+            "name": "Newest Work Area",
             "isRemoved": false,
             "createdAt": "2019-04-09T20:00:06.817Z",
             "updatedAt": "2019-04-09T20:00:06.817Z"
@@ -2169,8 +2169,8 @@ timePerUnit | integer | no | The time it takes to complete one unit of product i
 [
     {
         "businessId": 300,
-        "name": "New Lathe Workcenter",
-        "description": "This is a workcenter description.",
+        "name": "New Lathe Work Center",
+        "description": "This is a work center description.",
         "operatorCapacity": 10,
         "unitCapacity": 10,
         "timePerUnit": 10
@@ -2216,8 +2216,8 @@ workcenterId | yes | The ID of the work center to delete.
     {
         "id": 1
         , "businessId": 300
-        , "name": "Deleted Workcenter"
-        , "description": "This is a workcenter description."
+        , "name": "Deleted Work Center"
+        , "description": "This is a work center description."
         , "operatorCapacity": 10
         , "unitCapacity": 10
         , "timePerUnit": 10
