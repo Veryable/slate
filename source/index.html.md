@@ -1871,14 +1871,16 @@ workAreas | array[string] | yes | An array of work area names. You must pass at 
 > The above command returns JSON structured like this:
 
 ```json
-{
-            "id": 233,
-            "businessId": 300,
-            "name": "Newest Work Area",
-            "isRemoved": false,
-            "createdAt": "2019-04-09T20:00:06.817Z",
-            "updatedAt": "2019-04-09T20:00:06.817Z"
-}
+[
+    {
+        "id": 233,
+        "businessId": 300,
+        "name": "Newest Work Area",
+        "isRemoved": false,
+        "createdAt": "2019-04-09T20:00:06.817Z",
+        "updatedAt": "2019-04-09T20:00:06.817Z"
+    }
+]
 ```
 
 > Here is an example of an error response:
