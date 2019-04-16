@@ -2064,7 +2064,7 @@ curl -X POST "http://localhost:3000/api/labor-pool/block?=businessId=300"
     -d $'{"operatorId": 915}'
 ```
 
-This endpoint toggles an operator from a business's blacklist.
+This endpoint toggles an operator from a business's block list.
 
 ### HTTP Request
 
@@ -2078,7 +2078,7 @@ operatorId | number | yes | The operatorId for the operator you want to toggle.
 > The above command returns JSON structured like this:
 
 ```json
-"Operator ID 915 has been removed from the blacklist of Business ID 300."
+"Operator ID 915 has been removed from the block list of Business ID 300."
 ```
 
 > Here is an example of an error response:
