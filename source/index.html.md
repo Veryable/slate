@@ -66,9 +66,7 @@ opId | yes | The ID of the Op.
 > The above command returns JSON structured like this:
 
 ```json
-{
-  "message": "Bids have successfully been retrieved.",
-  "bids": [
+[
     {
       "id": 101006,
       "bidSetId": null,
@@ -93,8 +91,7 @@ opId | yes | The ID of the Op.
       "createdAt": "2019-01-28T23:14:49.648Z",
       "updatedAt": "2019-01-28T23:14:49.648Z"
     }
-  ]
-}
+]
 ```
 
 <aside class="warning">
@@ -123,9 +120,7 @@ bidId | yes | The ID of the bid to retrieve.
 > The above command returns JSON structured like this:
 
 ```json
-{
-  "message": "Bid has successfully been retrieved.",
-  "bid": [
+[
     {
       "id": 101933,
       "bidSetId": "521bb780-5727-11e9-b855-874765ebbcf8",
@@ -150,8 +145,7 @@ bidId | yes | The ID of the bid to retrieve.
       "createdAt": "2019-04-04T22:16:40.850Z",
       "updatedAt": "2019-04-05T15:06:55.590Z"
     }
-  ]
-}
+]
 ```
 
 <aside class="warning">Make sure you lower the font size prior to submitting your request.</aside>
@@ -186,7 +180,6 @@ bidQuantity | number | yes | The desired adjusted bid quantity.
 
 ```json
 {
-  "message": "Bid(s) adjusted.",
   "adjustedBids": [
     {
       "id": 101933,
@@ -253,7 +246,6 @@ adjustments | array | yes | An array of objects, each containing `id` (the ID of
 
 ```json
 {
-  "message": "Bid(s) adjusted.",
   "adjustedBids": [
     {
       "id": 101933,
@@ -330,9 +322,7 @@ bidId | yes | The ID of the bid to accept.
 > The above command returns JSON structured like this:
 
 ```json
-{
-  "message": "Bid accepted.",
-  "bid": [
+[
     {
       "id": 101933,
       "bidSetId": "521bb780-5727-11e9-b855-874765ebbcf8",
@@ -357,8 +347,7 @@ bidId | yes | The ID of the bid to accept.
       "createdAt": "2019-04-04T22:16:40.850Z",
       "updatedAt": "2019-04-05T19:15:57.930Z"
     }
-  ]
-}
+]
 ```
 
 ## Dispute Bid
@@ -394,9 +383,7 @@ comment | string | no | If `category` is "other", this parameter must be include
 > The above command returns JSON structured like this:
 
 ```json
-{
-  "message": "Bid disputed.",
-  "bid": [
+[
     {
       "id": 101933,
       "bidSetId": "521bb780-5727-11e9-b855-874765ebbcf8",
@@ -421,8 +408,7 @@ comment | string | no | If `category` is "other", this parameter must be include
       "createdAt": "2019-04-04T22:16:40.850Z",
       "updatedAt": "2019-04-05T19:15:57.930Z"
     }
-  ]
-}
+]
 ```
 
 # Messages
