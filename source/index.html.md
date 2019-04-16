@@ -428,6 +428,7 @@ comment | string | no | If `category` is "other", this parameter must be include
 # Messages
 
 ## Send Message
+
 ```shell
 curl -X "POST" "http://localhost:3000/api/messages?businessId=226" \
      -H 'Authorization: bearer [JWT Token]' \
@@ -444,8 +445,11 @@ curl -X "POST" "http://localhost:3000/api/messages?businessId=226" \
         }'
 ```
 This endpoint sends a message from a business to one or more operators.
+
 ### HTTP Request
+
 `POST https://platform.veryableops.com/api/messages`
+
 ### Body Parameters
 Parameter | Type | Required | Description
 --------- | ------ | ---- | -----------
@@ -453,12 +457,15 @@ type | array | yes | Can be any combination of the following: `email`, `push` (f
 recipientOperatorIds | array | yes | An array containing operator IDs (formatted as numbers).
 subject | string | no | The subject line for the message. If subject is not included with the request, any emails and Veryable notification feed messages sent will have a default subject line of "You Have A Message From [BUSINESS NAME]."
 body | string | yes | The body of the message.
+
 > The above command returns JSON structured like this:
+
 ```json
 {
   "message": "All messages sent successfully."
 }
 ```
+
 <aside class="warning">Make sure you are passing the correct <code>businessId</code> in your query parameters so that the API retrieves the correct sender info.</aside>
 
 # Ops
