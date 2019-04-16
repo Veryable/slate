@@ -42,6 +42,79 @@ https://platform.veryableops.com/api/bids?businessId=226
 In addition, a business ID (corresponding to a business you have access to) must be passed as a <code>businessId</code> query parameter with every request, formatted like the example to the right.
 </aside>
 
+# Login
+
+## Login to Veryable API
+
+```shell
+curl -X GET "http://localhost:3000/api/login"
+    -H "Authorization: Bearer [JWT string]"
+```
+
+This endpoint logs you into the Veryable API -- You must log in before hitting any other endpoints.
+
+### HTTP Request
+
+`POST https://platform.veryableops.com/api/login`
+
+### Body Parameters
+
+Parameter | Required | Description
+--------- | ---- | -----------
+email | yes | The email you use to access the Veryable platform.
+password | yes | The password you use to access the Veryable platform.
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "message": "Login successful.",
+    "user": {
+        "id": 930,
+        "email": "plafleur@veryableops.com",
+        "firstName": "Patty",
+        "lastName": "Lafleur",
+        "createdAt": "2018-08-22T14:47:09.073Z",
+        "businesses": [
+            {
+                "id": 299,
+                "businessuserId": 495,
+                "businessName": "Rooster Co",
+                "active": true,
+                "roleName": "Administrator",
+                "createdAt": "2019-03-29T14:47:09.938161+00:00",
+                "locations": null,
+                "workareas": null
+            },
+            {
+                "id": 300,
+                "businessuserId": 491,
+                "businessName": "Zac's Testing Business 2",
+                "active": true,
+                "roleName": "Administrator",
+                "createdAt": "2019-03-29T14:47:09.938161+00:00",
+                "locations": [
+                    {
+                        "id": 326,
+                        "name": "My Business Location",
+                        "addressLine1": "344 Ridge Way",
+                        "addressLine2": null,
+                        "city": "Dallas",
+                        "state": "TX",
+                        "zip": "75202"
+                    }
+                ]
+            }
+        ]
+    },
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cDdfa4df9.eyJkYXRhIjoie1wiaWRcIjo5MzAsXCJidXNpbmVzc2VzXCI6W3tcImlkXCI6Mjk5LFwicm9sZU5hbWVcIjpcIkFkbWluaXN0cmF0b3JcIn0se1wiaWRcIjozMDAsXCJyb2xlTmFtZVwiOlwiQWRtaW5pc3RydaTwaerRfV19IiwiaWF0IjoxNTU1NDUxNzMxLCJleHAiOjE1NTU1MzgxMzF9.9SKbVHrzmLudM0Es-Q3YaBOeMkv5glyL3ufVZY4h2wE"
+}
+```
+
+<aside class="warning">
+Remember — You must pass the token in your authorization header with every subsequent HTTP request!
+</aside>
+
 # Bids
 
 ## Get Bids For Op
@@ -457,6 +530,11 @@ body | string | yes | The body of the message.
 # Ops
 
 ## Get Op By Id
+
+```shell
+curl -X GET "http://localhost:3000/api/ops/<opId>?businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+```
 
 This endpoint retrieves an Op by Id.
 
