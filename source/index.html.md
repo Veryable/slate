@@ -1889,7 +1889,7 @@ workAreas | array[string] | yes | An array of workArea names. You must pass at l
 
 ```json
 {
-    "message": "WorkAreas param is required."
+    "message": "Work areas param is required."
 }
 ```
 
