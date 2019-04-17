@@ -220,7 +220,9 @@ bidId | yes | The ID of the bid to retrieve.
 ]
 ```
 
-<aside class="warning">Make sure you lower the font size prior to submitting your request.</aside>
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
 
 ## Adjust Bid By ID
 
@@ -281,6 +283,10 @@ bidQuantity | number | yes | The desired adjusted bid quantity.
   "bidsNotAdjusted": []
 }
 ```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
 
 ## Adjust Multiple Bids
 
@@ -372,6 +378,10 @@ adjustments | array | yes | An array of objects, each containing `id` (the ID of
 }
 ```
 
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
 ## Accept Bid
 
 ```shell
@@ -421,6 +431,10 @@ bidId | yes | The ID of the bid to accept.
     }
 ]
 ```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
 
 ## Dispute Bid
 
@@ -482,6 +496,10 @@ comment | string | no | If `category` is "other", this parameter must be include
     }
 ]
 ```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
 
 # Messages
 
