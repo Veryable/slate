@@ -3030,7 +3030,7 @@ When specific events occur on the Veryable platform, we create a new event resou
 ## Get Events
 
 ```shell
-curl -X "GET" "https://platform.veryableops.com/api/events/?businessId=300" 
+curl -X "GET" "https://platform.veryableops.com/api/events?businessId=300" 
       -H 'Authorization: bearer [JWT Token]' 
 ```
 
