@@ -3030,7 +3030,7 @@ When specific events occur on the Veryable platform, we create a new event resou
 ## Get Events
 
 ```shell
-curl -X "GET" "https://platform.verableops.com/api/events/?businessId=300" 
+curl -X "GET" "https://platform.veryableops.com/api/events/?businessId=300" 
       -H 'Authorization: bearer [JWT Token]' 
 ```
 
@@ -3091,7 +3091,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Update Event
 
 ```shell
-curl -X "PUT" "https://platform.verableops.com/api/events/<eventId>?businessId=300" 
+curl -X "PUT" "https://platform.veryableops.com/api/events/<eventId>?businessId=300" 
       -H 'Authorization: bearer [JWT Token]' 
       -d $'{
   "userId": "927",
@@ -3153,7 +3153,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Platform Events
 
 ```shell
-curl -X "GET" "https://platform.verableops.com/api/events/platformevents?businessId=727" 
+curl -X "GET" "https://platform.veryableops.com/api/events/platformevents?businessId=727" 
       -H 'Authorization: bearer [JWT Token]' 
 ```
 
@@ -3277,7 +3277,7 @@ The hash signature is generated with the HMAC algorithm, passing in the stringif
 
 
 ```shell
-curl -X "GET" "https://platform.verableops.com/api/webhooks?subscriptionId=1&businessId=300" 
+curl -X "GET" "https://platform.veryableops.com/api/webhooks?subscriptionId=1&businessId=300" 
       -H 'Authorization: bearer [JWT Token]' 
 ```
 
@@ -3352,7 +3352,7 @@ In order to receive webhooks, you will need to subscribe to the desired business
 
 
 ```shell
-curl -X "GET" "https://platform.verableops.com/api/webhook-subscriptions?businessId=727" 
+curl -X "GET" "https://platform.veryableops.com/api/webhook-subscriptions?businessId=727" 
       -H 'Authorization: bearer [JWT Token]' 
 ```
 
@@ -3394,7 +3394,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 
 
 ```shell
-curl -X "POST" "https://platform.verableops.com/api/webhook-subscriptions?businessId=727" 
+curl -X "POST" "https://platform.veryableops.com/api/webhook-subscriptions?businessId=727" 
       -H 'Authorization: bearer [JWT Token]' 
         -d $'{
           "isActive": "true",
@@ -3450,7 +3450,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 
 
 ```shell
-curl -X "PUT" "https://platform.verableops.com/api/webhook-subscriptions/<subscriptionId>?businessId=300" 
+curl -X "PUT" "https://platform.veryableops.com/api/webhook-subscriptions/<subscriptionId>?businessId=300" 
       -H 'Authorization: bearer [JWT Token]' 
       -d $'{
           "httpMethod": "post",
@@ -3513,7 +3513,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 
 
 ```shell
-curl -X "GET" "https://platform.verableops.com/api/webhook-subscriptions/subscriptionevent?businessId=727" 
+curl -X "GET" "https://platform.veryableops.com/api/webhook-subscriptions/subscriptionevent?businessId=727" 
       -H 'Authorization: bearer [JWT Token]' 
 ```
 
@@ -3574,7 +3574,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Add Webhook Subscription Event
 
 ```shell
-curl -X "POST" "https://platform.verableops.com/api/webhook-subscriptions/subscriptionevent?businessId=300" 
+curl -X "POST" "https://platform.veryableops.com/api/webhook-subscriptions/subscriptionevent?businessId=300" 
       -H 'Authorization: bearer [JWT Token]' 
       -d $'{
           "platformEventId": "7",
@@ -3624,7 +3624,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Toggle Webhook Subscription Event
 
 ```shell
-curl -X POST "https://platform.verableops.com/api/webhook-subscriptions/subscriptionevent/toggle?businessId=300"
+curl -X POST "https://platform.veryableops.com/api/webhook-subscriptions/subscriptionevent/toggle?businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -d $'{
         "platformEventId": 16,
