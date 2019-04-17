@@ -701,6 +701,10 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ```shell
 curl -X PUT "http://platform.veryableops.com/api/ops/<id>?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
+    -d $'{
+        "title": "Op Title 2",
+        "description":"Updated description of the op."
+    }'
 ```
 
 This endpoint updates a particular op.
@@ -741,7 +745,7 @@ businessworkareaId | integer | no | Id for the business work area where the op w
         "id": 1235
         , "businessId": 300
         , "title": "Op Title 2"
-        , "opDescription": "Description of the op."
+        , "opDescription": "Updated description of the op."
         , "opDate": "2019-03-21T13:00:00.000Z"
         , "earliestStartTime": "2019-03-21T13:00:00.000Z"
         , "latestStartTime": "2019-03-21T13:00:00.000Z"
@@ -1106,6 +1110,11 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ```shell
 curl -X POST "http://platform.veryableops.com/api/ops/opcontacts?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
+    -d $'{
+        "firstName": "Johnny",
+        "lastName": "Smith",
+        "phone": "(343)-435-6643"
+    }'
 ```
 
 This endpoint adds an op contact person for your business.
@@ -2225,6 +2234,13 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ```shell
 curl -X POST "http://platform.veryableops.com/api/workcenters?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
+    -d '${
+        "name": "New Lathe Work Center",
+        "description": "This is a work center description",
+        "operatorCapacity": 10,
+        "unitCapacity": 10,
+        "timePerUnit": 10
+    }'
 ```
 
 This endpoint creates a work center for your business.
@@ -2364,6 +2380,9 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ```shell
 curl -X PUT "http://platform.veryableops.com/api/customers/1?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
+    -d $'{
+        "customerName": "Our Updated Customer"
+    }'
 ```
 
 This endpoint updates a customer for your business.
@@ -2415,6 +2434,9 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ```shell
 curl -X POST "http://platform.veryableops.com/api/customers?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
+    -d $'{
+        "customerName": "Our Customer"
+    }'
 ```
 
 This endpoint creates a customer for your business.
@@ -2670,6 +2692,9 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ```shell
 curl -X PUT "http://platform.veryableops.com/api/routings/1?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
+    -d $'{
+        "name": "Secondary Routing System"
+    }'
 ```
 
 This endpoint updates a routing for your business.
@@ -2687,7 +2712,7 @@ routingId | yes | The ID of routing to update.
 ### Body Parameters
 Parameter | Type | Required | Description
 --------- | ------ | ---- | -----------
-name | string | yes | The name of the routing to update.
+name | string | yes | The updated name of the routing.
 
 > The above command returns JSON structured like this:
 
@@ -2722,6 +2747,11 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ```shell
 curl -X POST "http://platform.veryableops.com/api/routings?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
+    -d $'{
+        "name": "New Routing System",
+        "businesscontactId" 163,
+        "businessWorkareaId": 98
+    }'
 ```
 
 This endpoint creates a routing for your business.
