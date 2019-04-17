@@ -3021,4 +3021,653 @@ skuId | integer | yes | The Id for the SKU to be deleted.
 Remember — include <code>businessId</code> as part of the query parameters!
 </aside>
 
+# Events
+
+## Events Introduction
+When specific events occur on the Veryable platform, we create a new event resource to document the change. When an event resource is created, webhooks will be created and sent for active webhook subscriptions.
+
+
+## Get Events
+
+```shell
+curl -X "GET" "https://platform.veryableops.com/api/events?businessId=300" 
+      -H 'Authorization: bearer [JWT Token]' 
+```
+
+This endpoint retrieves all events of a business.
+
+
+### HTTP Request
+
+`GET https://platform.veryableops.com/api/events`
+
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "id": 60,
+    "platformEventId": 253,
+    "createdAt": "2019-04-15T19:40:08.008Z",
+    "data": {
+      "id": 324,
+      "zip": "75202",
+      "city": "Dallas",
+      "name": "Updated Location Here",
+      "state": "TX",
+      "latlng": {
+        "type": "Point",
+        "coordinates": [
+          -96.8042882,
+          32.7774686
+        ]
+      },
+      "contactId": 880,
+      "isPrimary": false,
+      "isRemoved": false,
+      "businessId": 300,
+      "districtId": 1,
+      "phoneNumber": "(123) 456-7890",
+      "addressLine1": "888 Huskell Drive",
+      "addressLine2": null
+    }
+  }
+]
+```
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error retrieving events."
+}
+
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Update Event
+
+```shell
+curl -X "PUT" "https://platform.veryableops.com/api/events/<eventId>?businessId=300" 
+      -H 'Authorization: bearer [JWT Token]' 
+      -d $'{
+  "userId": "927",
+  "data": {
+    "dataProperty": "updated data information"
+  },
+  "platformEventId": "3"
+}'
+```
+
+This endpoint retrieves all events of a business.
+
+
+### HTTP Request
+
+`PUT https://platform.veryableops.com/api/events/<eventId>`
+
+### URL Parameters 
+Parameter | Required | Description
+--------- | ---- | -----------
+eventId | yes | The ID of the event.
+
+
+### Body Parameters
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+userId | integer | no | The Id of the user.
+platformEventId | integer | no | The Id of the platform event.
+data | object | no | The data of the event.
+
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "id": 8,
+    "platformEventId": 3,
+    "createdAt": "2019-04-12T19:37:01.867Z",
+    "data": {
+      "dataProperty": "new data of event"
+    }
+  }
+]
+```
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error updating event."
+}
+
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Get Platform Events
+
+```shell
+curl -X "GET" "https://platform.veryableops.com/api/events/platformevents?businessId=727" 
+      -H 'Authorization: bearer [JWT Token]' 
+```
+
+This endpoint retrieves all platform events that can be subscribed to. 
+
+
+### HTTP Request
+
+`GET https://platform.veryableops.com/api/events/platformevents`
+
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "id": 161,
+    "platformEventName": "Op reactivated"
+  },
+  {
+    "id": 255,
+    "platformEventName": "Bid disputed"
+  },
+  {
+    "id": 248,
+    "platformEventName": "Operator rated multiple"
+  },
+  {
+    "id": 249,
+    "platformEventName": "Operator added to labor pool"
+  },
+  {
+    "id": 250,
+    "platformEventName": "Operator removed from labor pool"
+  },
+  {
+    "id": 251,
+    "platformEventName": "Operator blocked from business"
+  },
+  {
+    "id": 252,
+    "platformEventName": "Business location added"
+  },
+  {
+    "id": 253,
+    "platformEventName": "Business location updated"
+  },
+  {
+    "id": 254,
+    "platformEventName": "Work area added"
+  },
+  {
+    "id": 271,
+    "platformEventName": "Op cancelled"
+  },
+  {
+    "id": 272,
+    "platformEventName": "Operator assignment cancelled"
+  },
+  {
+    "id": 16,
+    "platformEventName": "Op updated"
+  },
+  {
+    "id": 24,
+    "platformEventName": "Bid adjusted"
+  },
+  {
+    "id": 9,
+    "platformEventName": "Operator rated"
+  },
+  {
+    "id": 160,
+    "platformEventName": "Op deactivated"
+  },
+  {
+    "id": 18,
+    "platformEventName": "Op created"
+  },
+  {
+    "id": 7,
+    "platformEventName": "Bid accepted"
+  }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error retrieving platform events."
+}
+
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+# Webhooks
+
+## Webhooks Introduction
+Whenever an event occurs that is related to your application, Veryable sends a POST request to your designated Webhook URL that includes information of the event that occured. 
+
+In order to receive webhooks, you'll need to set up a webhook subscription.
+
+## Responding to webhooks
+When you receive a webhook, your endpoint should return a HTTP status code of 200. 
+
+If Veryable does not receive a HTTP status code of 200, we will immediately retry three times. If those retries fail, we will continue to retry every hour up to twelve total retries. 
+
+## Securing webhooks
+For security reasons, we pass along a hash signature with each webhook request in the header **x-veryable-signature**. 
+
+When you receive the webhook request, you can verify that the request came from Veryable by computing your own hash and comparing it to the hash in the **x-veryable-signature** header.
+
+The hash signature is generated with the HMAC algorithm, passing in the stringified request body and using your API secret as a key and the SHA256 digest mode.
+
+
+## Get Webhooks
+
+
+```shell
+curl -X "GET" "https://platform.veryableops.com/api/webhooks?subscriptionId=1&businessId=300" 
+      -H 'Authorization: bearer [JWT Token]' 
+```
+
+This endpoint retrieves all webhooks for a subscription.
+
+
+### HTTP Request
+
+`GET https://platform.veryableops.com/api/webhooks`
+
+
+### Query Parameters 
+
+Parameter | Required | Description
+--------- | ---- | -----------
+subscriptionId | yes | The ID of the subscription.
+
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "id": 1,
+    "eventId": 32,
+    "createdAt": "2019-04-15T16:58:44.626Z",
+    "subscriptionId": 1
+  },
+  {
+    "id": 2,
+    "eventId": 36,
+    "createdAt": "2019-04-15T18:39:29.600Z",
+    "subscriptionId": 1
+  },
+  {
+    "id": 3,
+    "eventId": 37,
+    "createdAt": "2019-04-15T18:50:11.172Z",
+    "subscriptionId": 1
+  },
+  {
+    "id": 4,
+    "eventId": 38,
+    "createdAt": "2019-04-15T18:50:43.658Z",
+    "subscriptionId": 1
+  }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error retrieving webhooks."
+}
+
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+
+# Webhook Subscriptions
+
+## Subscription Introduction
+In order to receive webhooks, you will need to subscribe to the desired business and its events. When you create a subscription, it automatically listens for all webhook enabled platform events. You can also customize which platform events your subscriptions listen to. 
+
+
+
+## Get Webhook Subscriptions
+
+
+```shell
+curl -X "GET" "https://platform.veryableops.com/api/webhook-subscriptions?businessId=727" 
+      -H 'Authorization: bearer [JWT Token]' 
+```
+
+This endpoint retrieves all webhook subscriptions for an organization.
+
+### HTTP Request
+
+`GET https://platform.veryableops.com/api/webhook-subscriptions`
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "id": 4,
+    "businessId": 300,
+    "recipientUrl": "https://yourcompany.com/api/webhooks",
+    "createdAt": "2019-04-16T18:33:09.130Z",
+    "httpMethod": "POST"
+  }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error retrieving webhook subscriptions."
+}
+
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+
+## Add Webhook Subscription
+
+
+```shell
+curl -X "POST" "https://platform.veryableops.com/api/webhook-subscriptions?businessId=727" 
+      -H 'Authorization: bearer [JWT Token]' 
+        -d $'{
+          "isActive": "true",
+          "httpMethod": "post",
+          "recipientUrl": "https://yourcompany.com/api/webhooks",
+          "organizationId": "3"
+          }'
+```
+This endpoint creates a webhook subscription for an organization.
+
+### HTTP Request
+
+`POST https://platform.veryableops.com/api/wehook-subscriptions`
+
+### Body Parameters
+
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+recipientUrl | string | yes | The Url for receiving webhooks.
+isActive | boolean | yes | The active status of subscription.
+httpMethod | string | yes | The http method for receiving webhooks.
+organizationId | integer | yes | The id of the organization adding a subscription.
+
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "id": 5,
+    "businessId": 300,
+    "recipientUrl": "https://yourcompany.com/api/webhooks",
+    "createdAt": "2019-04-16T22:38:29.059Z",
+    "httpMethod": "post"
+  }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error adding webhook subscription."
+}
+
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Update Webhook Subscription
+
+
+```shell
+curl -X "PUT" "https://platform.veryableops.com/api/webhook-subscriptions/<subscriptionId>?businessId=300" 
+      -H 'Authorization: bearer [JWT Token]' 
+      -d $'{
+          "httpMethod": "post",
+          "recipientUrl": "https://yourcompany.com/api/webhooks,
+          "isActive": true
+        }'
+```
+This endpoint updates a webhook subscription for an organization. It is also a toggle to turn on/off a subscription.
+
+### HTTP Request
+
+`PUT https://platform.veryableops.com/api/wehook-subscriptions/<subscriptionId>`
+
+### URL Parameters 
+Parameter | Required | Description
+--------- | ---- | -----------
+subscriptionId | yes | The ID of the subscription.
+
+### Body Parameters
+
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+recipientUrl   | string | no | The Url for receiving webhooks.
+isActive | boolean | no | The active status of subscription.
+httpMethod | string | no | The http method for receiving webhooks.
+
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "id": 5,
+    "businessId": 300,
+    "recipientUrl": "https://yourcompany.com/api/webhooks",
+    "createdAt": "2019-04-16T22:38:29.059Z",
+    "httpMethod": "post"
+  }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error updating webhook subscription."
+}
+
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+<!-----------------> 
+
+# Webhook Subscriptions Events
+
+## Get Webhook Subscription Events
+
+
+```shell
+curl -X "GET" "https://platform.veryableops.com/api/webhook-subscriptions/subscriptionevent?businessId=727" 
+      -H 'Authorization: bearer [JWT Token]' 
+```
+
+This endpoint retrieves all webhook subscription events for an organization.
+
+### HTTP Request
+
+`GET https://platform.veryableops.com/api/webhook-subscriptions/subscriptionevent`
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "webhooksubscriptionId": 3,
+    "platformEventId": 161,
+    "recipientUrl": "https://yourcompany.com/api/webhooks",
+    "isActive": true,
+    "httpMethod": "POST"
+  },
+  {
+    "webhooksubscriptionId": 3,
+    "platformEventId": 255,
+    "recipientUrl": "https://yourcompany.com/api/webhooks",
+    "isActive": true,
+    "httpMethod": "POST"
+  },
+  {
+    "webhooksubscriptionId": 3,
+    "platformEventId": 248,
+    "recipientUrl": "https://yourcompany.com/api/webhooks",
+    "isActive": true,
+    "httpMethod": "POST"
+  },
+  {
+    "webhooksubscriptionId": 3,
+    "platformEventId": 249,
+    "recipientUrl": "https://yourcompany.com/api/webhooks",
+    "isActive": true,
+    "httpMethod": "POST"
+  }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error retrieving webhook subscription events."
+}
+
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Add Webhook Subscription Event
+
+```shell
+curl -X "POST" "https://platform.veryableops.com/api/webhook-subscriptions/subscriptionevent?businessId=300" 
+      -H 'Authorization: bearer [JWT Token]' 
+      -d $'{
+          "platformEventId": "7",
+          "webhookSubscriptionId": "6"
+        }'
+
+```
+This endpoint adds a webhook subscription event for an organization's webhook subscription.
+
+### HTTP Request
+
+`POST https://platform.veryableops.com/api/wehook-subscriptions/subscriptionevent`
+
+### Body Parameters
+
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+platformEventId | integer | yes | The Id of the platform event.
+webhookSubscriptionId | integer | yes | The Id of the organization's webhook subscription.
+
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "id": 91,
+    "webhooksubscriptionId": 6,
+    "platformEventId": 7
+  }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error adding webhook subscription event."
+}
+
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
+## Toggle Webhook Subscription Event
+
+```shell
+curl -X POST "https://platform.veryableops.com/api/webhook-subscriptions/subscriptionevent/toggle?businessId=300"
+    -H "Authorization: Bearer [JWT string]"
+    -d $'{
+        "platformEventId": 16,
+        "webhookSubscriptionId": 5
+      }'
+```
+
+This endpoint toggles webhook subscription events for a subscription. It toggles to add or delete the subscription event. 
+
+### HTTP Request
+
+`POST https://platform.veryableops.com/api/webhook-subscriptions/subscriptionevent/toggle`
+
+### Body Parameters
+
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+platformEventId | integer | yes | The Id of the platform event.
+webhookSubscriptionId | integer | yes | The Id of the organization's webhook subscription.
+
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "id": 91,
+    "webhooksubscriptionId": 6,
+    "platformEventId": 7
+  }
+]
+```
+
+> Here is an example of an error response:
+
+```json
+{
+    "message": "Error toggling webhook subscription event."
+}
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
 
