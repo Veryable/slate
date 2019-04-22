@@ -1,5 +1,5 @@
 use Rack::Auth::Basic, "Restricted Area" do |username, password|
-  [username, password] == [ENV.fetch("USERNAME", "user"), ENV.fetch("PASSWORD", "veryabl3d0cs368!")]
+  [username, password] == [ENV.fetch("USERNAME", "user"), ENV.fetch("PASSWORD", "veryabledocs?368")]
 end
 
 use Rack::Static, :urls => [""], :root => './build', :index => 'index.html'
