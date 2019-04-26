@@ -42,7 +42,7 @@ The `Cookie` parameter takes a string value, corresponding to the value of `Set-
 In the login response headers, `Set-Cookie` will be formatted as follows:
 
 `
-Set-Cookie: "platform.sid=[ cookie ID & metadata ]"
+Set-Cookie: "platform.sid=[ cookie ID & directives ]"
 `
 
 For subsequent non-login requests, format the `Cookie` parameter as follows:
@@ -51,12 +51,9 @@ For subsequent non-login requests, format the `Cookie` parameter as follows:
 Cookie: [ value of Set-Cookie ]
 `
 
-
 ```shell
 https://platformtest.veryableops.com/api/bids?businessId=226
 ```
-
-The API
 
 <aside class="notice">
 In addition, a business ID (corresponding to a business you have access to) must be passed as a <code>businessId</code> query parameter with every request, formatted like the example to the right.
