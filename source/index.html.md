@@ -131,6 +131,55 @@ password | yes | The password you use to access the Veryable platform.
 Remember — You must pass both the <code>Authorization</code> and <code>Cookie</code> headers with every subsequent HTTP request!
 </aside>
 
+# Reports
+
+## Get Roster Data
+```shell
+curl -X GET "https://platformtest.veryableops.com/api/reports/rosters?businessId=10,11&startDate=2000-01-01&endDate=2000-01-04"
+-H "Authorization: Bearer [JWT string]"
+-H "Cookie: [value of Set-Cookie from login response headers]"
+```
+This endpoint retrieves the operator roster data for one or several businesses.
+### HTTP Request
+`GET https://platformtest.veryableops.com/api/reports/rosters`
+### Query Parameters
+Parameter | Type | Required | Description
+--------- | ------ | ---- | -----------
+businessId | string [text] | yes | An comma-separated string containing the business ID(s) to retrieve roster(s) for. You can retrieve the business IDs you have access to from the response of the login endpoint.
+startDate | string [text] | no | `YYYY-MM-DD` Defaults to tomorrow's date if nothing passed for this parameter.
+endDate | string [text] | no | `YYYY-MM-DD` Defaults to tomorrow's date if nothing passed for this parameter. 
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+    "businessId": 10
+    , "businessName": "Dunder Mifflin"
+    , "workareaName": "Scranton Branch"
+    , "locationName": "Scranton Business Park, Suite 200"
+    , "timeZoneId": "America/New York"
+    , "date": "01/01/2000"
+    , "hoursAssigned": 18
+    , "businessCharge": 305.30
+    }
+    , {
+    "businessId": 11
+    , "businessName": "Dunder Mifflin"
+    , "workareaName": "Dallas Branch"
+    , "locationName": "NorthPark Center"
+    , "timeZoneId": "America/Chicago"
+    , "date": "01/04/2000"
+    , "hoursAssigned": 9
+    , "businessCharge": 40.00
+    }
+]
+```
+
+<aside class="warning">
+Remember — include <code>businessId</code> as part of the query parameters!
+</aside>
+
 # Bids
 
 ## Get Bids For Op
