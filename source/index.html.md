@@ -52,7 +52,7 @@ Cookie: [ value of Set-Cookie ]
 `
 
 ```shell
-https://platformtest.veryableops.com/api/bids?businessId=226
+https://platform.veryableops.com/api/bids?businessId=226
 ```
 
 <aside class="notice">
@@ -64,14 +64,14 @@ In addition, a business ID (corresponding to a business you have access to) must
 ## Login to Veryable API
 
 ```shell
-curl -X POST "https://platformtest.veryableops.com/api/login"
+curl -X POST "https://platform.veryableops.com/api/login"
 ```
 
 This endpoint logs you into the Veryable API -- You must log in before hitting any other endpoints.
 
 ### HTTP Request
 
-`POST https://platformtest.veryableops.com/api/login`
+`POST https://platform.veryableops.com/api/login`
 
 ### Body Parameters
 
@@ -135,13 +135,13 @@ Remember — You must pass both the <code>Authorization</code> and <code>Cookie<
 
 ## Get Roster Data
 ```shell
-curl -X GET "https://platformtest.veryableops.com/api/reports/rosters?businessId=10,11&startDate=2000-01-01&endDate=2000-01-04"
+curl -X GET "https://platform.veryableops.com/api/reports/rosters?businessId=10,11&startDate=2000-01-01&endDate=2000-01-04"
 -H "Authorization: Bearer [JWT string]"
 -H "Cookie: [value of Set-Cookie from login response headers]"
 ```
 This endpoint retrieves the operator roster data for one or several businesses.
 ### HTTP Request
-`GET https://platformtest.veryableops.com/api/reports/rosters`
+`GET https://platform.veryableops.com/api/reports/rosters`
 ### Query Parameters
 Parameter | Type | Required | Description
 --------- | ------ | ---- | -----------
@@ -185,7 +185,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Bids For Op
 
 ```shell
-curl -X GET "https://platformtest.veryableops.com/api/bids?businessId=226&opId=6134"
+curl -X GET "https://platform.veryableops.com/api/bids?businessId=226&opId=6134"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
 ```
@@ -194,7 +194,7 @@ This endpoint retrieves all bids for an Op.
 
 ### HTTP Request
 
-`GET https://platformtest.veryableops.com/api/bids`
+`GET https://platform.veryableops.com/api/bids`
 
 ### Query Parameters
 
@@ -240,7 +240,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Bid By ID
 
 ```shell
-curl -X GET "https://platformtest.veryableops.com/api/bids/<bidId>?businessId=226"
+curl -X GET "https://platform.veryableops.com/api/bids/<bidId>?businessId=226"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
 ```
@@ -249,7 +249,7 @@ This endpoint retrieves a specific bid by ID.
 
 ### HTTP Request
 
-`GET https://platformtest.veryableops.com/api/bids/<bidId>`
+`GET https://platform.veryableops.com/api/bids/<bidId>`
 
 ### URL Parameters
 
@@ -295,7 +295,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Adjust Bid By ID
 
 ```shell
-curl -X "PUT" "https://platformtest.veryableops.com/api/bids/101933/adjust?businessId=226"
+curl -X "PUT" "https://platform.veryableops.com/api/bids/101933/adjust?businessId=226"
     -H 'Authorization: Bearer [JWT token]'
     -H "Cookie: [value of Set-Cookie from login response headers]"
     -d $'{"bidQuantity": 6}'
@@ -305,7 +305,7 @@ This endpoint adjusts the bid quantity of a specific bid by ID.
 
 ### HTTP Request
 
-`PUT https://platformtest.veryableops.com/api/bids/<bidId>/adjust`
+`PUT https://platform.veryableops.com/api/bids/<bidId>/adjust`
 
 ### URL Parameters
 
@@ -360,7 +360,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Adjust Multiple Bids
 
 ```shell
-curl -X "PUT" "https://platformtest.veryableops.com/api/bids/adjust?businessId=226"
+curl -X "PUT" "https://platform.veryableops.com/api/bids/adjust?businessId=226"
      -H 'Authorization: Bearer [JWT token]'
      -H "Cookie: [value of Set-Cookie from login response headers]"  
      -d $'{
@@ -382,7 +382,7 @@ This endpoint adjusts the bid quantities of multiple bids.
 
 ### HTTP Request
 
-`PUT https://platformtest.veryableops.com/api/bids/adjust`
+`PUT https://platform.veryableops.com/api/bids/adjust`
 
 ### Body Parameters
 
@@ -455,7 +455,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Accept Bid
 
 ```shell
-curl -X "PUT" "https://platformtest.veryableops.com/api/bids/101933/accept?businessId=226"
+curl -X "PUT" "https://platform.veryableops.com/api/bids/101933/accept?businessId=226"
      -H 'Authorization: Bearer [JWT token]'
      -H "Cookie: [value of Set-Cookie from login response headers]"
 ```
@@ -464,7 +464,7 @@ This endpoint accepts a submitted bid, which assigns the operator who submitted 
 
 ### HTTP Request
 
-`PUT https://platformtest.veryableops.com/api/bids/<bidId>/accept`
+`PUT https://platform.veryableops.com/api/bids/<bidId>/accept`
 
 ### URL Parameters
 
@@ -510,7 +510,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Dispute Bid
 
 ```shell
-curl -X "PUT" "https://platformtest.veryableops.com/api/bids/<bidId>/dispute?businessId=226"
+curl -X "PUT" "https://platform.veryableops.com/api/bids/<bidId>/dispute?businessId=226"
      -H 'Authorization: Bearer [JWT token]'
      -H "Cookie: [value of Set-Cookie from login response headers]"
      -d $'{
@@ -523,7 +523,7 @@ This endpoint disputes a bid.
 
 ### HTTP Request
 
-`PUT https://platformtest.veryableops.com/api/bids/<bidId>/dispute`
+`PUT https://platform.veryableops.com/api/bids/<bidId>/dispute`
 
 ### URL Parameters
 
@@ -578,7 +578,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Send Message
 
 ```shell
-curl -X "POST" "https://platformtest.veryableops.com/api/messages?businessId=226" 
+curl -X "POST" "https://platform.veryableops.com/api/messages?businessId=226" 
      -H "Authorization: Bearer [JWT Token]"
      -H "Cookie: [value of Set-Cookie from login response headers]"
      -d $'{
@@ -597,7 +597,7 @@ This endpoint sends a message from a business to one or more operators.
 
 ### HTTP Request
 
-`POST https://platformtest.veryableops.com/api/messages`
+`POST https://platform.veryableops.com/api/messages`
 
 ### Body Parameters
 Parameter | Type | Required | Description
@@ -622,7 +622,7 @@ body | string | yes | The body of the message.
 ## Get Op By Id
 
 ```shell
-curl -X GET "https://platformtest.veryableops.com/api/ops/<opId>?businessId=300"
+curl -X GET "https://platform.veryableops.com/api/ops/<opId>?businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
 ```
@@ -631,7 +631,7 @@ This endpoint retrieves an Op by Id.
 
 ### HTTP Request
 
-`GET https://platformtest.veryableops.com/api/ops/<opId>`
+`GET https://platform.veryableops.com/api/ops/<opId>`
 
 ### URL Parameters
 
@@ -682,7 +682,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Ops For Business
 
 ```shell
-curl -X GET "https://platformtest.veryableops.com/api/ops/business/all?businessId=300"
+curl -X GET "https://platform.veryableops.com/api/ops/business/all?businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
 ```
@@ -691,7 +691,7 @@ This endpoint retrieves all ops for a business.
 
 ### HTTP Request
 
-`GET https://platformtest.veryableops.com/api/ops/business/all`
+`GET https://platform.veryableops.com/api/ops/business/all`
 
 > The above command returns JSON structured like this:
 
@@ -774,7 +774,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Update Op
 
 ```shell
-curl -X PUT "https://platformtest.veryableops.com/api/ops/<id>?=businessId=300"
+curl -X PUT "https://platform.veryableops.com/api/ops/<id>?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
     -d $'{
@@ -787,7 +787,7 @@ This endpoint updates a particular op.
 
 ### HTTP Request
 
-`PUT https://platformtest.veryableops.com/api/ops<id>`
+`PUT https://platform.veryableops.com/api/ops<id>`
 
 ### Body Parameters
 
@@ -865,7 +865,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Post Op
 
 ```shell
-curl -X POST "https://platformtest.veryableops.com/api/ops?=businessId=300"
+curl -X POST "https://platform.veryableops.com/api/ops?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
      -d $'{
@@ -895,7 +895,7 @@ This endpoint creates an op for a business.
 
 ### HTTP Request
 
-`POST https://platformtest.veryableops.com/api/ops`
+`POST https://platform.veryableops.com/api/ops`
 
 ### Body Parameters
 
@@ -985,7 +985,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Deactivate Op
 
 ```shell
-curl -X DELETE "https://platformtest.veryableops.com/api/ops/6342?=businessId=300"
+curl -X DELETE "https://platform.veryableops.com/api/ops/6342?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
 ```
@@ -994,7 +994,7 @@ This endpoint deactivates an op that doesn't have accepted bids.
 
 ### HTTP Request
 
-`DELETE https://platformtest.veryableops.com/api/ops/<opId>`
+`DELETE https://platform.veryableops.com/api/ops/<opId>`
 
 > The above command returns JSON structured like this:
 
@@ -1058,7 +1058,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Reactivate Op
 
 ```shell
-curl -X PUT "https://platformtest.veryableops.com/api/ops/reactivate/6342?=businessId=300"
+curl -X PUT "https://platform.veryableops.com/api/ops/reactivate/6342?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
 ```
@@ -1067,7 +1067,7 @@ This endpoint reactivates a previously deactivated op.
 
 ### HTTP Request
 
-`PUT https://platformtest.veryableops.com/api/reactivate/<opId>`
+`PUT https://platform.veryableops.com/api/reactivate/<opId>`
 
 > The above command returns JSON structured like this:
 
@@ -1131,7 +1131,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get All Op Contacts for Business
 
 ```shell
-curl -X GET "https://platformtest.veryableops.com/api/ops/opcontacts?=businessId=300"
+curl -X GET "https://platform.veryableops.com/api/ops/opcontacts?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
 ```
@@ -1140,7 +1140,7 @@ This endpoint gets all op contacts associated with your business.
 
 ### HTTP Request
 
-`GET https://platformtest.veryableops.com/api/ops/opcontacts`
+`GET https://platform.veryableops.com/api/ops/opcontacts`
 
 > The above command returns JSON structured like this:
 
@@ -1188,7 +1188,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Add Op Contact for Business
 
 ```shell
-curl -X POST "https://platformtest.veryableops.com/api/ops/opcontacts?=businessId=300"
+curl -X POST "https://platform.veryableops.com/api/ops/opcontacts?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
     -d $'{
@@ -1202,7 +1202,7 @@ This endpoint adds an op contact person for your business.
 
 ### HTTP Request
 
-`POST https://platformtest.veryableops.com/api/ops/opcontacts`
+`POST https://platform.veryableops.com/api/ops/opcontacts`
 
 ### Body Parameters
 
@@ -1247,7 +1247,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Toggle Op Contact for Business
 
 ```shell
-curl -X PUT "https://platformtest.veryableops.com/api/ops/opcontacts?=businessId=300"
+curl -X PUT "https://platform.veryableops.com/api/ops/opcontacts?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
 ```
@@ -1256,7 +1256,7 @@ This endpoint toggles an existing op contact' isRemoved property which changes w
 
 ### HTTP Request
 
-`PUT https://platformtest.veryableops.com/api/ops/opcontacts`
+`PUT https://platform.veryableops.com/api/ops/opcontacts`
 
 > The above command returns JSON structured like this:
 
@@ -1291,7 +1291,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Cancel Op
 
 ```shell
-curl -X "PUT" "https://platformtest.veryableops.com/api/ops/11529/cancel?businessId=226"
+curl -X "PUT" "https://platform.veryableops.com/api/ops/11529/cancel?businessId=226"
      -H 'Authorization: Bearer [JWT token]'
      -H "Cookie: [value of Set-Cookie from login response headers]"
      -d $'{
@@ -1307,7 +1307,7 @@ This endpoint cancels a Op and the assignments of the associated operators.
 
 ### HTTP Request
 
-`PUT https://platformtest.veryableops.com/api/ops/<opId>/cancel`
+`PUT https://platform.veryableops.com/api/ops/<opId>/cancel`
 
 ### URL Parameters
 
@@ -1467,7 +1467,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Operators By Id
 
 ```shell
-curl -X POST "https://platformtest.veryableops.com/api/operators?=businessId=300"
+curl -X POST "https://platform.veryableops.com/api/operators?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
     -d $'{
@@ -1479,7 +1479,7 @@ This endpoint gets one or many operators by Id
 
 ### HTTP Request
 
-`POST https://platformtest.veryableops.com/api/operators`
+`POST https://platform.veryableops.com/api/operators`
 
 ### Body Parameters
 
@@ -1559,7 +1559,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Operators By Filter
 
 ```shell
-curl -X POST "https://platformtest.veryableops.com/api/operators/filter?=businessId=300"
+curl -X POST "https://platform.veryableops.com/api/operators/filter?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
     -d $'{
@@ -1571,7 +1571,7 @@ This endpoint gets operators based on various filter criteria.
 
 ### HTTP Request
 
-`POST https://platformtest.veryableops.com/api/operators/filter`
+`POST https://platform.veryableops.com/api/operators/filter`
 
 ### Body Parameters
 
@@ -1659,7 +1659,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Post Operator Rating
 
 ```shell
-curl -X POST "https://platformtest.veryableops.com/api/ratings?=businessId=300"
+curl -X POST "https://platform.veryableops.com/api/ratings?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
     -d $'{
@@ -1676,7 +1676,7 @@ This endpoint creates a rating for an operator's bid.
 
 ### HTTP Request
 
-`POST https://platformtest.veryableops.com/api/ratings`
+`POST https://platform.veryableops.com/api/ratings`
 
 ### Body Parameters
 
@@ -1747,7 +1747,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Add Location for Business
 
 ```shell
-curl -X POST "https://platformtest.veryableops.com/api/profile/locations?=businessId=300"
+curl -X POST "https://platform.veryableops.com/api/profile/locations?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
     -d $'{
@@ -1766,7 +1766,7 @@ This endpoint creates a location for your business.
 
 ### HTTP Request
 
-`POST https://platformtest.veryableops.com/api/profile/locations`
+`POST https://platform.veryableops.com/api/profile/locations`
 
 ### Body Parameters
 
@@ -1826,7 +1826,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Locations for Business
 
 ```shell
-curl -X GET "https://platformtest.veryableops.com/api/profile/locations?=businessId=300"
+curl -X GET "https://platform.veryableops.com/api/profile/locations?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
 ```
@@ -1835,7 +1835,7 @@ This endpoint gets locations for your business.
 
 ### HTTP Request
 
-`GET https://platformtest.veryableops.com/api/profile/locations`
+`GET https://platform.veryableops.com/api/profile/locations`
 
 > The above command returns JSON structured like this:
 
@@ -1903,7 +1903,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Update Location for Business
 
 ```shell
-curl -X PUT "https://platformtest.veryableops.com/api/profile/locations/312?=businessId=300"
+curl -X PUT "https://platform.veryableops.com/api/profile/locations/312?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
     -d $'{ 
@@ -1921,7 +1921,7 @@ This endpoint updates a location for your business.
 
 ### HTTP Request
 
-`PUT https://platformtest.veryableops.com/api/profile/locations/<locationId>`
+`PUT https://platform.veryableops.com/api/profile/locations/<locationId>`
 
 ### URL Parameters
 
@@ -1986,7 +1986,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Work Areas for Business
 
 ```shell
-curl -X GET "https://platformtest.veryableops.com/api/profile/work-areas?=businessId=300"
+curl -X GET "https://platform.veryableops.com/api/profile/work-areas?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
 ```
@@ -1995,7 +1995,7 @@ This endpoint gets work areas associated with your business.
 
 ### HTTP Request
 
-`GET https://platformtest.veryableops.com/api/profile/work-areas`
+`GET https://platform.veryableops.com/api/profile/work-areas`
 
 > The above command returns JSON structured like this:
 
@@ -2031,7 +2031,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Create Work Area for Business
 
 ```shell
-curl -X POST "https://platformtest.veryableops.com/api/profile/work-areas?=businessId=300"
+curl -X POST "https://platform.veryableops.com/api/profile/work-areas?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
     -d $'{ "workAreas": [ "Newest Work Area" ] }'
@@ -2041,7 +2041,7 @@ This endpoint creates a work area for your business.
 
 ### HTTP Request
 
-`POST https://platformtest.veryableops.com/api/profile/work-areas`
+`POST https://platform.veryableops.com/api/profile/work-areas`
 
 ### Body Parameters
 
@@ -2081,7 +2081,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Labor Pool for Business
 
 ```shell
-curl -X GET "https://platformtest.veryableops.com/api/labor-pool?=businessId=300"
+curl -X GET "https://platform.veryableops.com/api/labor-pool?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
 ```
@@ -2090,7 +2090,7 @@ This endpoint gets the labor pool for your business.
 
 ### HTTP Request
 
-`GET https://platformtest.veryableops.com/api/labor-pool`
+`GET https://platform.veryableops.com/api/labor-pool`
 
 > The above command returns JSON structured like this:
 
@@ -2128,7 +2128,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Toggle Operator in YLP
 
 ```shell
-curl -X POST "https://platformtest.veryableops.com/api/labor-pool?=businessId=300"
+curl -X POST "https://platform.veryableops.com/api/labor-pool?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
     -d $'{"operatorId": 361, "action": "favorite"}'
@@ -2138,7 +2138,7 @@ This endpoint toggles an operator in or out of your labor pool.
 
 ### HTTP Request
 
-`POST https://platformtest.veryableops.com/api/labor-pool`
+`POST https://platform.veryableops.com/api/labor-pool`
 
 ### Body Parameters
 Parameter | Type | Required | Description
@@ -2178,7 +2178,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Toggle Block Operator
 
 ```shell
-curl -X POST "https://platformtest.veryableops.com/api/labor-pool/block?=businessId=300"
+curl -X POST "https://platform.veryableops.com/api/labor-pool/block?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
     -d $'{"operatorId": 915}'
@@ -2188,7 +2188,7 @@ This endpoint toggles an operator from a business's block list.
 
 ### HTTP Request
 
-`POST https://platformtest.veryableops.com/api/labor-pool`
+`POST https://platform.veryableops.com/api/labor-pool`
 
 ### Body Parameters
 Parameter | Type | Required | Description
@@ -2218,7 +2218,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Work Centers for Business
 
 ```shell
-curl -X GET "https://platformtest.veryableops.com/api/workcenters?=businessId=300"
+curl -X GET "https://platform.veryableops.com/api/workcenters?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
 ```
@@ -2227,7 +2227,7 @@ This endpoint gets the work centers for your business.
 
 ### HTTP Request
 
-`GET https://platformtest.veryableops.com/api/workcenters`
+`GET https://platform.veryableops.com/api/workcenters`
 
 > The above command returns JSON structured like this:
 
@@ -2262,7 +2262,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Update Work Center for Business
 
 ```shell
-curl -X PUT "https://platformtest.veryableops.com/api/workcenters/1?=businessId=300"
+curl -X PUT "https://platform.veryableops.com/api/workcenters/1?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
     -d $'{
@@ -2278,7 +2278,7 @@ This endpoint gets the work centers for your business.
 
 ### HTTP Request
 
-`PUT https://platformtest.veryableops.com/api/workcenters/<workcenterId>`
+`PUT https://platform.veryableops.com/api/workcenters/<workcenterId>`
 
 ### URL Parameters
 
@@ -2328,7 +2328,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Create Work Center for Business
 
 ```shell
-curl -X POST "https://platformtest.veryableops.com/api/workcenters?=businessId=300"
+curl -X POST "https://platform.veryableops.com/api/workcenters?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
     -d '${
@@ -2344,7 +2344,7 @@ This endpoint creates a work center for your business.
 
 ### HTTP Request
 
-`POST https://platformtest.veryableops.com/api/workcenters`
+`POST https://platform.veryableops.com/api/workcenters`
 
 ### Body Parameters
 Parameter | Type | Required | Description
@@ -2385,7 +2385,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Delete Work Center for Business
 
 ```shell
-curl -X DELETE "https://platformtest.veryableops.com/api/workcenters/1?=businessId=300"
+curl -X DELETE "https://platform.veryableops.com/api/workcenters/1?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
 ```
@@ -2394,7 +2394,7 @@ This endpoint deletes a work center for a business.
 
 ### HTTP Request
 
-`DELETE https://platformtest.veryableops.com/api/workcenters/<workcenterId>`
+`DELETE https://platform.veryableops.com/api/workcenters/<workcenterId>`
 
 ### URL Parameters
 
@@ -2437,7 +2437,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Customers for Business
 
 ```shell
-curl -X GET "https://platformtest.veryableops.com/api/customers?=businessId=300"
+curl -X GET "https://platform.veryableops.com/api/customers?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
 ```
@@ -2446,7 +2446,7 @@ This endpoint gets customers for your business.
 
 ### HTTP Request
 
-`GET https://platformtest.veryableops.com/api/customers`
+`GET https://platform.veryableops.com/api/customers`
 
 > The above command returns JSON structured like this:
 
@@ -2477,7 +2477,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Update Customer for Business
 
 ```shell
-curl -X PUT "https://platformtest.veryableops.com/api/customers/1?=businessId=300"
+curl -X PUT "https://platform.veryableops.com/api/customers/1?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
     -d $'{
@@ -2489,7 +2489,7 @@ This endpoint updates a customer for your business.
 
 ### HTTP Request
 
-`PUT https://platformtest.veryableops.com/api/customers/<customerId>`
+`PUT https://platform.veryableops.com/api/customers/<customerId>`
 
 ### URL Parameters
 
@@ -2532,7 +2532,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Create Customer for Business
 
 ```shell
-curl -X POST "https://platformtest.veryableops.com/api/customers?=businessId=300"
+curl -X POST "https://platform.veryableops.com/api/customers?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
     -d $'{
@@ -2544,7 +2544,7 @@ This endpoint creates a customer for your business.
 
 ### HTTP Request
 
-`POST https://platformtest.veryableops.com/api/customers`
+`POST https://platform.veryableops.com/api/customers`
 
 ### Body Parameters
 Parameter | Type | Required | Description
@@ -2581,7 +2581,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Delete Customer for Business
 
 ```shell
-curl -X DELETE "https://platformtest.veryableops.com/api/customers/1?=businessId=300"
+curl -X DELETE "https://platform.veryableops.com/api/customers/1?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
 ```
@@ -2590,7 +2590,7 @@ This endpoint deletes a customer for your business.
 
 ### HTTP Request
 
-`DELETE https://platformtest.veryableops.com/api/customers/<customerId>`
+`DELETE https://platform.veryableops.com/api/customers/<customerId>`
 
 ### URL Parameters
 
@@ -2629,7 +2629,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Production Schedules for Business
 
 ```shell
-curl -X GET "https://platformtest.veryableops.com/api/schedules?=businessId=300"
+curl -X GET "https://platform.veryableops.com/api/schedules?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
 ```
@@ -2638,7 +2638,7 @@ This endpoint gets production schedules for your business.
 
 ### HTTP Request
 
-`GET https://platformtest.veryableops.com/api/schedules`
+`GET https://platform.veryableops.com/api/schedules`
 
 > The above command returns JSON structured like this:
 
@@ -2668,7 +2668,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Create Production Schedules for Business
 
 ```shell
-curl -X POST "https://platformtest.veryableops.com/api/schedules?=businessId=300"
+curl -X POST "https://platform.veryableops.com/api/schedules?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
 ```
@@ -2677,7 +2677,7 @@ This endpoint creates a production schedule for your business.
 
 ### HTTP Request
 
-`POST https://platformtest.veryableops.com/api/schedules`
+`POST https://platform.veryableops.com/api/schedules`
 
 > The above command returns JSON structured like this:
 
@@ -2707,7 +2707,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Delete Production Schedule for Business
 
 ```shell
-curl -X DELETE "https://platformtest.veryableops.com/api/schedules/1?=businessId=300"
+curl -X DELETE "https://platform.veryableops.com/api/schedules/1?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
 ```
@@ -2716,7 +2716,7 @@ This endpoint creates a production schedule for your business.
 
 ### HTTP Request
 
-`DELETE https://platformtest.veryableops.com/api/schedules/<scheduleId>`
+`DELETE https://platform.veryableops.com/api/schedules/<scheduleId>`
 
 ### URL Parameters
 
@@ -2754,7 +2754,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Routings for Business
 
 ```shell
-curl -X GET "https://platformtest.veryableops.com/api/routings?=businessId=300"
+curl -X GET "https://platform.veryableops.com/api/routings?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
 ```
@@ -2763,7 +2763,7 @@ This endpoint gets the routings for your business.
 
 ### HTTP Request
 
-`GET https://platformtest.veryableops.com/api/routings`
+`GET https://platform.veryableops.com/api/routings`
 
 > The above command returns JSON structured like this:
 
@@ -2796,7 +2796,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Update Routing for Business
 
 ```shell
-curl -X PUT "https://platformtest.veryableops.com/api/routings/1?=businessId=300"
+curl -X PUT "https://platform.veryableops.com/api/routings/1?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
     -d $'{
@@ -2808,7 +2808,7 @@ This endpoint updates a routing for your business.
 
 ### HTTP Request
 
-`PUT https://platformtest.veryableops.com/api/routings/<routingId>`
+`PUT https://platform.veryableops.com/api/routings/<routingId>`
 
 ### URL Parameters
 
@@ -2852,7 +2852,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Create Routing for Business
 
 ```shell
-curl -X POST "https://platformtest.veryableops.com/api/routings?=businessId=300"
+curl -X POST "https://platform.veryableops.com/api/routings?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
     -d $'{
@@ -2866,7 +2866,7 @@ This endpoint creates a routing for your business.
 
 ### HTTP Request
 
-`POST https://platformtest.veryableops.com/api/routings`
+`POST https://platform.veryableops.com/api/routings`
 
 ### Body Parameters
 Parameter | Type | Required | Description
@@ -2906,7 +2906,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Delete Routing for Business
 
 ```shell
-curl -X DELETE "https://platformtest.veryableops.com/api/routings?=businessId=300"
+curl -X DELETE "https://platform.veryableops.com/api/routings?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
 ```
@@ -2915,7 +2915,7 @@ This endpoint deletes a routing for a business.
 
 ### HTTP Request
 
-`DELETE https://platformtest.veryableops.com/api/routings/<routingId>`
+`DELETE https://platform.veryableops.com/api/routings/<routingId>`
 
 ### URL Parameters
 Parameter | Type | Required | Description
@@ -2955,7 +2955,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get SKUs for Business
 
 ```shell
-curl -X GET "https://platformtest.veryableops.com/api/skus?=businessId=300"
+curl -X GET "https://platform.veryableops.com/api/skus?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
 ```
@@ -2964,7 +2964,7 @@ This endpoint gets SKUs for a business.
 
 ### HTTP Request
 
-`GET https://platformtest.veryableops.com/api/skus`
+`GET https://platform.veryableops.com/api/skus`
 
 > The above command returns JSON structured like this:
 
@@ -2995,7 +2995,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Update SKU for Business
 
 ```shell
-curl -X PUT "https://platformtest.veryableops.com/api/skus/1?=businessId=300"
+curl -X PUT "https://platform.veryableops.com/api/skus/1?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
     -d $'{"sku": "3542KD435"}'
@@ -3005,7 +3005,7 @@ This endpoint updates a SKU for a business.
 
 ### HTTP Request
 
-`PUT https://platformtest.veryableops.com/api/skus/<skuId>`
+`PUT https://platform.veryableops.com/api/skus/<skuId>`
 
 ### URL Parameters
 Parameter | Type | Required | Description
@@ -3046,7 +3046,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Create SKU for Business
 
 ```shell
-curl -X POST "https://platformtest.veryableops.com/api/skus?=businessId=300"
+curl -X POST "https://platform.veryableops.com/api/skus?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
     -d $'{"sku": 55FFADG34}'
@@ -3056,7 +3056,7 @@ This endpoint creates a SKU for a business.
 
 ### HTTP Request
 
-`POST https://platformtest.veryableops.com/api/skus/<skuId>`
+`POST https://platform.veryableops.com/api/skus/<skuId>`
 
 ### Body Parameters
 Parameter | Type | Required | Description
@@ -3092,7 +3092,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Delete SKU for Business
 
 ```shell
-curl -X DELETE "https://platformtest.veryableops.com/api/skus/1?=businessId=300"
+curl -X DELETE "https://platform.veryableops.com/api/skus/1?=businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
 ```
@@ -3101,7 +3101,7 @@ This endpoint deletes a SKU for a business.
 
 ### HTTP Request
 
-`DELETE https://platformtest.veryableops.com/api/skus/<skuId>`
+`DELETE https://platform.veryableops.com/api/skus/<skuId>`
 
 ### URL Parameters
 Parameter | Type | Required | Description
@@ -3143,7 +3143,7 @@ When specific events occur on the Veryable platform, we create a new event resou
 ## Get Events
 
 ```shell
-curl -X "GET" "https://platformtest.veryableops.com/api/events?businessId=300" 
+curl -X "GET" "https://platform.veryableops.com/api/events?businessId=300" 
       -H 'Authorization: Bearer [JWT Token]' 
       -H "Cookie: [value of Set-Cookie from login response headers]"
 ```
@@ -3153,7 +3153,7 @@ This endpoint retrieves all events of a business.
 
 ### HTTP Request
 
-`GET https://platformtest.veryableops.com/api/events`
+`GET https://platform.veryableops.com/api/events`
 
 
 > The above command returns JSON structured like this:
@@ -3205,7 +3205,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Update Event
 
 ```shell
-curl -X "PUT" "https://platformtest.veryableops.com/api/events/<eventId>?businessId=300" 
+curl -X "PUT" "https://platform.veryableops.com/api/events/<eventId>?businessId=300" 
       -H 'Authorization: Bearer [JWT Token]' 
       -H "Cookie: [value of Set-Cookie from login response headers]"
       -d $'{
@@ -3222,7 +3222,7 @@ This endpoint retrieves all events of a business.
 
 ### HTTP Request
 
-`PUT https://platformtest.veryableops.com/api/events/<eventId>`
+`PUT https://platform.veryableops.com/api/events/<eventId>`
 
 ### URL Parameters 
 Parameter | Required | Description
@@ -3268,7 +3268,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Get Platform Events
 
 ```shell
-curl -X "GET" "https://platformtest.veryableops.com/api/events/platformevents?businessId=727" 
+curl -X "GET" "https://platform.veryableops.com/api/events/platformevents?businessId=727" 
       -H 'Authorization: Bearer [JWT Token]' 
       -H "Cookie: [value of Set-Cookie from login response headers]"
 ```
@@ -3278,7 +3278,7 @@ This endpoint retrieves all platform events that can be subscribed to.
 
 ### HTTP Request
 
-`GET https://platformtest.veryableops.com/api/events/platformevents`
+`GET https://platform.veryableops.com/api/events/platformevents`
 
 
 > The above command returns JSON structured like this:
@@ -3393,7 +3393,7 @@ The hash signature is generated with the HMAC algorithm, passing in the stringif
 
 
 ```shell
-curl -X "GET" "https://platformtest.veryableops.com/api/webhooks?subscriptionId=1&businessId=300" 
+curl -X "GET" "https://platform.veryableops.com/api/webhooks?subscriptionId=1&businessId=300" 
      -H 'Authorization: Bearer [JWT Token]' 
      -H "Cookie: [value of Set-Cookie from login response headers]"
 ```
@@ -3403,7 +3403,7 @@ This endpoint retrieves all webhooks for a subscription.
 
 ### HTTP Request
 
-`GET https://platformtest.veryableops.com/api/webhooks`
+`GET https://platform.veryableops.com/api/webhooks`
 
 
 ### Query Parameters 
@@ -3469,7 +3469,7 @@ In order to receive webhooks, you will need to subscribe to the desired business
 
 
 ```shell
-curl -X "GET" "https://platformtest.veryableops.com/api/webhook-subscriptions?businessId=727" 
+curl -X "GET" "https://platform.veryableops.com/api/webhook-subscriptions?businessId=727" 
       -H 'Authorization: Bearer [JWT Token]'
       -H "Cookie: [value of Set-Cookie from login response headers]"
 ```
@@ -3478,7 +3478,7 @@ This endpoint retrieves all webhook subscriptions for an organization, scoped to
 
 ### HTTP Request
 
-`GET https://platformtest.veryableops.com/api/webhook-subscriptions`
+`GET https://platform.veryableops.com/api/webhook-subscriptions`
 
 > The above command returns JSON structured like this:
 
@@ -3512,7 +3512,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 
 
 ```shell
-curl -X "POST" "https://platformtest.veryableops.com/api/webhook-subscriptions?businessId=727" 
+curl -X "POST" "https://platform.veryableops.com/api/webhook-subscriptions?businessId=727" 
       -H 'Authorization: Bearer [JWT Token]' 
       -H "Cookie: [value of Set-Cookie from login response headers]"
         -d $'{
@@ -3525,7 +3525,7 @@ This endpoint creates a webhook subscription.
 
 ### HTTP Request
 
-`POST https://platformtest.veryableops.com/api/webhook-subscriptions`
+`POST https://platform.veryableops.com/api/webhook-subscriptions`
 
 ### Body Parameters
 
@@ -3567,7 +3567,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 
 
 ```shell
-curl -X "PUT" "https://platformtest.veryableops.com/api/webhook-subscriptions/<subscriptionId>?businessId=300" 
+curl -X "PUT" "https://platform.veryableops.com/api/webhook-subscriptions/<subscriptionId>?businessId=300" 
       -H 'Authorization: Bearer [JWT Token]' 
       -H "Cookie: [value of Set-Cookie from login response headers]"
       -d $'{
@@ -3580,7 +3580,7 @@ This endpoint updates a webhook subscription for an organization. It is also a t
 
 ### HTTP Request
 
-`PUT https://platformtest.veryableops.com/api/webhook-subscriptions/<subscriptionId>`
+`PUT https://platform.veryableops.com/api/webhook-subscriptions/<subscriptionId>`
 
 ### URL Parameters 
 Parameter | Required | Description
@@ -3631,7 +3631,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 
 
 ```shell
-curl -X "GET" "https://platformtest.veryableops.com/api/webhook-subscriptions/subscriptionevent?businessId=727" 
+curl -X "GET" "https://platform.veryableops.com/api/webhook-subscriptions/subscriptionevent?businessId=727" 
       -H 'Authorization: Bearer [JWT Token]' 
       -H "Cookie: [value of Set-Cookie from login response headers]"
 ```
@@ -3640,7 +3640,7 @@ This endpoint retrieves all webhook subscription events for an organization.
 
 ### HTTP Request
 
-`GET https://platformtest.veryableops.com/api/webhook-subscriptions/subscriptionevent`
+`GET https://platform.veryableops.com/api/webhook-subscriptions/subscriptionevent`
 
 > The above command returns JSON structured like this:
 
@@ -3693,7 +3693,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Add Webhook Subscription Event
 
 ```shell
-curl -X "POST" "https://platformtest.veryableops.com/api/webhook-subscriptions/subscriptionevent?businessId=300" 
+curl -X "POST" "https://platform.veryableops.com/api/webhook-subscriptions/subscriptionevent?businessId=300" 
       -H 'Authorization: Bearer [JWT Token]' 
       -H "Cookie: [value of Set-Cookie from login response headers]"
       -d $'{
@@ -3706,7 +3706,7 @@ This endpoint adds a webhook subscription event for an organization's webhook su
 
 ### HTTP Request
 
-`POST https://platformtest.veryableops.com/api/webhook-subscriptions/subscriptionevent`
+`POST https://platform.veryableops.com/api/webhook-subscriptions/subscriptionevent`
 
 ### Body Parameters
 
@@ -3744,7 +3744,7 @@ Remember — include <code>businessId</code> as part of the query parameters!
 ## Toggle Webhook Subscription Event
 
 ```shell
-curl -X POST "https://platformtest.veryableops.com/api/webhook-subscriptions/subscriptionevent/toggle?businessId=300"
+curl -X POST "https://platform.veryableops.com/api/webhook-subscriptions/subscriptionevent/toggle?businessId=300"
     -H "Authorization: Bearer [JWT string]"
     -H "Cookie: [value of Set-Cookie from login response headers]"
     -d $'{
@@ -3757,7 +3757,7 @@ This endpoint toggles webhook subscription events for a subscription. It toggles
 
 ### HTTP Request
 
-`POST https://platformtest.veryableops.com/api/webhook-subscriptions/subscriptionevent/toggle`
+`POST https://platform.veryableops.com/api/webhook-subscriptions/subscriptionevent/toggle`
 
 ### Body Parameters
 
