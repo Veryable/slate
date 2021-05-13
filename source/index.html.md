@@ -162,6 +162,7 @@ endDate | string [text] | no | `YYYY-MM-DD` Defaults to tomorrow's date if nothi
     , "date": "01/01/2000"
     , "hoursAssigned": 18
     , "businessCharge": 305.30
+    , "headCount": 5
     }
     , {
     "businessId": 11
@@ -172,6 +173,7 @@ endDate | string [text] | no | `YYYY-MM-DD` Defaults to tomorrow's date if nothi
     , "date": "01/04/2000"
     , "hoursAssigned": 9
     , "businessCharge": 40.00
+    , "headCount": 1
     }
 ]
 ```
